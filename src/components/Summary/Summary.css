@@ -1,0 +1,19 @@
+div.summary-container {
+    border: 5px solid var(--dusty);
+    border-radius: .3rem;
+    /*width: 75%;*/
+}
+
+div.summary-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+div.summary-header h2 {
+    align-self: flex-end;
+    color: var(--lavendar);
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}

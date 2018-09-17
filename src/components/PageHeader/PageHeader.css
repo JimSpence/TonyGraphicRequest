@@ -1,0 +1,41 @@
+header {
+    align-content: center;
+    background-color: var(--lavendar-dark);
+    display: flex;
+    justify-content: space-between;
+    padding: .75rem
+}
+
+header h1 {
+    color: whitesmoke;
+    font-size: 1.75rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+header img:first-of-type {
+    height: 30px;
+    width: 150px;
+}
+
+header img:last-of-type {
+    height: 35px;
+}
+
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header img:first-of-type {
+        height: 15px;
+        width: 75px;
+        border: 1px solid red;
+    }
+
+    header img:last-of-type {
+        height: 20px;
+    }
+}
+

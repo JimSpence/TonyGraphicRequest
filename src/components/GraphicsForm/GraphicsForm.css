@@ -1,0 +1,8 @@
+#graphicsForm {
+    flex-direction: column;
+}
+
+#graphicsForm select {
+    box-sizing: border-box;
+    /*width: 48%;*/
+}

@@ -1,0 +1,4 @@
+#viewModal div.modal-body  {
+    display: flex;
+    flex-direction: row;
+}

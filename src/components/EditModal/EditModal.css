@@ -1,0 +1,36 @@
+div.contact-details {
+    margin-right: .5rem;
+}
+
+div .contact-details,
+div.graphics {
+    align-self: flex-start;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    border-radius: .3rem;
+    padding: .5rem;
+}
+
+div.contact-details,
+div.graphics-container {
+    width: 360px;
+}
+
+div.edit-modal .modal-body {
+    display: flex;
+    flex-direction: row;
+}
+
+div.section-header {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+div.store-details div.input-group {
+    background-color: white;
+    border: 1px solid var(--paper);
+    border-radius: .3rem;
+    padding: .5rem;
+}

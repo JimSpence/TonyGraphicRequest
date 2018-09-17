@@ -1,0 +1,81 @@
+.btn {
+    border: 1px solid;
+    border-radius: .5rem;
+    font-size: .8rem;
+    padding: .35rem;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.btn span.icon {
+    font-size: .7rem;
+    margin-right: .25rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn.primary {
+    background-color: var(--primary);
+    border-color: var(--primary-dark);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-light);
+}
+
+.btn.secondary {
+    background-color: var(--secondary-light);
+    border-color: var(--secondary);
+    color: white;
+}
+
+.btn.secondary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary-dark);
+}
+
+.btn.primary span.icon,
+.btn.secondary span.icon {
+    color: white;
+}
+
+.btn.primary-outline {
+    background-color: white;
+    border-color: var(--primary-light);
+    color: var(--primary);
+}
+
+.btn.primary-outline:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: white;
+}
+
+.btn.primary-outline span.icon {
+    color: var(--primary);
+}
+
+.btn.secondary-outline {
+    background-color: white;
+    border-color: var(--secondary-light);
+    color: var(--secondary);
+}
+
+.btn.secondary-outline:hover {
+    background-color: var(--secondary-light);
+    border-color: var(--secondary);
+    color: white;
+}
+
+.btn.secondary-outline span.icon {
+    color: var(--secondary);
+}
+
+.btn.primary-outline:hover span.icon,
+.btn.secondary-outline:hover span.icon {
+    color: white;
+}
