@@ -1,9 +1,5 @@
 .content {
-    /*!*background-color: var(--screen);*!*/
-    /*border: 2px solid var(--dusty);*/
-    /*border-radius: .3rem;*/
     display: flex;
     justify-content: center;
     margin: .5rem 2rem;
-    /*padding: .5rem;*/
 }

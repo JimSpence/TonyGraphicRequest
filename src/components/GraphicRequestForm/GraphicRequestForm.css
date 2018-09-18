@@ -9,11 +9,7 @@ div.graphics {
     border: 1px solid #ddd;
     border-radius: .3rem;
     padding: .5rem;
-}
-
-div.contact-details,
-div.graphics-container {
-    width: 360px;
+    width: 350px;
 }
 
 div.edit-modal .modal-body {

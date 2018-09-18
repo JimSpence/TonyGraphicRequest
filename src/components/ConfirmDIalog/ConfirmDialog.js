@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import Modal from 'react-responsive-modal';
 import Button from "../Button/Button";
 import Utils from '../../services/Utils'
-import './ConfirmModal.css';
+import './ConfirmDialog.css';
 import GraphicsSummary from "../GraphicsSummary/GraphicsSummary";
 
-export default class ConfirmModal extends Component {
+export default class ConfirmDialog extends Component {
     constructor(props) {
         super(props);
 

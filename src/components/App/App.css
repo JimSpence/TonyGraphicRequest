@@ -1,10 +1,8 @@
 :root {
     --dusty: #96858f;
-    /*--dusty-dark: #74636d;*/
     --dusty-dark: #85747e;
     --dusty-light: #b8a7af;
     --lavendar: #6d7993;
-    /*--lavendar-dark: #4b5771;*/
     --lavendar-dark: #5c6882;
     --lavendar-light: #8f9bb5;
     --overcast: #9099a2;
@@ -34,9 +32,6 @@ div.column {
 }
 
 div.input-group {
-    /*display: flex;*/
-    /*flex-direction: row;*/
-    /*justify-content: space-between;*/
     margin-bottom: .5rem;
     margin-top: .25rem;
 }
@@ -101,4 +96,42 @@ span.icon.user::before {
 
 .text-right {
     text-align: right;
+}
+
+.custom-modal {
+    border: 2px solid var(--lavendar);
+    border-radius: .3rem;
+    font-size: 1.1rem;
+    padding: 0;
+}
+
+.custom-modal div.modal-body {
+    color: var(--lavendar);
+    padding: .5rem;
+}
+
+.custom-modal footer.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin: .5rem;
+}
+
+.custom-modal footer.modal-buttons button {
+    margin-left: .5rem;
+}
+
+.custom-modal footer.modal-buttons button:first-of-type {
+    margin-left: 0;
+}
+
+.custom-modal header {
+    background-color: var(--lavendar);
+    padding: 0 0 .25rem;
+}
+
+.custom-modal header h1 {
+    color: white;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: .25rem;
 }

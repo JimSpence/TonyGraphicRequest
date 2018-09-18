@@ -1,6 +1,3 @@
-input {
-}
-
 input[type=text] {
     border: 1px solid var(--dusty-light);
     border-radius: .3rem;

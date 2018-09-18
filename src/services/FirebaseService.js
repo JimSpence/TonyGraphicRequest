@@ -9,11 +9,10 @@ firebase.initializeApp(config);
 
 export default class FirebaseService {
     static getGraphicRequests(graphicRequestId) {
-        // console.log(FirebaseService.writeStores());
-        const uri = graphicRequestId ? 'graphicRequests/' + graphicRequestId : 'graphicRequests';
-        const graphicRequestsDB = firebase.database().ref(uri);
+        return new Promise((resolve) => {
+            const uri = graphicRequestId ? 'graphicRequests/' + graphicRequestId : 'graphicRequests';
+            const graphicRequestsDB = firebase.database().ref(uri);
 
-        return new Promise((resolve, reject) => {
             return graphicRequestsDB.on('value', (data) => {
                 resolve(data.val());
             })
@@ -21,8 +20,9 @@ export default class FirebaseService {
     }
 
     static getData(entity) {
-        const graphicRequestsDB = firebase.database().ref(entity);
         return new Promise((resolve) => {
+            const graphicRequestsDB = firebase.database().ref(entity);
+
             return graphicRequestsDB.on('value', (data) => {
                 resolve(data.val());
             })
@@ -31,18 +31,20 @@ export default class FirebaseService {
 
     static updateGraphicRequest(graphicRequestId, graphicRequest) {
         const graphicRequestsDB = firebase.database().ref('graphicRequests/');
-        graphicRequestsDB.child(graphicRequestId).update(graphicRequest)
-            .then(data => {
-                console.log(data);
-            });
+        return graphicRequestsDB.child(graphicRequestId).update(graphicRequest);
+        // graphicRequestsDB.child(graphicRequestId).update(graphicRequest)
+        //     .then(data => {
+        //         console.log(data);
+        //     });
     }
 
     static writeGraphicRequest(graphicRequest) {
         const graphicRequestsDB = firebase.database().ref('graphicRequests/');
-        graphicRequestsDB.push(graphicRequest)
-            .then(data => {
-                console.log(data);
-            });
+        return graphicRequestsDB.push(graphicRequest);
+        // graphicRequestsDB.push(graphicRequest)
+        //     .then(data => {
+        //         console.log(data);
+        //     });
     }
 
     static deleteGraphicRequest(graphicRequestId) {

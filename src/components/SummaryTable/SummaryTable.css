@@ -1,5 +1,4 @@
 table {
-    /*border-collapse: collapse;*/
     background-color: white;
     border-spacing: 0;
     font-size: 1.1rem;
@@ -25,7 +24,6 @@ table tbody tr:hover td {
     background-color: aliceblue;
     color: cornflowerblue;
     cursor: pointer;
-    /*text-decoration: underline;*/
 }
 
 table tbody tr:nth-child(even) {

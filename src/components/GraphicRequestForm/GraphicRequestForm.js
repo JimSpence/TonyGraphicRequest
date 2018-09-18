@@ -11,9 +11,9 @@ import GraphicsSummary from "../GraphicsSummary/GraphicsSummary";
 import DataService from "../../services/DataService";
 import EmailService from "../../services/EmailService";
 import FirebaseService from "../../services/FirebaseService";
-import './EditModal.css';
+import './GraphicRequestForm.css';
 
-export default class EditModal extends Component {
+export default class GraphicRequestForm extends Component {
     constructor(props) {
         super(props);
 

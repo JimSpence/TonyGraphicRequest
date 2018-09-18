@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import FirebaseService from '../../services/FirebaseService'
 import SummaryTable from "../SummaryTable/SummaryTable";
-import ConfirmModal from "../ConfirmModal/ConfirmModal";
-import ViewModal from "../ViewModal/ViewModal";
-import EditModal from "../EditModal/EditModal";
+import ConfirmDialog from "../ConfirmDIalog/ConfirmDialog";
+import GraphicRequestForm from "../GraphicRequestForm/GraphicRequestForm";
 import Button from "../Button/Button";
 import './Summary.css';
 
@@ -16,8 +15,7 @@ export default class Summary extends Component {
             graphicRequests: null,
             graphicRequestId: null,
             confirmModal: false,
-            editModal: false,
-            viewModal: false
+            editModal: false
         };
 
         this.deleteRequest = this.deleteRequest.bind(this);
@@ -79,23 +77,16 @@ export default class Summary extends Component {
         } else {
             const {graphicRequests} = this.state;
             const graphicRequest = this.state.graphicRequestId ? this.state.graphicRequests[this.state.graphicRequestId] : {};
-            console.log(graphicRequest);
             const modal =
                 this.state.confirmModal ?
-                    <ConfirmModal
+                    <ConfirmDialog
                         graphicRequest={graphicRequest}
                         onClose={this.closeModal}
                         onDelete={this.doDelete}
                         open={this.state.confirmModal}
                     /> :
-                this.state.viewModal ?
-                    <ViewModal
-                        graphicRequest={this.state.graphicRequestId}
-                        onClose={this.closeModal}
-                        open={this.state.viewModal}
-                    /> :
                 this.state.editModal ?
-                    <EditModal
+                    <GraphicRequestForm
                         editMode={this.state.editMode}
                         id={this.state.graphicRequestId}
                         graphicRequest={graphicRequest}
