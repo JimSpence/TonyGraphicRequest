@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Modal from 'react-responsive-modal';
 import Button from "../Button/Button";
 import Utils from '../../services/Utils'
-import './ConfirmDialog.css';
 import GraphicsSummary from "../GraphicsSummary/GraphicsSummary";
+import './ConfirmDialog.css';
 
 export default class ConfirmDialog extends Component {
     constructor(props) {
@@ -24,7 +24,14 @@ export default class ConfirmDialog extends Component {
     };
 
     render() {
-        console.log(this.props);
+        const confirmDetails = this.props.graphicRequest && this.props.graphicRequest.graphics ?
+            <div>
+                <div>Do you really want to delete this Graphic Request?</div>
+                <label>Graphics</label>
+                <GraphicsSummary graphics={this.props.graphicRequest.graphics} />
+            </div>
+            : <div>Do you really want to delete this Graphic?</div>;
+
         return (
             <Modal
                 center={true}
@@ -35,14 +42,12 @@ export default class ConfirmDialog extends Component {
                 open={this.props.open}
                 showCloseIcon={false}
             >
-                <div>
+                <div id="confirmDialog">
                     <header>
                         <h1>Confirm delete</h1>
                     </header>
                     <div className="modal-body">
-                        <div>Do you really want to delete this Graphic Request?</div>
-                        <label>Graphics</label>
-                        <GraphicsSummary graphics={this.props.graphicRequest.graphics} />
+                        {confirmDetails}
                     </div>
                     <footer className="modal-buttons">
                         <Button

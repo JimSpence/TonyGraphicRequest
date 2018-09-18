@@ -65,22 +65,20 @@ export default class GraphicRequestForm extends Component {
     }
 
     addGraphic = (graphic) => {
-        const newGraphicRequest = DataService.addGraphic(this.state.graphicRequest, graphic);
-        this.setState({graphicRequest: newGraphicRequest}, () => {
+        this.setState({graphicRequest: DataService.addGraphic(this.state.graphicRequest, graphic)}, () => {
             this.closeGraphicFormModal();
         });
     };
 
-    deleteGraphic = (graphicRequestId) => {
-        const newGraphicRequest = DataService.deleteGraphic(this.state.graphicRequest, graphicRequestId);
-        this.setState({graphicRequest: newGraphicRequest}, () => {
+    deleteGraphic = (graphicId) => {
+        this.setState({graphicRequest: DataService.deleteGraphic(this.state.graphicRequest, graphicId)}, () => {
             this.closeGraphicFormModal();
         });
     };
 
     closeGraphicFormModal = () => {
         Utils.unblurBackground();
-        this.setState({showAddGraphicForm: false, showEditGraphicForm: false});
+        this.setState({graphicIdToEdit: null, showAddGraphicForm: false, showEditGraphicForm: false});
     };
 
     doComplete = () => {
@@ -175,7 +173,6 @@ export default class GraphicRequestForm extends Component {
 
         const cancelButtonText = this.state.viewMode ? 'Close' : 'Cancel';
 
-
         const buttons = !this.state.viewMode && graphicsPopulated ?
             <footer className="modal-buttons">
                 <Button
@@ -225,6 +222,8 @@ export default class GraphicRequestForm extends Component {
                 </div>
                 {buttons}
             </div> : null;
+
+            console.log(this.state);
 
         const contactName = this.state.readOnly || this.state.viewMode ?
             <div className="pseudo-field">{this.state.graphicRequest.contactName}</div> :

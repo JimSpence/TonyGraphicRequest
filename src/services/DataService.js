@@ -12,7 +12,11 @@ export default class DataService {
     };
 
     static deleteGraphic = (graphicRequest, graphicRequestId) => {
-        return delete graphicRequest.graphics[graphicRequestId];
+        console.log(graphicRequestId);
+        console.log(graphicRequest);
+        delete graphicRequest.graphics[graphicRequestId];
+        console.log(graphicRequest);
+        return graphicRequest;
     };
 
 

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import classnames from 'classnames';
 import Modal from 'react-responsive-modal';
 import Button from "../Button/Button";
 import Select from "../Select/Select";
 import InputField from "../InputField/InputField";
 import Utils from '../../services/Utils'
 import './GraphicsForm.css';
+import ConfirmDialog from "../ConfirmDIalog/ConfirmDialog";
 
 export default class GraphicsForm extends Component {
     constructor(props) {
@@ -18,12 +20,17 @@ export default class GraphicsForm extends Component {
             graphic: props.graphic || {},
             graphicId: props.graphicId,
             editMode: props.graphicId && props.graphicId.length > 0,
-            show: props.open
+            show: props.open,
+            showConfirmDialog: false
         };
     }
 
     doSave = () => {
         this.props.onSave(this.state.graphic);
+    };
+
+    doDelete = () => {
+        this.props.onDelete(this.state.graphicId);
     };
 
     onChange = (field) => {
@@ -38,8 +45,12 @@ export default class GraphicsForm extends Component {
         this.props.onClose();
     };
 
-    doDelete = () => {
-        this.props.onDelete(this.state.graphicId);
+    showConfirmDialog = () => {
+        this.setState({showConfirmDialog: true});
+    };
+
+    closeConfirmDialog = () => {
+        this.setState({showConfirmDialog: false});
     };
 
     render() {
@@ -51,13 +62,17 @@ export default class GraphicsForm extends Component {
                 text="Delete"
                 type="delete"
                 className="btn secondary"
-                onClick={this.doDelete}
+                onClick={this.showConfirmDialog}
             /> : null;
+
+        const blur = classnames({
+            blur5: this.state.showConfirmDialog
+        });
 
         return (
             <Modal
                 center={true}
-                classNames={{modal: 'custom-modal'}}
+                classNames={{modal: 'custom-modal ' + blur}}
                 closeOnOverlayClick={false}
                 onClose={this.props.onClose}
                 onOpen={Utils.blurBackground()}
@@ -156,6 +171,7 @@ export default class GraphicsForm extends Component {
                             onClick={this.doSave}
                         />
                     </footer>
+                    <ConfirmDialog open={this.state.showConfirmDialog} onClose={this.closeConfirmDialog} onDelete={this.doDelete}/>
                 </div>
             </Modal>
         );
