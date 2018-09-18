@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
-import Utils from "../../services/Utils";
+import Utils from "../../../services/Utils";
 import './InputField.css';
 
 export default class InputField extends Component {

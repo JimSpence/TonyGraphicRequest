@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import FirebaseService from '../../services/FirebaseService'
-import SummaryTable from "../SummaryTable/SummaryTable";
-import ConfirmDialog from "../ConfirmDIalog/ConfirmDialog";
-import GraphicRequestForm from "../GraphicRequestForm/GraphicRequestForm";
-import Button from "../Button/Button";
+import SummaryTable from "../Tables/SummaryTable/SummaryTable";
+import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
+import GraphicsRequestForm from "../Forms/GraphicsRequest/GraphicsRequestForm";
+import Button from "../FormElements/Button/Button";
 import './Summary.css';
 
 export default class Summary extends Component {
@@ -43,10 +43,7 @@ export default class Summary extends Component {
 
     deleteRequest = (event) => {
         const graphicRequestId = event.target.closest('td').dataset.delete;
-
-        this.setState({confirmModal: true, graphicRequestId: graphicRequestId}, () => {
-            console.log(this.state);
-        });
+        this.setState({confirmModal: true, graphicRequestId: graphicRequestId});
     };
 
     editRequest = (event) => {
@@ -86,7 +83,7 @@ export default class Summary extends Component {
                         open={this.state.confirmModal}
                     /> :
                 this.state.editModal ?
-                    <GraphicRequestForm
+                    <GraphicsRequestForm
                         editMode={this.state.editMode}
                         id={this.state.graphicRequestId}
                         graphicRequest={graphicRequest}

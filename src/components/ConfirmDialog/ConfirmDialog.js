@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import Modal from 'react-responsive-modal';
-import Button from "../Button/Button";
+import Button from "../FormElements/Button/Button";
 import Utils from '../../services/Utils'
-import GraphicsSummary from "../GraphicsSummary/GraphicsSummary";
+import GraphicsSummary from "../Tables/GraphicsSummary/GraphicsSummary";
 import './ConfirmDialog.css';
 
 export default class ConfirmDialog extends Component {

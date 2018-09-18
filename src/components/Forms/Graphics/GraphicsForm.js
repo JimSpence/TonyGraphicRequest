@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
+import Utils from '../../../services/Utils'
 import Modal from 'react-responsive-modal';
-import Button from "../Button/Button";
-import Select from "../Select/Select";
-import InputField from "../InputField/InputField";
-import Utils from '../../services/Utils'
+import Button from "../../FormElements/Button/Button";
+import Select from "../../FormElements/Select/Select";
+import InputField from "../../FormElements/InputField/InputField";
+import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import './GraphicsForm.css';
-import ConfirmDialog from "../ConfirmDIalog/ConfirmDialog";
 
 export default class GraphicsForm extends Component {
     constructor(props) {

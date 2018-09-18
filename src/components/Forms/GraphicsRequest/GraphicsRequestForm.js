@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import Modal from 'react-responsive-modal';
-import Button from "../Button/Button";
-import Select from "../Select/Select";
-import InputField from "../InputField/InputField";
-import StoreDetails from "../StoreDetails/StoreDetails";
-import Utils from '../../services/Utils'
-import GraphicsForm from "../GraphicsForm/GraphicsForm";
-import GraphicsSummary from "../GraphicsSummary/GraphicsSummary";
-import GraphicService from "../../services/GraphicService";
-import EmailService from "../../services/EmailService";
-import FirebaseService from "../../services/FirebaseService";
-import './GraphicRequestForm.css';
+import Button from "../../FormElements/Button/Button";
+import Select from "../../FormElements/Select/Select";
+import InputField from "../../FormElements/InputField/InputField";
+import StoreDetails from "../../StoreDetails/StoreDetails";
+import Utils from '../../../services/Utils'
+import GraphicsForm from "../Graphics/GraphicsForm";
+import GraphicsSummary from "../../Tables/GraphicsSummary/GraphicsSummary";
+import GraphicService from "../../../services/GraphicService";
+import EmailService from "../../../services/EmailService";
+import FirebaseService from "../../../services/FirebaseService";
+import './GraphicsRequestForm.css';
 
-export default class GraphicRequestForm extends Component {
+export default class GraphicsRequestForm extends Component {
     constructor(props) {
         super(props);
 

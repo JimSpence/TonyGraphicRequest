@@ -42,8 +42,6 @@ export default class DataPopulationService {
         brands.forEach((brand, index) => {
             brandsRef.child(brands[index].brand).set({
                 name: brand.name
-            }).then(data => {
-                console.log(data);
             });
         });
     }
@@ -84,8 +82,6 @@ export default class DataPopulationService {
         seasons.forEach((season, index) => {
             seasonsRef.child(seasons[index].code).set({
                 description: season.description
-            }).then(data => {
-                return(data);
             });
         });
     }
