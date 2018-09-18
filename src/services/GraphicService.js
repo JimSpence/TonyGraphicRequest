@@ -1,7 +1,7 @@
-export default class DataService {
+export default class GraphicService {
 
     static addGraphic = (graphicRequest, graphic) => {
-        const graphicId = DataService.generateGraphicId(graphicRequest, graphic);
+        const graphicId = GraphicService.generateGraphicId(graphicRequest, graphic);
 
         if (typeof graphicRequest.graphics === 'undefined') {
             graphicRequest.graphics = [];
@@ -12,13 +12,9 @@ export default class DataService {
     };
 
     static deleteGraphic = (graphicRequest, graphicRequestId) => {
-        console.log(graphicRequestId);
-        console.log(graphicRequest);
         delete graphicRequest.graphics[graphicRequestId];
-        console.log(graphicRequest);
         return graphicRequest;
     };
-
 
     static generateGraphicId = (graphicRequest, graphic) => {
         return (

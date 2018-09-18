@@ -8,7 +8,7 @@ import StoreDetails from "../StoreDetails/StoreDetails";
 import Utils from '../../services/Utils'
 import GraphicsForm from "../GraphicsForm/GraphicsForm";
 import GraphicsSummary from "../GraphicsSummary/GraphicsSummary";
-import DataService from "../../services/DataService";
+import GraphicService from "../../services/GraphicService";
 import EmailService from "../../services/EmailService";
 import FirebaseService from "../../services/FirebaseService";
 import './GraphicRequestForm.css';
@@ -42,36 +42,26 @@ export default class GraphicRequestForm extends Component {
     }
 
     componentDidMount() {
-        FirebaseService.getData('stores/')
-            .then(stores => {
-                this.setState({
-                    stores: stores
+        if (!this.props.viewMode) {
+            FirebaseService.getDropdownData()
+                .then(data => {
+                    this.setState({
+                        stores: data.stores,
+                        reasons: data.reasons,
+                        seasons: data.seasons
+                    });
                 })
-            });
-
-        FirebaseService.getData('seasons/')
-            .then(data => {
-                this.setState({
-                    seasons: data
-                });
-            });
-
-        FirebaseService.getData('reasons/')
-            .then(data => {
-                this.setState({
-                    reasons: data
-                });
-            });
+        }
     }
 
     addGraphic = (graphic) => {
-        this.setState({graphicRequest: DataService.addGraphic(this.state.graphicRequest, graphic)}, () => {
+        this.setState({graphicRequest: GraphicService.addGraphic(this.state.graphicRequest, graphic)}, () => {
             this.closeGraphicFormModal();
         });
     };
 
     deleteGraphic = (graphicId) => {
-        this.setState({graphicRequest: DataService.deleteGraphic(this.state.graphicRequest, graphicId)}, () => {
+        this.setState({graphicRequest: GraphicService.deleteGraphic(this.state.graphicRequest, graphicId)}, () => {
             this.closeGraphicFormModal();
         });
     };
@@ -222,8 +212,6 @@ export default class GraphicRequestForm extends Component {
                 </div>
                 {buttons}
             </div> : null;
-
-            console.log(this.state);
 
         const contactName = this.state.readOnly || this.state.viewMode ?
             <div className="pseudo-field">{this.state.graphicRequest.contactName}</div> :

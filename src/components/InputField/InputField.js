@@ -14,13 +14,11 @@ export default class InputField extends Component {
             value: props.value ? props.value : ''
         };
 
-        console.log(this.state);
         this.validate = this.validate.bind(this);
     }
 
     static defaultProps = {
         minLength: 0,
-        // readOnly: false,
         type: 'text'
     };
 
@@ -41,7 +39,7 @@ export default class InputField extends Component {
             }
 
             if (this.props.nameField) {
-                fieldValue = fieldValue.replace(/[^a-zA-Z'-\s]/, '');
+                fieldValue = fieldValue.replace(/[^a-zA-Z'\s]/, '');
                 const names = fieldValue.split(' ');
 
                 names.forEach((name, index) => {
