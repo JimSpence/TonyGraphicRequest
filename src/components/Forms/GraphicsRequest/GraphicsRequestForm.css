@@ -24,9 +24,3 @@ div.section-header {
     margin-bottom: .5rem;
 }
 
-div.store-details div.input-group {
-    background-color: white;
-    border: 1px solid var(--paper);
-    border-radius: .3rem;
-    padding: .5rem;
-}

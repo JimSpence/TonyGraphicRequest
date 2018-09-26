@@ -1,0 +1,6 @@
+div.store-details {
+    background-color: white;
+    border: 1px solid var(--paper);
+    border-radius: .3rem;
+    padding: .5rem;
+}
