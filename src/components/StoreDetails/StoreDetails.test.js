@@ -1,10 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import EnzymeAdapter from "../../test_helpers/EnzymeAdapter";
+import TestUtils from '../../test_helpers/TestUtils';
 import StoreDetails from '../StoreDetails/StoreDetails';
 
 describe('"StoreDetails" component', () => {
     EnzymeAdapter.config();
+    TestUtils.noConsoleErrors();
 
     const props = {
             store: {

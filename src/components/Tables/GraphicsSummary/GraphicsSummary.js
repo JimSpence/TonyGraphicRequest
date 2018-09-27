@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './GraphicsSummary.css';
 
 export default class GraphicsSummary extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            graphics: props.graphics
-        };
-    }
+    static propTypes = {
+        graphics: PropTypes.object.isRequired,
+        onEdit: PropTypes.func.isRequired
+    };
 
     render() {
-        const {graphics} = this.state;
+        const {graphics, onEdit} = this.props;
 
         const rows = Object.keys(graphics).map((graphic, index) => {
             return (
-                <tr key={index} id={graphic} onClick={this.props.onEdit}>
+                <tr key={index} id={graphic} onClick={onEdit}>
                     <td>{graphic}</td>
                     <td>{graphics[graphic].reason}</td>
                     <td className="text-right">{graphics[graphic].quantity}</td>

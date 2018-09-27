@@ -1,0 +1,643 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`"GraphicsSummary" Component Should render correctly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <GraphicsSummary
+    graphics={
+        Object {
+            "graphic0001": Object {
+              "qty": 99,
+              "reason": "JUST BECAUSE",
+            },
+            "graphic0002": Object {
+              "qty": 66,
+              "reason": "I SAID SO",
+            },
+          }
+    }
+    onEdit={[Function]}
+/>,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <thead>
+          <tr>
+                    <th>
+                              Request
+                    </th>
+                    <th>
+                              Reason
+                    </th>
+                    <th
+                              className="text-right"
+                    >
+                              Qty
+                    </th>
+          </tr>
+</thead>,
+        <tbody>
+          <tr
+                    id="graphic0001"
+                    onClick={[Function]}
+          >
+                    <td>
+                              graphic0001
+                    </td>
+                    <td>
+                              JUST BECAUSE
+                    </td>
+                    <td
+                              className="text-right"
+                    />
+          </tr>
+          <tr
+                    id="graphic0002"
+                    onClick={[Function]}
+          >
+                    <td>
+                              graphic0002
+                    </td>
+                    <td>
+                              I SAID SO
+                    </td>
+                    <td
+                              className="text-right"
+                    />
+          </tr>
+</tbody>,
+      ],
+      "className": "graphics-summary",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <tr>
+            <th>
+                        Request
+            </th>
+            <th>
+                        Reason
+            </th>
+            <th
+                        className="text-right"
+            >
+                        Qty
+            </th>
+</tr>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <th>
+                Request
+</th>,
+              <th>
+                Reason
+</th>,
+              <th
+                className="text-right"
+>
+                Qty
+</th>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Request",
+              },
+              "ref": null,
+              "rendered": "Request",
+              "type": "th",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Reason",
+              },
+              "ref": null,
+              "rendered": "Reason",
+              "type": "th",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "Qty",
+                "className": "text-right",
+              },
+              "ref": null,
+              "rendered": "Qty",
+              "type": "th",
+            },
+          ],
+          "type": "tr",
+        },
+        "type": "thead",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <tr
+              id="graphic0001"
+              onClick={[Function]}
+>
+              <td>
+                            graphic0001
+              </td>
+              <td>
+                            JUST BECAUSE
+              </td>
+              <td
+                            className="text-right"
+              />
+</tr>,
+            <tr
+              id="graphic0002"
+              onClick={[Function]}
+>
+              <td>
+                            graphic0002
+              </td>
+              <td>
+                            I SAID SO
+              </td>
+              <td
+                            className="text-right"
+              />
+</tr>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <td>
+                  graphic0001
+</td>,
+                <td>
+                  JUST BECAUSE
+</td>,
+                <td
+                  className="text-right"
+/>,
+              ],
+              "id": "graphic0001",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "graphic0001",
+                },
+                "ref": null,
+                "rendered": "graphic0001",
+                "type": "td",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "JUST BECAUSE",
+                },
+                "ref": null,
+                "rendered": "JUST BECAUSE",
+                "type": "td",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                  "className": "text-right",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "td",
+              },
+            ],
+            "type": "tr",
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <td>
+                  graphic0002
+</td>,
+                <td>
+                  I SAID SO
+</td>,
+                <td
+                  className="text-right"
+/>,
+              ],
+              "id": "graphic0002",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "graphic0002",
+                },
+                "ref": null,
+                "rendered": "graphic0002",
+                "type": "td",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "I SAID SO",
+                },
+                "ref": null,
+                "rendered": "I SAID SO",
+                "type": "td",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": undefined,
+                  "className": "text-right",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "td",
+              },
+            ],
+            "type": "tr",
+          },
+        ],
+        "type": "tbody",
+      },
+    ],
+    "type": "table",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <thead>
+            <tr>
+                        <th>
+                                    Request
+                        </th>
+                        <th>
+                                    Reason
+                        </th>
+                        <th
+                                    className="text-right"
+                        >
+                                    Qty
+                        </th>
+            </tr>
+</thead>,
+          <tbody>
+            <tr
+                        id="graphic0001"
+                        onClick={[Function]}
+            >
+                        <td>
+                                    graphic0001
+                        </td>
+                        <td>
+                                    JUST BECAUSE
+                        </td>
+                        <td
+                                    className="text-right"
+                        />
+            </tr>
+            <tr
+                        id="graphic0002"
+                        onClick={[Function]}
+            >
+                        <td>
+                                    graphic0002
+                        </td>
+                        <td>
+                                    I SAID SO
+                        </td>
+                        <td
+                                    className="text-right"
+                        />
+            </tr>
+</tbody>,
+        ],
+        "className": "graphics-summary",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <tr>
+              <th>
+                            Request
+              </th>
+              <th>
+                            Reason
+              </th>
+              <th
+                            className="text-right"
+              >
+                            Qty
+              </th>
+</tr>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <th>
+                  Request
+</th>,
+                <th>
+                  Reason
+</th>,
+                <th
+                  className="text-right"
+>
+                  Qty
+</th>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Request",
+                },
+                "ref": null,
+                "rendered": "Request",
+                "type": "th",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Reason",
+                },
+                "ref": null,
+                "rendered": "Reason",
+                "type": "th",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Qty",
+                  "className": "text-right",
+                },
+                "ref": null,
+                "rendered": "Qty",
+                "type": "th",
+              },
+            ],
+            "type": "tr",
+          },
+          "type": "thead",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <tr
+                id="graphic0001"
+                onClick={[Function]}
+>
+                <td>
+                                graphic0001
+                </td>
+                <td>
+                                JUST BECAUSE
+                </td>
+                <td
+                                className="text-right"
+                />
+</tr>,
+              <tr
+                id="graphic0002"
+                onClick={[Function]}
+>
+                <td>
+                                graphic0002
+                </td>
+                <td>
+                                I SAID SO
+                </td>
+                <td
+                                className="text-right"
+                />
+</tr>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "0",
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <td>
+                    graphic0001
+</td>,
+                  <td>
+                    JUST BECAUSE
+</td>,
+                  <td
+                    className="text-right"
+/>,
+                ],
+                "id": "graphic0001",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "graphic0001",
+                  },
+                  "ref": null,
+                  "rendered": "graphic0001",
+                  "type": "td",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "JUST BECAUSE",
+                  },
+                  "ref": null,
+                  "rendered": "JUST BECAUSE",
+                  "type": "td",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                    "className": "text-right",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "td",
+                },
+              ],
+              "type": "tr",
+            },
+            Object {
+              "instance": null,
+              "key": "1",
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <td>
+                    graphic0002
+</td>,
+                  <td>
+                    I SAID SO
+</td>,
+                  <td
+                    className="text-right"
+/>,
+                ],
+                "id": "graphic0002",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "graphic0002",
+                  },
+                  "ref": null,
+                  "rendered": "graphic0002",
+                  "type": "td",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "I SAID SO",
+                  },
+                  "ref": null,
+                  "rendered": "I SAID SO",
+                  "type": "td",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": undefined,
+                    "className": "text-right",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "td",
+                },
+              ],
+              "type": "tr",
+            },
+          ],
+          "type": "tbody",
+        },
+      ],
+      "type": "table",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "hydrateIn": undefined,
+  },
+}
+`;
