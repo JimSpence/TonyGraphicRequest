@@ -155,7 +155,7 @@ export default class GraphicsRequestForm extends Component {
             </div> : null;
 
         const storeInfo = this.state.graphicRequest.store ?
-            <StoreDetails store={this.state.graphicRequest.store} /> : '';
+            <StoreDetails store={this.state.graphicRequest.store} name="Tony" /> : '';
 
         const graphicsPopulated = this.state.graphicRequest.graphics && Object.keys(this.state.graphicRequest.graphics).length > 0;
         const graphicsSummary = graphicsPopulated ?

@@ -1,23 +1,16 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import EnzymeAdapter from "../../test_helpers/EnzymeAdapter";
 import Content from '../Content/Content';
-import Summary from '../Summary/Summary';
-
-configure({ adapter: new Adapter() });
 
 describe ('<Content />', () => {
-    const wrapper = shallow(<Content/>);
+    EnzymeAdapter.config();
 
-    it ('Should render as a "section" element', () => {
-        expect (wrapper.is('section')).toBe(true);
+    it ('Should be defined', () => {
+        expect(Content).toBeDefined();
     });
 
-    it ('Should have "content" class', () => {
-        expect (wrapper.hasClass('content')).toBe(true);
-    });
-
-    it ('Should render the "Summary" component', () => {
-        expect (wrapper.contains(<Summary/>)).toBe(true);
+    it ('Should render correctly', () => {
+        expect(shallow(<Content/>)).toMatchSnapshot();
     });
 });

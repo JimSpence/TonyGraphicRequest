@@ -1,9 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import './StoreDetails.css';
 
 export default class StoreDetails extends Component {
+    static propTypes = {
+        store: PropTypes.object.isRequired
+    };
+
     render() {
-        const store = this.props.store;
+        const {store} = this.props;
 
         return (
             <div className="store-details">

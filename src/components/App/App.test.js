@@ -1,24 +1,16 @@
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { shallow } from 'enzyme';
+import EnzymeAdapter from "../../test_helpers/EnzymeAdapter";
 import App from './App';
-import Content from '../Content/Content';
-import PageHeader from '../PageHeader/PageHeader';
 
-configure({ adapter: new Adapter() });
+describe ('"App" Component', () => {
+    EnzymeAdapter.config();
 
-describe ('<App />', () => {
-    const wrapper = shallow(<App/>);
-
-    it ('Should render as a "div" element', () => {
-        expect (wrapper.is('div')).toBe(true);
+    it ('Should be defined', () => {
+        expect(App).toBeDefined();
     });
 
-    it ('Should render the "Page Header" component', () => {
-        expect (wrapper.contains(<PageHeader/>)).toBe(true);
-    });
-
-    it ('Should render the "Content" component', () => {
-        expect (wrapper.contains(<Content/>)).toBe(true);
+    it ('Should render correctly', () => {
+        expect(shallow(<App/>)).toMatchSnapshot();
     });
 });
