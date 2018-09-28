@@ -97,9 +97,9 @@ export default class Summary extends Component {
                 <div className="summary-container">
                     <SummaryTable
                         graphicRequests={graphicRequests}
-                        view={this.viewRequest}
-                        edit={this.editRequest}
-                        delete={this.deleteRequest}
+                        onView={this.viewRequest}
+                        onEdit={this.editRequest}
+                        onDelete={this.deleteRequest}
                     />
                 </div> : '';
 
