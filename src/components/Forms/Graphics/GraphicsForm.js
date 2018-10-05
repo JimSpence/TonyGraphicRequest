@@ -5,6 +5,7 @@ import Modal from 'react-responsive-modal';
 import Button from "../../FormElements/Button/Button";
 import Select from "../../FormElements/Select/Select";
 import InputField from "../../FormElements/InputField/InputField";
+import TextField from "../../FormElements/InputField/TextField";
 import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import './GraphicsForm.css';
 
@@ -86,27 +87,25 @@ export default class GraphicsForm extends Component {
                     <div id="graphicsForm" className="modal-body">
                         <div className="row">
                             <InputField
-                                focus={true}
+                                autoFocus={true}
                                 id="jobCategory"
-                                labelText="Job Category"
-                                lettersOnly={true}
                                 maxLength={2}
                                 minLength={2}
                                 onChange={this.onChange}
-                                placeholder="Job Category"
                                 readOnly={this.state.editMode}
+                                title="Job Category"
+                                type="alphaOnly"
                                 uppercase={true}
                                 value={this.state.graphic.jobCategory}
                             />
                             <InputField
                                 id="jobNumber"
-                                labelText="Job Number"
                                 maxLength={5}
                                 minLength={1}
-                                numeric={true}
                                 onChange={this.onChange}
-                                placeholder="Job Number"
                                 readOnly={this.state.editMode}
+                                title="Job Number"
+                                type="number"
                                 value={this.state.graphic.jobNumber}
                                 zeroPad={true}
                             />
@@ -123,13 +122,13 @@ export default class GraphicsForm extends Component {
                             />
                             <InputField
                                 id="artworkNumber"
-                                labelText="Artwork Number"
                                 maxLength={4}
                                 minLength={1}
-                                numeric={true}
                                 onChange={this.onChange}
                                 placeholder="Artwork Number"
                                 readOnly={this.state.editMode}
+                                title="Artwork Number"
+                                type="number"
                                 value={this.state.graphic.artworkNumber}
                                 zeroPad={true}
                             />
@@ -146,13 +145,20 @@ export default class GraphicsForm extends Component {
 
                             <InputField
                                 id="quantity"
-                                labelText="Quantity"
                                 maxLength={3}
                                 minLength={1}
                                 numeric={true}
                                 onChange={this.onChange}
                                 placeholder="Quantity"
+                                title="Quantity"
+                                type="number"
                                 value={this.state.graphic.quantity}
+                            />
+                            <TextField
+                                id="tonyTestText"
+                                title="Tony Test Text"
+                                minLength={3}
+                                capitalise={true}
                             />
                         </div>
                     </div>

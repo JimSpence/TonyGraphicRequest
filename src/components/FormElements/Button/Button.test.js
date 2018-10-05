@@ -16,7 +16,7 @@ describe('"Button" Component', () => {
         expect (button).toBeDefined();
     });
 
-    it ('Should render base correctly', () => {
+    it ('Should render base button correctly', () => {
         const button = shallow(<Button className="btn" onClick={onClick} />);
         expect (button).toMatchSnapshot();
     });

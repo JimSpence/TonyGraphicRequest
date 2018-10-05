@@ -216,14 +216,13 @@ export default class GraphicsRequestForm extends Component {
         const contactName = this.state.readOnly || this.state.viewMode ?
             <div className="pseudo-field">{this.state.graphicRequest.contactName}</div> :
             <InputField
-                focus={true}
+                capitalise={true}
+                autoFocus={true}
                 id="contactName"
-                labelText="Contact Name"
                 minLength={3}
-                nameField={true}
-                readOnly={false}
+                title="Contact Name"
                 onChange={this.onChange}
-                placeholder="Contact Name"
+                readOnly={false}
                 value={this.state.graphicRequest.contactName}
             />;
 
