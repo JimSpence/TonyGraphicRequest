@@ -19,12 +19,18 @@ export default class GraphicsRequestForm extends Component {
 
         this.addGraphic = this.addGraphic.bind(this);
         this.closeGraphicFormModal = this.closeGraphicFormModal.bind(this);
-        this.onClose = this.onClose.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.doSave = this.doSave.bind(this);
+        this.deleteGraphic = this.deleteGraphic.bind(this);
         this.doComplete = this.doComplete.bind(this);
+        this.doSave = this.doSave.bind(this);
+        this.editDetails = this.editDetails.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onClose = this.onClose.bind(this);
         this.showAddGraphicsForm = this.showAddGraphicsForm.bind(this);
+        this.showEditGraphicsForm = this.showEditGraphicsForm.bind(this);
         this.showScreenElements = this.showScreenElements.bind(this);
+
+        console.log('PROPS GRF');
+        console.log(props.graphicRequest);
 
         this.state = {
             editMode: props.editMode,
@@ -55,6 +61,8 @@ export default class GraphicsRequestForm extends Component {
     }
 
     addGraphic = (graphic) => {
+        console.log('ADD GRAPHIC');
+        console.log(this.state);
         this.setState({graphicRequest: GraphicService.addGraphic(this.state.graphicRequest, graphic)}, () => {
             this.closeGraphicFormModal();
         });
@@ -67,6 +75,10 @@ export default class GraphicsRequestForm extends Component {
     };
 
     closeGraphicFormModal = () => {
+        console.log('CLOSE MODAL');
+        console.log(this.state);
+        console.log('PROPS');
+        console.log(this.props);
         Utils.unblurBackground();
         this.setState({graphicIdToEdit: null, showAddGraphicForm: false, showEditGraphicForm: false});
     };
@@ -104,6 +116,9 @@ export default class GraphicsRequestForm extends Component {
 
     onChange = (field) => {
         if (!this.state.readOnly) {
+            console.log('ON CHANGE GRF');
+            console.log(this.state);
+
             if (field.isValid) {
                 const newGraphicRequest = this.state.graphicRequest;
 
@@ -113,6 +128,8 @@ export default class GraphicsRequestForm extends Component {
                     newGraphicRequest[field.id] = field.value;
                 }
 
+                console.log('ON CHANGE GRF');
+                console.log(newGraphicRequest);
                 this.setState({graphicRequest: newGraphicRequest, [field.id + 'IsValid']: field.isValid}, () => {
                     this.showScreenElements();
                 });
@@ -140,6 +157,8 @@ export default class GraphicsRequestForm extends Component {
     };
 
     render() {
+        console.log('GRF RENDER');
+        console.log(this.state);
         const storeSelect = this.state.showStoreSelect ?
             <div className="input-group">
                 <Select

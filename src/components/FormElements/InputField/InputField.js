@@ -56,11 +56,11 @@ export default class InputField extends Component {
                 }
             }
 
-            if (this.props.type === 'alphaOnly') {
+            if (this.props.alphaOnly) {
                 fieldValue = fieldValue.replace(/[^a-zA-Z]/g, '');
             }
 
-            if (this.props.type === 'alphaOnly' || this.props.type === 'text') {
+            if (this.props.alphaOnly || this.props.type === 'text') {
                 if (this.props.uppercase) {
                     fieldValue = fieldValue.toUpperCase();
                 }

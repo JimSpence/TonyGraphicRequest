@@ -258,7 +258,6 @@ export default class TestUtils {
                 placeholder: 'Type something here',
                 readOnly: false,
                 title: 'All Properties Input Field',
-                type: 'text',
                 value: 'all props'
             },
             allPropertiesReadOnlyBaseField: {
@@ -272,7 +271,6 @@ export default class TestUtils {
                 placeholder: 'Something goes here',
                 readOnly: true,
                 title: 'All Properties ReadOnly Field',
-                type: 'text',
                 value: 'all props read only'
             },
             autoFocusBaseField: {
@@ -293,177 +291,109 @@ export default class TestUtils {
             },
             baseTextField: {
                 id: 'textInputField',
-                title: 'Text Input Field',
-                type: 'text'
+                title: 'Text Input Field'
             },
             readOnlyOnChangeTextField: {
                 id: 'textInputField',
                 onChange: onChange,
                 readOnly: true,
-                title: 'Text Input Field',
-                type: 'text'
+                title: 'Text Input Field'
             },
             readOnlyTextFieldWithValue: {
                 id: 'textInputField',
                 readOnly: true,
                 title: 'Text Input Field',
-                type: 'text',
                 value: 'XXXXXXX'
             },
             onChangeTextField: {
                 id: 'textInputField',
                 onChange: onChange,
-                title: 'Text Input Field',
-                type: 'text'
+                title: 'Text Input Field'
             },
             minLengthTextField: {
                 id: 'textInputField',
                 minLength: 3,
-                title: 'Text Input Field',
-                type: 'text'
+                title: 'Text Input Field'
             },
             maxLengthTextField: {
                 id: 'textInputField',
                 maxLength: 5,
-                title: 'Text Input Field',
-                type: 'text'
-            },
-            uppercaseTextField: {
-                id: 'textInputField',
-                title: 'Text Input Field',
-                type: 'text',
-                uppercase: true
+                title: 'Text Input Field'
             },
             capitaliseTextField: {
                 capitalise: true,
                 id: 'textInputField',
-                title: 'Text Input Field',
-                type: 'text'
+                title: 'Text Input Field'
             },
-            zeroPadTextField: {
+            uppercaseTextField: {
                 id: 'textInputField',
                 title: 'Text Input Field',
-                type: 'text',
-                zeroPad: true
+                uppercase: true
             },
-            minValueTextField: {
+            alphaOnlyTextField: {
+                alphaOnly: true,
                 id: 'textInputField',
-                minValue: 99,
+                title: 'Text Input Field'
+            },
+            capitaliseAlphaOnlyTextField: {
+                alphaOnly: true,
+                capitalise: true,
+                id: 'textInputField',
+                title: 'Text Input Field'
+            },
+            uppercaseAlphaOnlyTextField: {
+                alphaOnly: true,
+                id: 'textInputField',
                 title: 'Text Input Field',
-                type: 'text'
+                uppercase: true
             },
             baseNumberField: {
                 id: 'numberInputField',
-                title: 'Number Input Field',
-                type: 'number'
+                title: 'Number Input Field'
             },
             readOnlyOnChangeNumberField: {
                 id: 'numberInputField',
                 onChange: onChange,
                 readOnly: true,
-                title: 'Number Input Field',
-                type: 'number'
+                title: 'Number Input Field'
             },
             readOnlyNumberFieldWithValue: {
                 id: 'numberInputField',
                 readOnly: true,
                 title: 'Number Input Field',
-                type: 'number',
                 value: '99999'
             },
             onChangeNumberField: {
                 id: 'numberInputField',
                 onChange: onChange,
-                title: 'Number Input Field',
-                type: 'number'
+                title: 'Number Input Field'
             },
             minLengthNumberField: {
                 id: 'numberInputField',
                 minLength: 3,
-                title: 'Number Input Field',
-                type: 'number'
+                title: 'Number Input Field'
             },
             maxLengthNumberField: {
                 id: 'numberInputField',
                 maxLength: 5,
-                title: 'Number Input Field',
-                type: 'number'
+                title: 'Number Input Field'
             },
             minValueNumberField: {
                 id: 'numberInputField',
                 minValue: 123,
-                title: 'Number Input Field',
-                type: 'number'
+                title: 'Number Input Field'
             },
             zeroPadNumberField: {
                 id: 'numberInputField',
                 maxLength: 6,
                 title: 'Number Input Field',
-                type: 'number',
                 zeroPad: true
             },
             zeroPadNumberFieldNoMaxLength: {
                 id: 'numberInputField',
                 title: 'Number Input Field',
-                type: 'number',
                 zeroPad: true
-            },
-            baseAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly'
-            },
-            readOnlyAlphaOnlyFieldWithValue: {
-                id: 'alphaOnlyInputField',
-                readOnly: true,
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly',
-                value: 'abcdefg'
-            },
-            onChangeAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                onChange: onChange,
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly'
-            },
-            minLengthAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                minLength: 6,
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly'
-            },
-            maxLengthAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                maxLength: 8,
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly'
-            },
-            uppercaseAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly',
-                uppercase: true
-            },
-            capitaliseAlphaOnlyField: {
-                capitalise: true,
-                id: 'alphaOnlyInputField',
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly'
-            },
-            zeroPadAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly',
-                zeroPad: true
-            },
-            minValueAlphaOnlyField: {
-                id: 'alphaOnlyInputField',
-                minValue: 999,
-                title: 'Alpha Only Input Field',
-                type: 'alphaOnly'
-            },
-
+            }
         }
     }
-
 }

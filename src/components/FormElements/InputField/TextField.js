@@ -1,29 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseField from './BaseField';
-import './InputField.css';
 
 export default class TextField extends BaseField {
     constructor(props) {
         super(props);
 
+        this.state = props;
         this.validate = this.validate.bind(this);
     }
 
-    propTypes = super.propTypes;
-
     static propTypes = {
         capitalise: PropTypes.bool,
-        uppercase: PropTypes.bool,
+        uppercase: PropTypes.bool
     };
 
     validate = (event) => {
-        super.validate(event);
         if (!this.props.readOnly) {
-            let fieldValue = this.props.maxLength ? event.target.value.substring(0, this.props.maxLength) : event.target.value;
+            let fieldValue = event.value;
 
             if (this.props.uppercase) {
                 fieldValue = fieldValue.toUpperCase();
+            }
+
+            if (this.props.alphaOnly) {
+                fieldValue = fieldValue.replace(/[^a-zA-Z]/g, '');
             }
 
             if (this.props.capitalise) {
@@ -36,7 +37,7 @@ export default class TextField extends BaseField {
                 fieldValue = words.join(' ');
             }
 
-            this.setState({value: fieldValue}, () => {
+            this.setState({value: fieldValue, isValid: event.isValid}, () => {
                 if (this.props.onChange) {
                     this.props.onChange(this.state);
                 }
@@ -46,7 +47,7 @@ export default class TextField extends BaseField {
 
     render() {
         return (
-            <BaseField id={this.props.id} title={this.props.title} />
+            <BaseField {...this.state} onChange={this.validate} />
         )
     }
 }

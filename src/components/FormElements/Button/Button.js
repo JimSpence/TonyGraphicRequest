@@ -41,7 +41,7 @@ export default class Button extends Component {
         }
 
         return (
-            <button type={this.props.type} className={this.props.className} onClick={this.props.onClick}>{icon}{this.props.text}</button>
+            <button className={this.props.className} disabled={this.props.disabled} onClick={this.props.onClick} type={this.props.type}>{icon}{this.props.text}</button>
         )
     }
 }

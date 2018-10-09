@@ -27,6 +27,15 @@
     border-color: var(--primary-light);
 }
 
+.btn.primary:disabled,
+.btn.primary:disabled:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary);
+    color: white;
+    cursor: default;
+    opacity: .6;
+}
+
 .btn.secondary {
     background-color: var(--secondary-light);
     border-color: var(--secondary);

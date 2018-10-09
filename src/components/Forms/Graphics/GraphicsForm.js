@@ -4,8 +4,8 @@ import Utils from '../../../services/Utils'
 import Modal from 'react-responsive-modal';
 import Button from "../../FormElements/Button/Button";
 import Select from "../../FormElements/Select/Select";
-import InputField from "../../FormElements/InputField/InputField";
 import TextField from "../../FormElements/InputField/TextField";
+import NumberField from "../../FormElements/InputField/NumberField";
 import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import './GraphicsForm.css';
 
@@ -15,9 +15,14 @@ export default class GraphicsForm extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onClose = this.onClose.bind(this);
+        this.doDelete = this.doDelete.bind(this);
         this.doSave = this.doSave.bind(this);
 
+        this.showConfirmDialog = this.showConfirmDialog.bind(this);
+        this.closeConfirmDialog = this.closeConfirmDialog.bind(this);
+
         this.state = {
+            disableSaveButton: true,
             graphic: props.graphic || {},
             graphicId: props.graphicId,
             editMode: props.graphicId && props.graphicId.length > 0,
@@ -35,10 +40,40 @@ export default class GraphicsForm extends Component {
     };
 
     onChange = (field) => {
+        const disableSaveButton = this.state.editMode ? document.getElementsByClassName('invalid').length > 0 : document.getElementsByClassName('valid').length < 6;
+
         if (field.isValid) {
+
             const newGraphic = this.state.graphic;
+            // const fred = this.state.graphic;
+            const fred = new Object(this.state.graphic);
+
+            console.log(field.id);
+            console.log(field.value);
+
+            console.log('BEFORE');
+            console.log(this.state.graphic);
+            console.log(this.props.graphic);
+            console.log(newGraphic);
+            console.log(fred);
+
+            const tony = fred;
+            console.log('TONY BEFORE');
+            console.log(tony);
             newGraphic[field.id] = field.value;
-            this.setState({graphic: newGraphic, [field.id + 'IsValid']: field.isValid});
+            console.log('TONY AFTER');
+            console.log(tony);
+
+
+            console.log('AFTER');
+            console.log(this.state.graphic);
+            console.log(this.props.graphic);
+            console.log(newGraphic);
+            console.log(fred);
+
+            this.setState({graphic: newGraphic, disableSaveButton: disableSaveButton});
+        } else {
+            this.setState({disableSaveButton: true});
         }
     };
 
@@ -51,6 +86,7 @@ export default class GraphicsForm extends Component {
     };
 
     closeConfirmDialog = () => {
+        console.log(this.state);
         this.setState({showConfirmDialog: false});
     };
 
@@ -86,7 +122,8 @@ export default class GraphicsForm extends Component {
                     </header>
                     <div id="graphicsForm" className="modal-body">
                         <div className="row">
-                            <InputField
+                            <TextField
+                                alphaOnly={true}
                                 autoFocus={true}
                                 id="jobCategory"
                                 maxLength={2}
@@ -94,18 +131,16 @@ export default class GraphicsForm extends Component {
                                 onChange={this.onChange}
                                 readOnly={this.state.editMode}
                                 title="Job Category"
-                                type="alphaOnly"
                                 uppercase={true}
                                 value={this.state.graphic.jobCategory}
                             />
-                            <InputField
+                            <NumberField
                                 id="jobNumber"
                                 maxLength={5}
                                 minLength={1}
                                 onChange={this.onChange}
                                 readOnly={this.state.editMode}
                                 title="Job Number"
-                                type="number"
                                 value={this.state.graphic.jobNumber}
                                 zeroPad={true}
                             />
@@ -120,7 +155,7 @@ export default class GraphicsForm extends Component {
                                 readOnly={this.state.editMode}
                                 value={this.state.graphic.season}
                             />
-                            <InputField
+                            <NumberField
                                 id="artworkNumber"
                                 maxLength={4}
                                 minLength={1}
@@ -128,7 +163,6 @@ export default class GraphicsForm extends Component {
                                 placeholder="Artwork Number"
                                 readOnly={this.state.editMode}
                                 title="Artwork Number"
-                                type="number"
                                 value={this.state.graphic.artworkNumber}
                                 zeroPad={true}
                             />
@@ -142,23 +176,16 @@ export default class GraphicsForm extends Component {
                                 placeholder="Reason"
                                 value={this.state.graphic.reason}
                             />
-
-                            <InputField
+                            <NumberField
                                 id="quantity"
                                 maxLength={3}
                                 minLength={1}
+                                minValue={1}
                                 numeric={true}
                                 onChange={this.onChange}
                                 placeholder="Quantity"
                                 title="Quantity"
-                                type="number"
                                 value={this.state.graphic.quantity}
-                            />
-                            <TextField
-                                id="tonyTestText"
-                                title="Tony Test Text"
-                                minLength={3}
-                                capitalise={true}
                             />
                         </div>
                     </div>
@@ -171,10 +198,11 @@ export default class GraphicsForm extends Component {
                         />
                         {deleteButton}
                         <Button
+                            className="btn primary"
+                            disabled={this.state.disableSaveButton}
+                            onClick={this.doSave}
                             text="Save"
                             type="save"
-                            className="btn primary"
-                            onClick={this.doSave}
                         />
                     </footer>
                     <ConfirmDialog open={this.state.showConfirmDialog} onClose={this.closeConfirmDialog} onDelete={this.doDelete}/>

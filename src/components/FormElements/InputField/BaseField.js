@@ -29,13 +29,16 @@ export default class BaseField extends Component {
         value: PropTypes.string,
     };
 
+    static defaultProps = {
+        value: ''
+    };
 
     validate = (event) => {
         if (!this.props.readOnly) {
             const fieldValue = this.props.maxLength ? event.target.value.substring(0, this.props.maxLength) : event.target.value;
             const valid = (!this.props.minLength || (this.props.minLength && fieldValue.length >= this.props.minLength));
-            console.log('VALIDATE');
-            this.setState({isValid: valid, touched: true, value: fieldValue}, () => {
+
+            this.setState({isValid: valid, touched: true, value: fieldValue, type: event.type}, () => {
                 if (this.props.onChange) {
                     this.props.onChange(this.state);
                 }
@@ -44,10 +47,11 @@ export default class BaseField extends Component {
     };
 
     render() {
+        const isValid = typeof this.props.isValid !== 'undefined' ? this.props.isValid : this.state.isValid;
         const className = classnames({
             column: true,
-            valid: this.state.isValid && this.state.touched,
-            invalid: !this.state.isValid && this.state.touched
+            valid: isValid && this.state.touched,
+            invalid: !isValid && this.state.touched
         });
 
         const input = this.props.readOnly ?
@@ -73,7 +77,7 @@ export default class BaseField extends Component {
                 readOnly={this.props.readOnly}
                 title={this.props.title}
                 type="text"
-                value={this.state.value}
+                value={this.props.value}
             />;
 
         return (
