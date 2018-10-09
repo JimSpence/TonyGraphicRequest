@@ -1,13 +1,10 @@
 export default class GraphicService {
 
     static addGraphic = (graphicRequest, graphic) => {
-        console.log(graphicRequest);
-        console.log(graphic);
-
         const graphicId = GraphicService.generateGraphicId(graphicRequest, graphic);
 
         if (typeof graphicRequest.graphics === 'undefined') {
-            graphicRequest.graphics = [];
+            graphicRequest.graphics = {};
         }
 
         graphicRequest.graphics[graphicId] = graphic;

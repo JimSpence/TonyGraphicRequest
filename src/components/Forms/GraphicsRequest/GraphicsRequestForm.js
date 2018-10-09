@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import Modal from 'react-responsive-modal';
 import Button from "../../FormElements/Button/Button";
 import Select from "../../FormElements/Select/Select";
-import InputField from "../../FormElements/InputField/InputField";
+import TextField from "../../FormElements/InputField/TextField";
 import StoreDetails from "../../StoreDetails/StoreDetails";
 import Utils from '../../../services/Utils'
 import GraphicsForm from "../Graphics/GraphicsForm";
@@ -28,9 +28,6 @@ export default class GraphicsRequestForm extends Component {
         this.showAddGraphicsForm = this.showAddGraphicsForm.bind(this);
         this.showEditGraphicsForm = this.showEditGraphicsForm.bind(this);
         this.showScreenElements = this.showScreenElements.bind(this);
-
-        console.log('PROPS GRF');
-        console.log(props.graphicRequest);
 
         this.state = {
             editMode: props.editMode,
@@ -61,8 +58,6 @@ export default class GraphicsRequestForm extends Component {
     }
 
     addGraphic = (graphic) => {
-        console.log('ADD GRAPHIC');
-        console.log(this.state);
         this.setState({graphicRequest: GraphicService.addGraphic(this.state.graphicRequest, graphic)}, () => {
             this.closeGraphicFormModal();
         });
@@ -75,10 +70,6 @@ export default class GraphicsRequestForm extends Component {
     };
 
     closeGraphicFormModal = () => {
-        console.log('CLOSE MODAL');
-        console.log(this.state);
-        console.log('PROPS');
-        console.log(this.props);
         Utils.unblurBackground();
         this.setState({graphicIdToEdit: null, showAddGraphicForm: false, showEditGraphicForm: false});
     };
@@ -116,24 +107,19 @@ export default class GraphicsRequestForm extends Component {
 
     onChange = (field) => {
         if (!this.state.readOnly) {
-            console.log('ON CHANGE GRF');
-            console.log(this.state);
+            const newGraphicRequest = this.state.graphicRequest;
 
             if (field.isValid) {
-                const newGraphicRequest = this.state.graphicRequest;
-
                 if (field.id === 'storeNumber') {
                     newGraphicRequest.store = this.state.stores[field.value];
                 } else {
                     newGraphicRequest[field.id] = field.value;
                 }
-
-                console.log('ON CHANGE GRF');
-                console.log(newGraphicRequest);
-                this.setState({graphicRequest: newGraphicRequest, [field.id + 'IsValid']: field.isValid}, () => {
-                    this.showScreenElements();
-                });
             }
+
+            this.setState({graphicRequest: newGraphicRequest, [field.id + 'IsValid']: field.isValid}, () => {
+                this.showScreenElements();
+            });
         }
     };
 
@@ -151,14 +137,13 @@ export default class GraphicsRequestForm extends Component {
     };
 
     showScreenElements = () => {
+        console.log(this.state);
         this.setState({
             showStoreSelect: this.state.contactNameIsValid
         })
     };
 
     render() {
-        console.log('GRF RENDER');
-        console.log(this.state);
         const storeSelect = this.state.showStoreSelect ?
             <div className="input-group">
                 <Select
@@ -174,7 +159,7 @@ export default class GraphicsRequestForm extends Component {
             </div> : null;
 
         const storeInfo = this.state.graphicRequest.store ?
-            <StoreDetails store={this.state.graphicRequest.store} name="Tony" /> : '';
+            <StoreDetails store={this.state.graphicRequest.store} /> : '';
 
         const graphicsPopulated = this.state.graphicRequest.graphics && Object.keys(this.state.graphicRequest.graphics).length > 0;
         const graphicsSummary = graphicsPopulated ?
@@ -234,9 +219,9 @@ export default class GraphicsRequestForm extends Component {
 
         const contactName = this.state.readOnly || this.state.viewMode ?
             <div className="pseudo-field">{this.state.graphicRequest.contactName}</div> :
-            <InputField
-                capitalise={true}
+            <TextField
                 autoFocus={true}
+                capitalise={true}
                 id="contactName"
                 minLength={3}
                 title="Contact Name"

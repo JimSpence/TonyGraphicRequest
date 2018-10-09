@@ -27,7 +27,8 @@ export default class GraphicsForm extends Component {
             graphicId: props.graphicId,
             editMode: props.graphicId && props.graphicId.length > 0,
             show: props.open,
-            showConfirmDialog: false
+            showConfirmDialog: false,
+            savedProps: props
         };
     }
 
@@ -43,33 +44,8 @@ export default class GraphicsForm extends Component {
         const disableSaveButton = this.state.editMode ? document.getElementsByClassName('invalid').length > 0 : document.getElementsByClassName('valid').length < 6;
 
         if (field.isValid) {
-
-            const newGraphic = this.state.graphic;
-            // const fred = this.state.graphic;
-            const fred = new Object(this.state.graphic);
-
-            console.log(field.id);
-            console.log(field.value);
-
-            console.log('BEFORE');
-            console.log(this.state.graphic);
-            console.log(this.props.graphic);
-            console.log(newGraphic);
-            console.log(fred);
-
-            const tony = fred;
-            console.log('TONY BEFORE');
-            console.log(tony);
+            const newGraphic = JSON.parse(JSON.stringify(this.state.graphic));
             newGraphic[field.id] = field.value;
-            console.log('TONY AFTER');
-            console.log(tony);
-
-
-            console.log('AFTER');
-            console.log(this.state.graphic);
-            console.log(this.props.graphic);
-            console.log(newGraphic);
-            console.log(fred);
 
             this.setState({graphic: newGraphic, disableSaveButton: disableSaveButton});
         } else {

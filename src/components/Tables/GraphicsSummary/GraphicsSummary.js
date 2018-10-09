@@ -10,11 +10,6 @@ export default class GraphicsSummary extends Component {
 
     render() {
         const {graphics, onEdit} = this.props;
-
-        console.log('GRAPHICS SUMMARY');
-        console.log(graphics);
-        console.log(this.props);
-
         const rows = Object.keys(graphics).map((graphic, index) => {
             return (
                 <tr key={index} id={graphic} onClick={onEdit}>
