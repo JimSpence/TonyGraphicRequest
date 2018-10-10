@@ -403,25 +403,195 @@ export default class TestUtils {
         const onChange = jest.fn();
 
         return {
-            baseSelect: {
+            select: {
                 data: {
                     store: {
                         number: 123
                     }
                 },
-                id: 'baseSelect',
-                title: 'Base Select'
+                id: 'selectId',
+                title: 'Select Title'
             },
-            baseSelectReadOnly: {
+            selectReadOnly: {
                 data: {
                     store: {
-                        number: 123
+                        number: 888
                     }
                 },
-                id: 'baseSelect',
+                id: 'selectReadOnlyId',
                 readOnly: true,
-                title: 'Base Select'
-            }
+                title: 'Select ReadOnly Title'
+            },
+            selectReadOnlyOnChange: {
+                data: {
+                    store1: {
+                        number: 1333
+                    },
+                    store2: {
+                        number: 2333
+                    },
+                },
+                id: 'selectReadOnlyOnChangeId',
+                onChange: onChange,
+                readOnly: true,
+                title: 'Select ReadOnly On Change Title'
+            },
+            selectReadOnlyValue: {
+                data: {
+                    store: {
+                        number: 333
+                    }
+                },
+                id: 'selectReadOnlyValueId',
+                onChange: onChange,
+                readOnly: true,
+                title: 'Select ReadOnly Value Title',
+                value: 'YYYYYY'
+            },
+            selectAllProperties: {
+                autoFocus: true,
+                className: 'selectAllPropertiesClass',
+                data: {
+                    TEST1: {
+                        number: 1,
+                        name: 'Test 1',
+                    },
+                    TEST2: {
+                        number: 2,
+                        name: 'Test 2',
+                    }
+                },
+                id: 'selectAllPropertiesId',
+                labelText: 'Select All Properties Label',
+                name: 'selectAllPropertiesName',
+                onChanee: onChange,
+                placeholder: 'Make a selection',
+                readOnly: false,
+                title: 'Select All Properties Title',
+                value: 'Select All Properties Value'
+            },
+            selectAutoFocus: {
+                autoFocus: true,
+                data: {
+                    store: {
+                        number: 777
+                    }
+                },
+                id: 'selectAutoFocusId',
+                title: 'Select AutoFocus Title'
+            },
+            selectOnChange: {
+                data: {
+                    store1: {
+                        number: 333
+                    },
+                    store2: {
+                        number: 222
+                    },
+                },
+                id: 'selectOnChangeId',
+                onChange: onChange,
+                title: 'Select On Change Title'
+            },
+            selectWithDataMapping: {
+                data: {
+                    ST0001: {
+                        number: '0001',
+                        name: 'Store 0001',
+                        storeNumber: 'STSN0001'
+                    },
+                    ST0002: {
+                        number: '0002',
+                        name: 'Store 0002',
+                        storeNumber: 'STSN0002'
+                    },
+                    ST0003: {
+                        number: '0003',
+                        name: 'Store 0003',
+                        storeNumber: 'STSN0003'
+                    },
+                    ST0004: {
+                        number: '0004',
+                        name: 'Store 0004',
+                        storeNumber: 'STSN0004'
+                    },
+                    ST0005: {
+                        number: '0005',
+                        name: 'Store 0005',
+                        storeNumber: 'STSN0005'
+                    },
+                },
+                id: 'selectWithDataMappingId',
+                onChange: onChange,
+                title: 'Select With Data Mapping Title'
+            },
+            selectWithDataMappingAndNumberDescriptor: {
+                data: {
+                    ST0001: {
+                        number: '0001',
+                        name: 'Store 0001',
+                        storeNumber: 'STSN0001'
+                    },
+                    ST0002: {
+                        number: '0002',
+                        name: 'Store 0002',
+                        storeNumber: 'STSN0002'
+                    },
+                    ST0003: {
+                        number: '0003',
+                        name: 'Store 0003',
+                        storeNumber: 'STSN0003'
+                    },
+                    ST0004: {
+                        number: '0004',
+                        name: 'Store 0004',
+                        storeNumber: 'STSN0004'
+                    },
+                    ST0005: {
+                        number: '0005',
+                        name: 'Store 0005',
+                        storeNumber: 'STSN0005'
+                    },
+                },
+                descriptor: 'number',
+                id: 'selectWithDataMappingId',
+                onChange: onChange,
+                title: 'Select With Data Mapping Title'
+            },
+            selectWithDataMappingAndStoreNumberDescriptor: {
+                data: {
+                    ST0001: {
+                        number: '0001',
+                        name: 'Store 0001',
+                        storeNumber: 'STSN0001'
+                    },
+                    ST0002: {
+                        number: '0002',
+                        name: 'Store 0002',
+                        storeNumber: 'STSN0002'
+                    },
+                    ST0003: {
+                        number: '0003',
+                        name: 'Store 0003',
+                        storeNumber: 'STSN0003'
+                    },
+                    ST0004: {
+                        number: '0004',
+                        name: 'Store 0004',
+                        storeNumber: 'STSN0004'
+                    },
+                    ST0005: {
+                        number: '0005',
+                        name: 'Store 0005',
+                        storeNumber: 'STSN0005'
+                    },
+                },
+                descriptor: 'storeNumber',
+                id: 'selectWithDataMappingId',
+                onChange: onChange,
+                title: 'Select With Data Mapping Title'
+            },
+
         }
     }
 }

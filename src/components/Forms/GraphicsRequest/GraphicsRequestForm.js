@@ -137,23 +137,23 @@ export default class GraphicsRequestForm extends Component {
     };
 
     showScreenElements = () => {
-        console.log(this.state);
         this.setState({
             showStoreSelect: this.state.contactNameIsValid
         })
     };
 
     render() {
+        console.log(this.state.stores);
         const storeSelect = this.state.showStoreSelect ?
             <div className="input-group">
                 <Select
                     data={this.state.stores}
                     descriptor="name"
                     id="storeNumber"
-                    labelText="Store"
                     onChange={this.onChange}
                     placeholder="Store"
                     readOnly={this.state.readOnly}
+                    title="Store"
                     value={this.state.graphicRequest.store ? this.state.graphicRequest.store.storeNumber : null}
                 />
             </div> : null;

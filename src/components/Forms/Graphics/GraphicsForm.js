@@ -125,10 +125,10 @@ export default class GraphicsForm extends Component {
                             <Select
                                 data={this.props.seasons}
                                 id="season"
-                                labelText="Season"
                                 onChange={this.onChange}
                                 placeholder="Season"
                                 readOnly={this.state.editMode}
+                                title="Season"
                                 value={this.state.graphic.season}
                             />
                             <NumberField
@@ -147,9 +147,9 @@ export default class GraphicsForm extends Component {
                             <Select
                                 data={this.props.reasons}
                                 id="reason"
-                                labelText="Reason"
                                 onChange={this.onChange}
                                 placeholder="Reason"
+                                title="Reason"
                                 value={this.state.graphic.reason}
                             />
                             <NumberField

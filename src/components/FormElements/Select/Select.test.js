@@ -17,13 +17,13 @@ describe('"Select" Component', () => {
     const selectTypes = TestUtils.selectTypes();
 
     it('Should be defined', () => {
-        const component = shallow(<Select {...selectTypes.baseSelect} />);
+        const component = shallow(<Select {...selectTypes.select} />);
+        expect(component).toMatchSnapshot();
         expect(component).toBeDefined();
     });
 
     it('Should render sub-elements', () => {
-        const component = shallow(<Select {...selectTypes.baseSelect} />);
-        expect(component).toMatchSnapshot();
+        const component = shallow(<Select {...selectTypes.select} />);
         expect(component.find('div')).toBeDefined();
         expect(component.find('select')).toBeDefined();
         expect(component.find('option')).toBeDefined();
@@ -31,262 +31,240 @@ describe('"Select" Component', () => {
     });
 
     it('Should render as "disabled" when "readonly" property specified', () => {
-        const component = shallow(<Select {...selectTypes.baseSelectReadOnly} />);
+        const component = shallow(<Select {...selectTypes.selectReadOnly} />);
         expect(component).toMatchSnapshot();
+
         const select = component.find('select');
-        console.log(select.html());
         expect(select.prop('disabled')).toBeDefined();
         expect(select.prop('disabled')).toBe(true);
     });
 
     it('Should not render as "disabled" when "readonly" property is not specified', () => {
-        const component = shallow(<Select {...selectTypes.baseSelect} />);
-        expect(component).toMatchSnapshot();
+        const component = shallow(<Select {...selectTypes.select} />);
         const select = component.find('select');
         expect(select.prop('disabled')).toBeUndefined();
     });
-    //
-    // it('Should have correct number of "props" for non-readOnly field', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.baseField} />);
-    //     expect(Object.keys(component.find('input').props()).length).toBe(13);
-    // });
-    //
-    // it('Should have correct number of "props" for non-readOnly field', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.baseReadOnlyField} />);
-    //     expect(Object.keys(component.find('input').props()).length).toBe(7);
-    // });
-    //
-    // it('Should render base field properties correctly', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.baseField} />);
-    //     expect(component).toMatchSnapshot();
-    //
-    //     const inputField = component.find('input');
-    //     expect(inputField.prop('type')).toBeDefined();
-    //     expect(inputField.prop('type')).toBe('text');
-    //
-    //     expect(inputField.prop('id')).toBeDefined();
-    //     expect(inputField.prop('id')).toBe('inputField');
-    //
-    //     expect(inputField.prop('value')).toBeDefined();
-    //     expect(inputField.prop('value')).toBe('');
-    //
-    //     expect(inputField.prop('name')).toBeDefined();
-    //     expect(inputField.prop('name')).toBe(inputField.prop('id'));
-    //     expect(inputField.prop('name')).toBe('inputField');
-    //
-    //     expect(inputField.prop('readOnly')).toBeDefined();
-    //     expect(inputField.prop('readOnly')).toBe(false);
-    //
-    //     expect(inputField.prop('title')).toBeDefined();
-    //     expect(inputField.prop('title')).toBe('Input Field');
-    //
-    //     expect(inputField.prop('placeholder')).toBeDefined();
-    //     expect(inputField.prop('placeholder')).toBe(inputField.prop('title'));
-    //     expect(inputField.prop('placeholder')).toBe('Input Field');
-    //
-    //     expect(inputField.prop('autoFocus')).toBeUndefined();
-    //     expect(inputField.prop('className')).toBeUndefined();
-    //     expect(inputField.prop('maxLength')).toBeUndefined();
-    //     expect(inputField.prop('minLength')).toBeUndefined();
-    //
-    //     expect(inputField.prop('onBlur')).toBeDefined();
-    //     expect(inputField.prop('onChange')).toBeDefined();
-    // });
-    //
-    // it('Should render field with ALL properties correctly', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.allPropertiesBaseField} />);
-    //     expect(component).toMatchSnapshot();
-    //
-    //     const inputField = component.find('input');
-    //     expect(inputField.prop('autoFocus')).toBeDefined();
-    //     expect(inputField.prop('autoFocus')).toBe(true);
-    //
-    //     expect(inputField.prop('className')).toBeDefined();
-    //     expect(inputField.prop('className')).toBe('all-properties');
-    //
-    //     expect(inputField.prop('id')).toBeDefined();
-    //     expect(inputField.prop('id')).toBe('allPropsField');
-    //
-    //     expect(inputField.prop('maxLength')).toBeDefined();
-    //     expect(inputField.prop('maxLength')).toBe(10);
-    //
-    //     expect(inputField.prop('minLength')).toBeDefined();
-    //     expect(inputField.prop('minLength')).toBe(2);
-    //
-    //     expect(inputField.prop('name')).toBeDefined();
-    //     expect(inputField.prop('name')).not.toBe(inputField.prop('id'));
-    //     expect(inputField.prop('name')).toBe('all-props-input-field');
-    //
-    //     expect(inputField.prop('onBlur')).toBeDefined();
-    //     expect(inputField.prop('onChange')).toBeDefined();
-    //
-    //     expect(inputField.prop('placeholder')).toBeDefined();
-    //     expect(inputField.prop('placeholder')).not.toBe(inputField.prop('title'));
-    //     expect(inputField.prop('placeholder')).toBe('Type something here');
-    //
-    //     expect(inputField.prop('readOnly')).toBeDefined();
-    //     expect(inputField.prop('readOnly')).toBe(false);
-    //
-    //     expect(inputField.prop('title')).toBeDefined();
-    //     expect(inputField.prop('title')).toBe('All Properties Input Field');
-    //
-    //     expect(inputField.prop('type')).toBeDefined();
-    //     expect(inputField.prop('type')).toBe('text');
-    //
-    //     expect(inputField.prop('value')).toBeDefined();
-    //     expect(inputField.prop('value')).toBe('all props');
-    // });
-    //
-    // it('Should only render with appropriate properties for read only field with ALL properties', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.allPropertiesReadOnlyBaseField} />);
-    //     expect(component).toMatchSnapshot();
-    //
-    //     const inputField = component.find('input');
-    //     expect(inputField.prop('autoFocus')).toBeUndefined();
-    //
-    //     expect(inputField.prop('className')).toBeDefined();
-    //     expect(inputField.prop('className')).toBe('all-properties-readonly');
-    //
-    //     expect(inputField.prop('id')).toBeDefined();
-    //     expect(inputField.prop('id')).toBe('allPropsReadOnlyField');
-    //
-    //     expect(inputField.prop('maxLength')).toBeUndefined();
-    //     expect(inputField.prop('minLength')).toBeUndefined();
-    //
-    //     expect(inputField.prop('name')).toBeDefined();
-    //     expect(inputField.prop('name')).not.toBe(inputField.prop('id'));
-    //     expect(inputField.prop('name')).toBe('all-props-readonly-field');
-    //
-    //     expect(inputField.prop('onBlur')).toBeUndefined();
-    //     expect(inputField.prop('onChange')).toBeUndefined();
-    //     expect(inputField.prop('placeholder')).toBeUndefined();
-    //
-    //     expect(inputField.prop('readOnly')).toBeDefined();
-    //     expect(inputField.prop('readOnly')).toBe(true);
-    //
-    //     expect(inputField.prop('title')).toBeDefined();
-    //     expect(inputField.prop('title')).toBe('All Properties ReadOnly Field');
-    //
-    //     expect(inputField.prop('type')).toBeDefined();
-    //     expect(inputField.prop('type')).toBe('text');
-    //
-    //     expect(inputField.prop('value')).toBeDefined();
-    //     expect(inputField.prop('value')).toBe('all props read only');
-    // });
-    //
-    // it('Should focus on field when "autoFocus" property is specified', () => {
-    //     const component = mount(<BaseField {...fieldTypes.autoFocusBaseField} />);
-    //     expect(component).toMatchSnapshot();
-    //     expect(component.find('input').prop('autoFocus')).toBeDefined();
-    //
-    //     const inputField = component.find('input').instance();
-    //     const focusedElement = document.activeElement;
-    //     expect(inputField === focusedElement).toBe(true);
-    // });
-    //
-    // it('Should not focus on field when "autoFocus" property is not specified', () => {
-    //     const component = mount(<BaseField {...fieldTypes.baseField} />);
-    //     expect(component.find('input').prop('autoFocus')).toBeUndefined();
-    //
-    //     const inputField = component.find('input').instance();
-    //     const focusedElement = document.activeElement;
-    //     expect(inputField === focusedElement).toBe(false);
-    // });
-    //
-    // it('Should render field with "placeholder" property', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.placeHolderBaseField} />);
-    //     const inputField = component.find('input');
-    //
-    //     expect(component).toMatchSnapshot();
-    //     expect(inputField.prop('placeholder')).toBeDefined();
-    //     expect(inputField.prop('placeholder')).toBe("Enter a value");
-    // });
-    //
-    // it('Should render input field with "className" property', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.classNameBaseField} />);
-    //     const inputField = component.find('input');
-    //
-    //     expect(component).toMatchSnapshot();
-    //     expect(inputField.prop('className')).toBeDefined();
-    //     expect(inputField.prop('className')).toBe("random-class");
-    // });
-    //
-    // it('Should not render input field with "className" property if not present', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.baseField} />);
-    //     expect(component).toMatchSnapshot();
-    //     expect(component.find('input').prop('className')).toBeUndefined();
-    // });
-    //
-    // it('Should render input field as "text" regardless of type passed in component', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.baseTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     expect(inputField.prop('type')).toBe('text');
-    // });
-    //
-    // it('Should not call "onChange" for "readOnly" field', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.readOnlyOnChangeTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'a'}});
-    //     expect(fieldTypes.readOnlyOnChangeTextField.onChange).not.toHaveBeenCalled();
-    // });
-    //
-    // it('Should not change value for "readOnly" field', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.readOnlyTextFieldWithValue} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'test'}});
-    //     expect(component.state().value).toBe('XXXXXXX');
-    // });
-    //
-    // it('Should call "onChange" when a character is entered', () => {
-    //     fieldTypes.onChangeTextField.onChange.mockReset();
-    //     const component = shallow(<BaseField {...fieldTypes.onChangeTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'a'}});
-    //     expect(fieldTypes.onChangeTextField.onChange).toHaveBeenCalled();
-    //     expect(fieldTypes.onChangeTextField.onChange).toHaveBeenCalledTimes(1);
-    // });
-    //
-    // it('Should call "onChange" on blur of input field', () => {
-    //     fieldTypes.onChangeTextField.onChange.mockReset();
-    //     const component = mount(<BaseField {...fieldTypes.onChangeTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('blur');
-    //     expect(fieldTypes.onChangeTextField.onChange).toHaveBeenCalled();
-    //     expect(fieldTypes.onChangeTextField.onChange).toHaveBeenCalledTimes(1);
-    // });
-    //
-    // it('Should have "invalid" state when "minLength" property not met', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.minLengthTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'ab'}});
-    //     expect(component.state().isValid).toBe(false);
-    //     expect(component.hasClass('invalid')).toBe(true);
-    // });
-    //
-    // it('Should have "valid" state when "minLength" property met or exceeded', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.minLengthTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'abc'}});
-    //     expect(component.state().isValid).toBe(true);
-    //     expect(component.hasClass('valid')).toBe(true);
-    //
-    //     inputField.simulate('change', {target: {value: 'abcde'}});
-    //     expect(component.state().isValid).toBe(true);
-    //     expect(component.hasClass('valid')).toBe(true);
-    // });
-    //
-    // it('Should truncate keyed in value to "maxLength"', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.maxLengthTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'abcdefg'}});
-    //     expect(component.state().value).toBe('abcde');
-    // });
+
+    it('Should have correct number of "props"', () => {
+        const component = shallow(<Select {...selectTypes.select} />);
+        expect(Object.keys(component.find('select').props()).length).toBe(10);
+    });
+
+    it('Should render base field properties correctly', () => {
+        const component = shallow(<Select {...selectTypes.select} />);
+        const select = component.find('select');
+
+        expect(select.prop('disabled')).toBeUndefined();
+
+        expect(select.prop('id')).toBeDefined();
+        expect(select.prop('id')).toBe('selectId');
+
+        expect(select.prop('name')).toBeDefined();
+        expect(select.prop('name')).toBe(select.prop('id'));
+        expect(select.prop('name')).toBe('selectId');
+
+        expect(select.prop('value')).toBeDefined();
+        expect(select.prop('value')).toBe('');
+
+        expect(select.prop('title')).toBeDefined();
+        expect(select.prop('title')).toBe('Select Title');
+
+        expect(select.prop('children')).toBeDefined();
+        expect(select.prop('children')[0].type).toBeDefined;
+        expect(select.prop('children')[0].type).toBe('option');
+
+        expect(select.prop('children')[0].props.hidden).toBeDefined;
+        expect(select.prop('children')[0].props.hidden).toBe(true);
+        expect(select.prop('children')[0].props.className).toBeDefined;
+        expect(select.prop('children')[0].props.className).toBe('placeholder');
+        expect(select.prop('children')[0].props.value).toBeDefined;
+        expect(select.prop('children')[0].props.value).toBe('');
+        expect(select.prop('children')[0].props.children).toBeDefined;
+        expect(select.prop('children')[0].props.children).toBe('Select Title');
+        expect(select.prop('children')[0].props.children).toBe(select.prop('title'));
+
+        expect(select.prop('autoFocus')).toBeUndefined();
+        expect(select.prop('className')).toBeUndefined();
+
+        expect(select.prop('onBlur')).toBeDefined();
+        expect(select.prop('onChange')).toBeDefined();
+    });
+
+    it('Should render base field with ALL properties correctly', () => {
+        const component = shallow(<Select {...selectTypes.selectAllProperties} />);
+        expect(component).toMatchSnapshot();
+
+        const select = component.find('select');
+
+        expect(select.prop('autoFocus')).toBeDefined();
+        expect(select.prop('autoFocus')).toBe(true);
+
+        expect(select.prop('className')).toBeDefined();
+        expect(select.prop('className')).toBe('selectAllPropertiesClass');
+
+        expect(select.prop('disabled')).toBeDefined();
+        expect(select.prop('disabled')).toBe(false);
+
+        expect(select.prop('id')).toBeDefined();
+        expect(select.prop('id')).toBe('selectAllPropertiesId');
+
+        expect(select.prop('name')).toBeDefined();
+        expect(select.prop('name')).not.toBe(select.prop('id'));
+        expect(select.prop('name')).toBe('selectAllPropertiesName');
+
+        expect(select.prop('value')).toBeDefined();
+        expect(select.prop('value')).toBe('Select All Properties Value');
+
+        expect(select.prop('title')).toBeDefined();
+        expect(select.prop('title')).toBe('Select All Properties Title');
+
+        expect(select.prop('children')).toBeDefined();
+        expect(select.prop('children')[0].type).toBeDefined;
+        expect(select.prop('children')[0].type).toBe('option');
+        expect(select.prop('children')[0].props.hidden).toBeDefined;
+        expect(select.prop('children')[0].props.hidden).toBe(true);
+        expect(select.prop('children')[0].props.className).toBeDefined;
+        expect(select.prop('children')[0].props.className).toBe('placeholder');
+        expect(select.prop('children')[0].props.value).toBeDefined;
+        expect(select.prop('children')[0].props.value).toBe('');
+        expect(select.prop('children')[0].props.children).toBeDefined;
+        expect(select.prop('children')[0].props.children).toBe('Make a selection');
+        expect(select.prop('children')[0].props.children).not.toBe(select.prop('title'));
+
+        expect(select.prop('onBlur')).toBeDefined();
+        expect(select.prop('onChange')).toBeDefined();
+    });
+
+    it('Should focus on select when "autoFocus" property is specified', () => {
+        const component = mount(<Select {...selectTypes.selectAutoFocus} />);
+        expect(component.find('select').prop('autoFocus')).toBeDefined();
+
+        const select = component.find('select').instance();
+        const focusedElement = document.activeElement;
+        expect(select).toBe(focusedElement);
+    });
+
+    it('Should not focus on field when "autoFocus" property is not specified', () => {
+        const component = mount(<Select {...selectTypes.select} />);
+        expect(component.find('select').prop('autoFocus')).toBeUndefined();
+
+        const select = component.find('select').instance();
+        const focusedElement = document.activeElement;
+        expect(select).not.toBe(focusedElement);
+    });
+
+    it('Should not call "onChange" for "readOnly" select', () => {
+        const component = shallow(<Select {...selectTypes.selectReadOnlyOnChange} />);
+        expect(component).toMatchSnapshot();
+
+        const select = component.find('select');
+        select.simulate('change', {target: {value: 'Random Value'}});
+        expect(selectTypes.selectReadOnlyOnChange.onChange).not.toHaveBeenCalled();
+    });
+
+    it('Should not change value for "readOnly" field', () => {
+        const component = shallow(<Select {...selectTypes.selectReadOnlyValue} />);
+        const select = component.find('select');
+        expect(component).toMatchSnapshot();
+
+        select.simulate('change', {target: {value: 'test'}});
+        expect(component.state().value).toBe('YYYYYY');
+    });
+
+    it('Should call "onChange" when an option is selected', () => {
+        selectTypes.selectOnChange.onChange.mockReset();
+        const component = shallow(<Select {...selectTypes.selectOnChange} />);
+        const select = component.find('select');
+        expect(component).toMatchSnapshot();
+
+        select.simulate('change', {target: {value: 'store2'}});
+        expect(selectTypes.selectOnChange.onChange).toHaveBeenCalled();
+        expect(selectTypes.selectOnChange.onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should call "onChange" on blur', () => {
+        selectTypes.selectOnChange.onChange.mockReset();
+        const component = mount(<Select {...selectTypes.selectOnChange} />);
+        const select = component.find('select');
+
+        select.simulate('blur');
+        expect(selectTypes.selectOnChange.onChange).toHaveBeenCalled();
+        expect(selectTypes.selectOnChange.onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('Should wrap element with "invalid" class on blur and no value selected', () => {
+        const component = mount(<Select {...selectTypes.selectOnChange} />);
+        const select = component.find('select');
+
+        select.simulate('blur');
+        expect(component.exists('.invalid')).toBe(true);
+    });
+
+    it('Should wrap element with "valid" class on blur and a value selected', () => {
+        const component = mount(<Select {...selectTypes.selectOnChange} />);
+        const select = component.find('select');
+
+        select.simulate('change', {target: {value: 'store2'}});
+        select.simulate('blur');
+        expect(component.exists('.valid')).toBe(true);
+    });
+
+    it('Should show correct number of "options"', () => {
+        const component = mount(<Select {...selectTypes.selectOnChange} />);
+        const options = component.find('option');
+        expect(options.length).toBe(3);
+
+        const dataLength = Object.keys(component.prop('data')).length;
+        expect(options.length).toBe(dataLength + 1);
+    });
+
+    it('Should show correct number of "options" for readOnly select', () => {
+        const component = mount(<Select {...selectTypes.selectReadOnlyOnChange} />);
+
+        const options = component.find('option');
+        expect(options.length).toBe(2);
+
+        const dataLength = Object.keys(component.prop('data')).length;
+        expect(options.length).toBe(dataLength);
+    });
+
+    it('Should render "options" to match data correctly when "descriptor" property not passed', () => {
+        const component = mount(<Select {...selectTypes.selectWithDataMapping} />);
+
+        const options = component.find('option');
+        options.forEach((option, index) => {
+            if (!option.exists('.placeholder')) {
+                expect(option.prop('value')).toBe(option.text());
+                expect(option.prop('value')).toBe(Object.keys(selectTypes.selectWithDataMapping.data)[index - 1]);
+            }
+        });
+    });
+
+    it('Should render "options" to match data correctly when "number" "descriptor" passed', () => {
+        const component = mount(<Select {...selectTypes.selectWithDataMappingAndNumberDescriptor} />);
+
+        const options = component.find('option');
+        options.forEach((option, index) => {
+            if (!option.exists('.placeholder')) {
+                const optionValue = option.prop('value');
+                const dataNumber = selectTypes.selectWithDataMapping.data[optionValue].number;
+                expect(optionValue).toBe(Object.keys(selectTypes.selectWithDataMapping.data)[index - 1]);
+                expect(option.text()).toBe(optionValue + ' - ' + dataNumber);
+            }
+        });
+    });
+
+    it('Should render "options" to match data correctly when "storeNumber" "descriptor" passed', () => {
+        const component = mount(<Select {...selectTypes.selectWithDataMappingAndStoreNumberDescriptor} />);
+
+        const options = component.find('option');
+        options.forEach((option, index) => {
+            if (!option.exists('.placeholder')) {
+                const optionValue = option.prop('value');
+                const dataStoreNumber = selectTypes.selectWithDataMapping.data[optionValue].storeNumber;
+                expect(optionValue).toBe(Object.keys(selectTypes.selectWithDataMapping.data)[index - 1]);
+                expect(option.text()).toBe(optionValue + ' - ' + dataStoreNumber);
+            }
+        });
+    });
 });
