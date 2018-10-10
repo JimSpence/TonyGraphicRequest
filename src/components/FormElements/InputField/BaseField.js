@@ -20,6 +20,7 @@ export default class BaseField extends Component {
         title: PropTypes.string.isRequired,
         autoFocus: PropTypes.bool,
         className: PropTypes.string,
+        labelText: PropTypes.string,
         maxLength: PropTypes.number,
         minLength: PropTypes.number,
         name: PropTypes.string,
@@ -82,7 +83,7 @@ export default class BaseField extends Component {
 
         return (
             <div className={className}>
-                <label htmlFor={this.props.id}>{this.props.title}</label>
+                <label htmlFor={this.props.id}>{this.props.labelText ? this.props.labelText : this.props.title}</label>
                 {input}
             </div>
         )

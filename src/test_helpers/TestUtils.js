@@ -251,6 +251,7 @@ export default class TestUtils {
                 autoFocus: true,
                 className: 'all-properties',
                 id: 'allPropsField',
+                labelText: 'All Properties Label Text',
                 maxLength: 10,
                 minLength: 2,
                 name: 'all-props-input-field',
@@ -264,6 +265,7 @@ export default class TestUtils {
                 autoFocus: true,
                 className: 'all-properties-readonly',
                 id: 'allPropsReadOnlyField',
+                labelText: 'All Properties ReadOnly Label Text',
                 maxLength: 11,
                 minLength: 5,
                 name: 'all-props-readonly-field',
@@ -393,6 +395,32 @@ export default class TestUtils {
                 id: 'numberInputField',
                 title: 'Number Input Field',
                 zeroPad: true
+            }
+        }
+    }
+
+    static selectTypes() {
+        const onChange = jest.fn();
+
+        return {
+            baseSelect: {
+                data: {
+                    store: {
+                        number: 123
+                    }
+                },
+                id: 'baseSelect',
+                title: 'Base Select'
+            },
+            baseSelectReadOnly: {
+                data: {
+                    store: {
+                        number: 123
+                    }
+                },
+                id: 'baseSelect',
+                readOnly: true,
+                title: 'Base Select'
             }
         }
     }

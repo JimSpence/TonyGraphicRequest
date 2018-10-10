@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import './Select.css';
 
@@ -14,8 +15,22 @@ export default class Select extends Component {
         this.validate = this.validate.bind(this);
     }
 
+    static propTypes = {
+        data: PropTypes.object.isRequired,
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        autoFocus: PropTypes.bool,
+        className: PropTypes.string,
+        descriptor: PropTypes.string,
+        name: PropTypes.string,
+        onChange: PropTypes.func,
+        placeholder: PropTypes.string,
+        readOnly: PropTypes.bool,
+        value: PropTypes.string,
+    };
+
     static defaultProps = {
-        readonly: false,
+        // readOnly: false,
     };
 
     validate = (event) => {
@@ -25,7 +40,6 @@ export default class Select extends Component {
             this.props.onChange(this.state);
         });
     };
-
 
     render() {
         const className = classnames({
@@ -43,13 +57,17 @@ export default class Select extends Component {
             <div className={className}>
                 <label htmlFor={this.props.id}>{this.props.labelText}</label>
                 <select
+                    autoFocus={this.props.autoFocus}
+                    className={this.props.className}
                     disabled={this.props.readOnly}
                     id={this.props.id}
+                    name={this.props.name ? this.props.name : this.props.id}
                     onBlur={this.validate}
                     onChange={this.validate}
+                    title={this.props.title}
                     value={this.state.value}
                 >
-                    <option hidden className='placeholder' value="">{this.props.placeholder}</option>
+                    <option hidden className='placeholder' value="">{this.props.placeholder ? this.props.placeholder : this.props.title}</option>
                     {options}
                 )
                 </select>

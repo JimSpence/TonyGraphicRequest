@@ -21,6 +21,13 @@ describe('"BaseField" Component', () => {
         expect(component).toBeDefined();
     });
 
+    it('Should render sub-elements', () => {
+        const component = shallow(<BaseField {...fieldTypes.baseField} />);
+        expect(component.find('div')).toBeDefined();
+        expect(component.find('input')).toBeDefined();
+        expect(component.find('label')).toBeDefined();
+    });
+
     it('Should have correct number of "props" for non-readOnly field', () => {
         const component = shallow(<BaseField {...fieldTypes.baseField} />);
         expect(Object.keys(component.find('input').props()).length).toBe(13);
@@ -58,9 +65,10 @@ describe('"BaseField" Component', () => {
 
         expect(inputField.prop('autoFocus')).toBeUndefined();
         expect(inputField.prop('className')).toBeUndefined();
+        expect(inputField.prop('labelText')).toBeUndefined();
+        expect(inputField.prop('readOnly')).toBeUndefined();
         expect(inputField.prop('maxLength')).toBeUndefined();
         expect(inputField.prop('minLength')).toBeUndefined();
-        expect(inputField.prop('readOnly')).toBeUndefined();
 
         expect(inputField.prop('onBlur')).toBeDefined();
         expect(inputField.prop('onChange')).toBeDefined();
@@ -69,6 +77,9 @@ describe('"BaseField" Component', () => {
     it('Should render field with ALL properties correctly', () => {
         const component = shallow(<BaseField {...fieldTypes.allPropertiesBaseField} />);
         expect(component).toMatchSnapshot();
+
+        const label = component.find('label');
+        expect(label.text()).toBe('All Properties Label Text');
 
         const inputField = component.find('input');
         expect(inputField.prop('autoFocus')).toBeDefined();
@@ -113,6 +124,9 @@ describe('"BaseField" Component', () => {
     it('Should only render with appropriate properties for read only field with ALL properties', () => {
         const component = shallow(<BaseField {...fieldTypes.allPropertiesReadOnlyBaseField} />);
         expect(component).toMatchSnapshot();
+
+        const label = component.find('label');
+        expect(label.text()).toBe('All Properties ReadOnly Label Text');
 
         const inputField = component.find('input');
         expect(inputField.prop('autoFocus')).toBeUndefined();
@@ -262,72 +276,4 @@ describe('"BaseField" Component', () => {
         inputField.simulate('change', {target: {value: 'abcdefg'}});
         expect(component.state().value).toBe('abcde');
     });
-    //
-    // it('Should convert field value to uppercase when passing "uppercase" property', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.uppercaseTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'a'}});
-    //     expect(component.state().value).toBe('A');
-    //
-    //     inputField.simulate('change', {target: {value: 'abcde'}});
-    //     expect(component.state().value).toBe('ABCDE');
-    //
-    //     inputField.simulate('change', {target: {value: 'the quick brown fox'}});
-    //     expect(component.state().value).toBe('THE QUICK BROWN FOX');
-    //
-    //     inputField.simulate('change', {target: {value: 'The Quick Brown Fox'}});
-    //     expect(component.state().value).toBe('THE QUICK BROWN FOX');
-    //
-    //     inputField.simulate('change', {target: {value: 'tHe qUICk BrOWn FoX'}});
-    //     expect(component.state().value).toBe('THE QUICK BROWN FOX');
-    // });
-    //
-    // it('Should capitalise field value when passing "capitalise" property', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.capitaliseTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'a'}});
-    //     expect(component.state().value).toBe('A');
-    //
-    //     inputField.simulate('change', {target: {value: 'abcde'}});
-    //     expect(component.state().value).toBe('Abcde');
-    //
-    //     inputField.simulate('change', {target: {value: 'the quick brown fox'}});
-    //     expect(component.state().value).toBe('The Quick Brown Fox');
-    //
-    //     inputField.simulate('change', {target: {value: 'The Quick Brown Fox'}});
-    //     expect(component.state().value).toBe('The Quick Brown Fox');
-    //
-    //     inputField.simulate('change', {target: {value: 'tHe qUICk BrOWn FoX'}});
-    //     expect(component.state().value).toBe('The Quick Brown Fox');
-    // });
-    //
-    // it('Should ignore "zeroPad" property for "text" field', () => {
-    //     const component = mount(<BaseField {...fieldTypes.zeroPadTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('blur', {target: {value: 'a'}});
-    //     expect(component.state().value).toBe('a');
-    // });
-    //
-    // it('Should ignore "minValue" property for "text" field', () => {
-    //     const component = shallow(<BaseField {...fieldTypes.minValueTextField} />);
-    //     const inputField = component.find('input');
-    //
-    //     inputField.simulate('change', {target: {value: 'aaa'}});
-    //     expect(component.state().isValid).toBe(true);
-    //     expect(component.hasClass('valid')).toBe(true);
-    //     expect(component.state().value).toBe('aaa');
-    //
-    //     inputField.simulate('change', {target: {value: '33'}});
-    //     expect(component.state().isValid).toBe(true);
-    //     expect(component.hasClass('valid')).toBe(true);
-    //     expect(component.state().value).toBe('33');
-    //
-    //     inputField.simulate('change', {target: {value: '999'}});
-    //     expect(component.state().isValid).toBe(true);
-    //     expect(component.hasClass('valid')).toBe(true);
-    //     expect(component.state().value).toBe('999');
-    // });
 });
