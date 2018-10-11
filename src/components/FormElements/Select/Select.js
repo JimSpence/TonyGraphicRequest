@@ -30,10 +30,6 @@ export default class Select extends Component {
         value: PropTypes.string,
     };
 
-    static defaultProps = {
-        // readOnly: false,
-    };
-
     validate = (event) => {
         const fieldValue = event.target.value;
 
@@ -44,7 +40,7 @@ export default class Select extends Component {
 
     render() {
         const className = classnames({
-            // column: true,
+            column: true,
             valid: this.state.isValid && this.state.touched,
             invalid: !this.state.isValid && this.state.touched
         });
