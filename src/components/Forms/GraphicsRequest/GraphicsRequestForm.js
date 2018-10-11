@@ -58,13 +58,26 @@ export default class GraphicsRequestForm extends Component {
     }
 
     addGraphic = (graphic) => {
-        this.setState({graphicRequest: GraphicService.addGraphic(this.state.graphicRequest, graphic)}, () => {
+        const graphicRequest = this.state.graphicRequest;
+        const graphicId = GraphicService.generateGraphicId(graphicRequest, graphic);
+
+        if (typeof graphicRequest.graphics === 'undefined') {
+            graphicRequest.graphics = {};
+        }
+
+        graphicRequest.graphics[graphicId] = graphic;
+
+        this.setState({graphicRequest: graphicRequest}, () => {
             this.closeGraphicFormModal();
         });
     };
 
     deleteGraphic = (graphicId) => {
-        this.setState({graphicRequest: GraphicService.deleteGraphic(this.state.graphicRequest, graphicId)}, () => {
+        const graphicRequest = this.state.graphicRequest;
+
+        delete graphicRequest.graphics[graphicId];
+
+        this.setState({graphicRequest: graphicRequest}, () => {
             this.closeGraphicFormModal();
         });
     };

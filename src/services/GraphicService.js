@@ -1,28 +1,14 @@
 export default class GraphicService {
 
-    static addGraphic = (graphicRequest, graphic) => {
-        const graphicId = GraphicService.generateGraphicId(graphicRequest, graphic);
+    static generateGraphicId = (graphicRequest, graphic, requestYear) => {
+        requestYear = requestYear || new Date().getFullYear().toString().substr(-2);
 
-        if (typeof graphicRequest.graphics === 'undefined') {
-            graphicRequest.graphics = {};
-        }
-
-        graphicRequest.graphics[graphicId] = graphic;
-        return graphicRequest;
-    };
-
-    static deleteGraphic = (graphicRequest, graphicRequestId) => {
-        delete graphicRequest.graphics[graphicRequestId];
-        return graphicRequest;
-    };
-
-    static generateGraphicId = (graphicRequest, graphic) => {
         return (
             graphicRequest.store.brandCode +
             graphic.jobCategory +
             graphic.jobNumber +
             graphic.season +
-            new Date().getFullYear().toString().substr(-2) +
+            requestYear +
             graphic.artworkNumber
         );
     };
