@@ -594,4 +594,83 @@ export default class TestUtils {
 
         }
     }
+
+    static dataForSort() {
+        return {
+            randomOrder: {
+                user1: {
+                    forename: 'Tony',
+                    surname: 'Ruddock',
+                    startDate: new Date(2002, 2, 11),
+                    age: 53
+                },
+                user2: {
+                    forename: 'Nick',
+                    surname: 'Forder',
+                    startDate: new Date(2008, 2, 8),
+                    age: 56
+                },
+                user3: {
+                    forename: 'Peter',
+                    surname: 'Yemchura',
+                    startDate: new Date(1978, 7, 21),
+                    age: 58
+                },
+                user4: {
+                    forename: 'Philip',
+                    surname: 'Harvey',
+                    startDate: new Date(2002, 5, 16),
+                    age: 49
+                },
+                user5: {
+                    forename: 'Jim',
+                    surname: 'Spence',
+                    startDate: new Date(2008, 0, 4),
+                    age: 47
+                }
+            },
+            keysSortedByForeNameAscending: [
+                'user5',
+                'user2',
+                'user3',
+                'user4',
+                'user1'
+            ],
+            keysSortedByForeNameDescending: [
+                'user1',
+                'user4',
+                'user3',
+                'user2',
+                'user5'
+            ],
+            keysSortedByAgeAscending: [
+                'user5',
+                'user4',
+                'user1',
+                'user2',
+                'user3',
+            ],
+            keysSortedByAgeDescending: [
+                'user3',
+                'user2',
+                'user1',
+                'user4',
+                'user5',
+            ],
+            keysSortedByStartDateAscending: [
+                'user3',
+                'user1',
+                'user4',
+                'user5',
+                'user2',
+            ],
+            keysSortedByStartDateDescending: [
+                'user2',
+                'user5',
+                'user4',
+                'user1',
+                'user3',
+            ],
+        }
+    }
 }

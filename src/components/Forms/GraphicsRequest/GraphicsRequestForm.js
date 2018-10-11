@@ -143,7 +143,6 @@ export default class GraphicsRequestForm extends Component {
     };
 
     render() {
-        console.log(this.state.stores);
         const storeSelect = this.state.showStoreSelect ?
             <div className="input-group">
                 <Select

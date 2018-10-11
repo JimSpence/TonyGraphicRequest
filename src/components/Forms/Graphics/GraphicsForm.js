@@ -62,7 +62,6 @@ export default class GraphicsForm extends Component {
     };
 
     closeConfirmDialog = () => {
-        console.log(this.state);
         this.setState({showConfirmDialog: false});
     };
 

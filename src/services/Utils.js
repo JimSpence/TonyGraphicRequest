@@ -1,11 +1,13 @@
 export default class Utils {
 
-    static blurBackground = () => {
-        document.getElementById('root').classList.add('blur5');
+    static blurBackground = (id) => {
+        id = id || 'root';
+        document.getElementById(id).classList.add('blur5');
     };
 
-    static unblurBackground = () => {
-        document.getElementById('root').classList.remove('blur5');
+    static unblurBackground = (id) => {
+        id = id || 'root';
+        document.getElementById(id).classList.remove('blur5');
     };
 
     static padWithZeros = (value, length) => {
