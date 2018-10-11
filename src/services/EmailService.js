@@ -3,7 +3,6 @@ import js2xmlparser from "js2xmlparser";
 export default class FirebaseService {
 
     static FormatGraphicRequestXML = (graphicRequest) => {
-
         const graphics = Object.keys(graphicRequest.graphics).map((graphic) => {
             return {
                 "@": {

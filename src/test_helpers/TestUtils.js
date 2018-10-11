@@ -673,4 +673,54 @@ export default class TestUtils {
             ],
         }
     }
+
+    static graphicRequestForEmail() {
+        return {
+            contactName: 'Mickey Mouse',
+            graphics: {
+                GRAPHIC1: {
+                    artworkNumber: '9999',
+                    jobCategory: 'ZZ',
+                    jobNumber: '88888',
+                    quantity: '1',
+                    reason: 'Random Reason 1',
+                },
+                GRAPHIC2: {
+                    artworkNumber: '8888',
+                    jobCategory: 'XX',
+                    jobNumber: '77777',
+                    quantity: '2',
+                    reason: 'Random Reason 2',
+                },
+                GRAPHIC3: {
+                    artworkNumber: '7777',
+                    jobCategory: 'YY',
+                    jobNumber: '66666',
+                    quantity: '3',
+                    reason: 'Random Reason 3',
+                }
+            },
+            requestDate: 'Thu Sep 27 2018 15:11:59 GMT+0100 (British Summer Time)',
+            sentDate: 'Thu Oct 11 2018 11:19:32 GMT+0100 (British Summer Time)',
+            store: {
+                brandCode: 'MM',
+                brandName: 'Random Brand',
+                email: 'random.store@randombrand.com',
+                name: 'Random Store',
+                number: '2299',
+                phone: '0099 999 9991',
+                storeNumber: 'MM2299'
+            }
+        }
+    }
+
+    static graphicRequestEmailXml() {
+        return "<?xml version='1.0'?>\n" +
+                "<graphic_request>\n" +
+                    "    <store brand='MM' number='2299' contact_name='Mickey Mouse' contact_tel_number='0099 999 9991'>Random Store</store>\n" +
+                    "    <graphic quantity='1' reason='Random Reason 1'>GRAPHIC1</graphic>\n" +
+                    "    <graphic quantity='2' reason='Random Reason 2'>GRAPHIC2</graphic>\n" +
+                    "    <graphic quantity='3' reason='Random Reason 3'>GRAPHIC3</graphic>\n" +
+                "</graphic_request>";
+    }
 }

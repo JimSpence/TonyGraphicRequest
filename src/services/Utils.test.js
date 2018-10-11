@@ -1,22 +1,15 @@
 import React from 'react';
-import {shallow, mount} from 'enzyme';
 import EnzymeAdapter from '../test_helpers/EnzymeAdapter';
 import jsdom from 'jsdom';
 import TestUtils from '../test_helpers/TestUtils';
-import TextField from '../components/FormElements/InputField/TextField'
 import Utils from "./Utils";
-import NumberField from "../components/FormElements/InputField/NumberField";
 
 describe('"Utils" Service', () => {
-
     const doc = jsdom.jsdom('<!doctype html><html><body><div id="root"></div><div id="fred"></div></body></html>');
     global.document = doc;
-    global.window = doc.defaultView;
 
     EnzymeAdapter.config();
     TestUtils.noConsoleErrors();
-
-    const fieldTypes = TestUtils.fieldTypes();
 
     describe('"Blur" tests', () => {
         it('Should blur background when "blurBackground" method called', () => {
