@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Modal from 'react-responsive-modal';
 import Button from "../../FormElements/Button/Button";
@@ -30,9 +31,7 @@ export default class GraphicsRequestForm extends Component {
         this.showScreenElements = this.showScreenElements.bind(this);
 
         this.state = {
-            editMode: props.editMode,
             graphicRequest: props.graphicRequest,
-            id: props.id,
             readOnly: props.editMode,
             reasons: [],
             seasons: [],
@@ -43,6 +42,15 @@ export default class GraphicsRequestForm extends Component {
             viewMode: props.viewMode
         };
     }
+
+    static propTypes = {
+        editMode: PropTypes.bool.isRequired,
+        graphicRequest: PropTypes.object.isRequired,
+        onClose: PropTypes.func.isRequired,
+        open: PropTypes.bool.isRequired,
+        viewMode: PropTypes.bool.isRequired,
+        graphicId: PropTypes.string
+    };
 
     componentDidMount() {
         if (!this.props.viewMode) {
@@ -104,8 +112,8 @@ export default class GraphicsRequestForm extends Component {
             this.setState({complete: false});
         }
 
-        if (this.state.editMode) {
-            FirebaseService.updateGraphicRequest(this.state.id, newGraphicRequest);
+        if (this.props.editMode) {
+            FirebaseService.updateGraphicRequest(this.props.graphicId, newGraphicRequest);
         } else {
             newGraphicRequest.requestDate = new Date().toString();
             FirebaseService.writeGraphicRequest(newGraphicRequest);
@@ -262,7 +270,7 @@ export default class GraphicsRequestForm extends Component {
 
         const contactButtons = !this.state.graphicRequest.store ? buttons : '';
 
-        const mode = this.state.editMode ? 'Edit' : this.state.viewMode ? 'View' : 'New';
+        const mode = this.props.editMode ? 'Edit' : this.state.viewMode ? 'View' : 'New';
 
         return (
             <Modal

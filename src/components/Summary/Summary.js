@@ -85,7 +85,7 @@ export default class Summary extends Component {
                 this.state.editModal ?
                     <GraphicsRequestForm
                         editMode={this.state.editMode}
-                        id={this.state.graphicRequestId}
+                        graphicId={this.state.graphicRequestId}
                         graphicRequest={graphicRequest}
                         onClose={this.closeModal}
                         open={this.state.editModal}

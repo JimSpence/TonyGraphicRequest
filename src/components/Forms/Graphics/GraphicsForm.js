@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Utils from '../../../services/Utils'
 import Modal from 'react-responsive-modal';
@@ -31,6 +32,18 @@ export default class GraphicsForm extends Component {
             savedProps: props
         };
     }
+
+    static propTypes = {
+        onChange: PropTypes.func.isRequired,
+        onClose: PropTypes.func.isRequired,
+        onSave: PropTypes.func.isRequired,
+        open: PropTypes.bool.isRequired,
+        reasons: PropTypes.object.isRequired,
+        seasons: PropTypes.object.isRequired,
+        graphicId: PropTypes.string,
+        graphic: PropTypes.object,
+        onDelete: PropTypes.func
+    };
 
     doSave = () => {
         this.props.onSave(this.state.graphic);

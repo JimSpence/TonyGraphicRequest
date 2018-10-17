@@ -15,7 +15,7 @@ export default class FirebaseService {
 
         const store = {
             "@": {
-                brand: graphicRequest.store.brandCode,
+                id: graphicRequest.store.brandCode,
                 number: graphicRequest.store.number,
                 contact_name: graphicRequest.contactName,
                 contact_tel_number: graphicRequest.store.phone

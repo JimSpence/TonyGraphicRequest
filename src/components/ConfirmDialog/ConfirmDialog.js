@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import Button from "../FormElements/Button/Button";
 import Utils from '../../services/Utils'
@@ -12,6 +13,13 @@ export default class ConfirmDialog extends Component {
         this.onClose = this.onClose.bind(this);
         this.onConfirm = this.onConfirm.bind(this);
     }
+
+    static propTypes = {
+        graphicRequest: PropTypes.object.isRequired,
+        onClose: PropTypes.func.isRequired,
+        onDelete: PropTypes.func.isRequired,
+        open: PropTypes.bool.isRequired,
+    };
 
     onClose = () => {
         Utils.unblurBackground();

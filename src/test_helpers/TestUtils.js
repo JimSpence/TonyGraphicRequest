@@ -717,7 +717,7 @@ export default class TestUtils {
     static graphicRequestEmailXml() {
         return "<?xml version='1.0'?>\n" +
                 "<graphic_request>\n" +
-                    "    <store brand='MM' number='2299' contact_name='Mickey Mouse' contact_tel_number='0099 999 9991'>Random Store</store>\n" +
+                    "    <store id='MM' number='2299' contact_name='Mickey Mouse' contact_tel_number='0099 999 9991'>Random Store</store>\n" +
                     "    <graphic quantity='1' reason='Random Reason 1'>GRAPHIC1</graphic>\n" +
                     "    <graphic quantity='2' reason='Random Reason 2'>GRAPHIC2</graphic>\n" +
                     "    <graphic quantity='3' reason='Random Reason 3'>GRAPHIC3</graphic>\n" +

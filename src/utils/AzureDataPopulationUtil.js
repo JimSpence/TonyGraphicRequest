@@ -1,17 +1,7 @@
-import firebase from 'firebase/app';
-import 'firebase/database';
+export default class AzureDataPopulationUtil {
 
-const config = {
-    databaseURL: 'https://graphic-requests.firebaseio.com'
-};
-
-firebase.initializeApp(config);
-
-export default class DataPopulationService {
-
-    static writeBrands() {
-        const brands = [
-            {
+    static getBrands() {
+        return [{
                 id: 'BR',
                 name: 'Burton Menswear'
             }, {
@@ -35,59 +25,40 @@ export default class DataPopulationService {
             }, {
                 id: 'WL',
                 name: 'Wallis'
-            }
-        ];
-
-        const brandsRef = firebase.database().ref('brands/');
-        brands.forEach((brand, index) => {
-            brandsRef.child(brands[index].id).set({
-                name: brand.name
-            });
-        });
+            }];
     }
 
-    static writeReasons() {
-        const reasons = [
-            'Shortage',
-            'Damaged on receipt',
-            'Not received',
-            'Damaged in store',
-            'Flood',
-            'Fire',
-            'Other'
-        ];
-
-        const reasonsRef = firebase.database().ref('reasons/');
-        reasons.forEach((reason, index) => {
-            reasonsRef.child(reasons[index]).set({
-                reason: reasons[index]
-            }).then(data => {
-                console.log(data);
-            });
-        });
+    static getReasons() {
+        return [{
+                id: 'Shortage'
+            }, {
+                id: 'Damaged on receipt'
+            }, {
+                id: 'Not received'
+            }, {
+                id: 'Damaged in store'
+            }, {
+                id: 'Flood'
+            }, {
+                id: 'Fire'
+            }, {
+                id: 'Other'
+            }];
     }
 
-    static writeSeasons() {
-        const seasons = [
-            {
-                code: 'SS',
+    static getSeasons() {
+        return [{
+                id: 'SS',
                 description: 'Spring/Summer'
             }, {
-                code: 'AW',
+                id: 'AW',
                 description: 'Autumn/Winter'
-            }
-        ];
+            }];
+   }
 
-        const seasonsRef = firebase.database().ref('seasons/');
-        seasons.forEach((season, index) => {
-            seasonsRef.child(seasons[index].code).set({
-                description: season.description
-            });
-        });
-    }
-
-    static writeStores() {
-        const stores = [{
+    static getStores() {
+        return [{
+            id: 'BR0001',
             storeNumber: 'BR0001',
             number: '0001',
             brandCode: 'BR',
@@ -96,6 +67,7 @@ export default class DataPopulationService {
             email: 'br0001@arcadiagroup.co.uk',
             phone: '0113 2265651'
         }, {
+            id: 'BR0002',
             storeNumber: 'BR0002',
             number: '0002',
             brandCode: 'BR',
@@ -104,6 +76,7 @@ export default class DataPopulationService {
             email: 'br0002@arcadiagroup.co.uk',
             phone: '0117 7765421'
         }, {
+            id: 'BR0003',
             storeNumber: 'BR0003',
             number: '0003',
             brandCode: 'BR',
@@ -112,6 +85,7 @@ export default class DataPopulationService {
             email: 'br0003@arcadiagroup.co.uk',
             phone: '01904 456776'
         }, {
+            id: 'BR0004',
             storeNumber: 'BR0004',
             number: '0004',
             brandCode: 'BR',
@@ -120,6 +94,7 @@ export default class DataPopulationService {
             email: 'br0004@arcadiagroup.co.uk',
             phone: '0161 9876423'
         }, {
+            id: 'TS0001',
             storeNumber: 'TS0001',
             number: '0001',
             brandCode: 'TS',
@@ -128,6 +103,7 @@ export default class DataPopulationService {
             email: 'ts0001@arcadiagroup.co.uk',
             phone: '020 6543312'
         }, {
+            id: 'TS0002',
             storeNumber: 'TS0002',
             number: '0002',
             brandCode: 'TS',
@@ -136,6 +112,7 @@ export default class DataPopulationService {
             email: 'ts0002@arcadiagroup.co.uk',
             phone: '0121 9872345'
         }, {
+            id: 'TS0003',
             storeNumber: 'TS0003',
             number: '0003',
             brandCode: 'TS',
@@ -144,6 +121,7 @@ export default class DataPopulationService {
             email: 'ts0003@arcadiagroup.co.uk',
             phone: '0113 6677887'
         }, {
+            id: 'TS0004',
             storeNumber: 'TS0004',
             number: '0004',
             brandCode: 'TS',
@@ -153,19 +131,40 @@ export default class DataPopulationService {
             phone: '0131 2275656'
         }];
 
-        const storesRef = firebase.database().ref('stores/');
-        stores.forEach((store) => {
-            storesRef.child(store.storeNumber).set({
-                storeNumber: store.storeNumber,
-                number: store.number,
-                brandCode: store.brandCode,
-                brandName: store.brandName,
-                name: store.name,
-                email: store.email,
-                phone: store.phone
-            }).then(data => {
-                return(data);
-            });
-        });
+        // this.createContainer(database, 'stores')
+        //     .then((response => {
+        //         return response.container;
+        //     }))
+        // this.writeRecords('stores', stores)
     }
+
+    // static async createContainer(database, containerName) {
+    //     console.log(database);
+    //     return await database.containers.createIfNotExists({
+    //         id: containerName
+    //     })
+    // }
+
+    // static async asyncCall(client) {
+    //     console.log(client.databases);
+    //     return await client.databases.readAll().toArray();
+    //     // return await client.database('GraphicRequest').read();
+    // }
+    // }
+
+    // static writeRecords(collection, items) {
+    //
+    //     // const taskDao = new CosmosDBService(docClient, config.databaseId, collection);
+    //     // taskDao.getDatabase((error) => {
+    //     //     console.log(error);
+    //     // }).then(() => {
+    //     //     items.forEach((item) => {
+    //     //         taskDao.addItem(item, (error) => {
+    //     //             if (error) {
+    //     //                 throw (error);
+    //     //             }
+    //     //         });
+    //     //     });
+    //     // });
+    // }
 }
