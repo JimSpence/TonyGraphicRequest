@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/App';
 import registerServiceWorker from './services/registerServiceWorker';
+import { runWithAdal } from 'react-adal';
+import { authenticationContext } from './services/AdalConfig'
 
-ReactDOM.render(<App/>, document.getElementById('root'));
-registerServiceWorker();
+runWithAdal(authenticationContext, () => {
+    ReactDOM.render(<App/>, document.getElementById('root'));
+    registerServiceWorker();
+});
