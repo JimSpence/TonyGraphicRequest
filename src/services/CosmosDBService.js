@@ -4,6 +4,7 @@ export default class CosmosDBService {
 
     getDBObject = (uri) => {
         const authenticationService = new AuthenticationService();
+        console.log(authenticationService.getToken());
         const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, 'GET');
         return new Promise((resolve, reject) => {
             this.getData(token, UTCDate, uri)

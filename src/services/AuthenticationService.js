@@ -68,7 +68,8 @@ export default class AuthenticationService {
         const blobby = authenticationContext._now();
         console.log(blobby);
         console.log(froggy - blobby);
-        return cachedToken ? cachedToken : this.refreshToken();
+        // return cachedToken ? cachedToken : this.refreshToken();
+        return cachedToken ? cachedToken : this.acquireToken();
     };
 
     // getMasterKey = () => {
