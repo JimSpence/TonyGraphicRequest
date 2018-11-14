@@ -1,4 +1,4 @@
-import { AuthenticationContext, runWithAdal } from 'react-adal';
+import { AuthenticationContext } from 'react-adal';
 
 export const adalConfig = {
     tenant: 'f87af88f-a9b1-44c6-8989-077d72671e16',

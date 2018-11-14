@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/database';
+// import 'firebase/auth';
 
 const config = {
     databaseURL: 'https://graphic-requests.firebaseio.com'
@@ -11,6 +12,14 @@ const graphicRequestsUri = 'graphicRequests/';
 
 export default class FirebaseService {
     static getGraphicRequests(graphicRequestId) {
+        // firebase.auth().signInWithEmailAndPassword('tony.ruddock@arcadiagroup.co.uk', 'Arcadia01')
+        // firebase.auth().createUserWithEmailAndPassword('tony.ruddock@arcadiagroup.co.uk', 'Arcadia01')
+        //     .then((response) => {
+        //         console.log(response);
+        //         })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
         return new Promise((resolve) => {
             const uri = graphicRequestId ? graphicRequestsUri + graphicRequestId : graphicRequestsUri;
             const graphicRequestsDB = firebase.database().ref(uri);

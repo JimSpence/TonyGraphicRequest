@@ -6,6 +6,6 @@ import { runWithAdal } from 'react-adal';
 import { authenticationContext } from './services/AdalConfig'
 
 runWithAdal(authenticationContext, () => {
-    ReactDOM.render(<App/>, document.getElementById('root'));
+    ReactDOM.render(<App authenticationContext={authenticationContext}/>, document.getElementById('root'));
     registerServiceWorker();
-});
+}, true);
