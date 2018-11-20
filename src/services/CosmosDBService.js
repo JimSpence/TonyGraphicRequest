@@ -215,7 +215,8 @@ export default class CosmosDBService {
                 authorization: token,
                 'x-ms-version': '2016-07-11',
                 'x-ms-date': UTCDate,
-                accept: 'application/json'
+                accept: 'application/json',
+                mode: 'no-cors'
             }
         }
     };
