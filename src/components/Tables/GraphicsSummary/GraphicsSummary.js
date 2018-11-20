@@ -5,7 +5,7 @@ import './GraphicsSummary.css';
 export default class GraphicsSummary extends Component {
     static propTypes = {
         graphics: PropTypes.object.isRequired,
-        onEdit: PropTypes.func.isRequired
+        onEdit: PropTypes.func
     };
 
     render() {

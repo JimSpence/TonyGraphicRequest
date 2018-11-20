@@ -26,7 +26,7 @@ export default class FirebaseService {
 
             return graphicRequestsDB.on('value', (data) => {
                 resolve(data.val());
-            })
+            });
         });
     }
 

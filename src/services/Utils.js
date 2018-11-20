@@ -1,3 +1,5 @@
+import uuidv1 from 'uuid';
+
 export default class Utils {
 
     static blurBackground = (id) => {
@@ -43,5 +45,26 @@ export default class Utils {
 
             return 0;
         }
+    };
+
+    static arrayToObject = (array, keyField) => {
+        const obj = {};
+
+        for (const item in array) {
+            obj[array[item][keyField]] = array[item];
+        }
+        return obj;
+    };
+
+    static getGuid() {
+        return uuidv1();
+    };
+
+    static arrayBufferToBase64 = (buffer) => {
+        const bytes = [].slice.call(new Uint8Array(buffer));
+        let binary = null;
+
+        bytes.forEach((b) => binary += String.fromCharCode(b));
+        return window.btoa(binary);
     };
 };

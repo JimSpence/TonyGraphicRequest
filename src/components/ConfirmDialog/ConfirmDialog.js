@@ -15,7 +15,7 @@ export default class ConfirmDialog extends Component {
     }
 
     static propTypes = {
-        graphicRequest: PropTypes.object.isRequired,
+        graphicRequest: PropTypes.object,
         onClose: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         open: PropTypes.bool.isRequired,

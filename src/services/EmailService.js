@@ -1,6 +1,6 @@
 import js2xmlparser from "js2xmlparser";
 
-export default class FirebaseService {
+export default class EmailService {
 
     static FormatGraphicRequestXML = (graphicRequest) => {
         const graphics = Object.keys(graphicRequest.graphics).map((graphic) => {

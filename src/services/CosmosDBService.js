@@ -1,11 +1,113 @@
+import AzureConfig from './AzureConfig';
 import AuthenticationService from "./AuthenticationService";
+import Utils from "./Utils";
 
 export default class CosmosDBService {
+    constructor() {
+        this.azureConfig = new AzureConfig();
+        this.collection = 'graphicrequests';
+    }
 
-    getDBObject = (uri) => {
-        const authenticationService = new AuthenticationService();
-        console.log(authenticationService.getToken());
+    getGraphicRequests = (authenticationService, graphicRequestId) => {
+        return new Promise((resolve) => {
+            if (graphicRequestId) {
+                this.getDocument(this.collection, authenticationService, graphicRequestId)
+                    .then((data) => {
+                        // resolve(Utils.arrayToObject(data.Documents, 'id'));
+                    })
+            } else {
+                this.getDocuments(this.collection, authenticationService)
+                    .then((data) => {
+                        resolve(Utils.arrayToObject(data.Documents, 'id'));
+                    });
+            }
+            // const graphicRequestsDB = firebase.database().ref(uri);
+            //
+            // return graphicRequestsDB.on('value', (data) => {
+            //     resolve(data.val());
+            // });
+        });
+    };
+
+    deleteGraphicRequest = (authenticationService, graphicRequestId) => {
+        return this.deleteDocument(this.collection, authenticationService, null, graphicRequestId)
+    };
+
+    createCollectionIfNotExists = (collection, authenticationService) => {
+        return new Promise((resolve) => {
+            this.getCollection(collection, authenticationService)
+                .then(response => {
+                    if (response.code === 'NotFound') {
+                        this.createCollection(collection, authenticationService)
+                            .then(response => {
+                                resolve(response);
+                            });
+                    } else {
+                        resolve(response);
+                    }
+                });
+        });
+    };
+
+    getCollection = (collection, authenticationService) => {
+        return new Promise(resolve => {
+            const uri = this.azureConfig.getCollectionUri(collection);
+
+            this.getDBObject(uri, authenticationService)
+                .then(response => {
+                    resolve(response);
+                });
+        });
+    };
+
+    createCollection = (collection, authenticationService) => {
+        return new Promise((resolve, reject) => {
+            const uri = this.azureConfig.getCollectionsUri();
+            const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, 'POST');
+            const body = {
+                id: collection
+            };
+
+            this.postData(token, UTCDate, uri, 'POST',  body)
+                .then((response) => {
+                    resolve(response);
+                })
+                .catch((error) => {
+                    reject(error)
+                });
+        });
+    };
+
+    createDocument = (collection, authenticationService, data) => {
+        return this.processRequest(collection, authenticationService, 'POST', data);
+    };
+
+    updateDocument = (collection, authenticationService, data, documentId) => {
+        return this.processRequest(collection, authenticationService, 'PUT', data, documentId);
+    };
+
+    deleteDocument = (collection, authenticationService, data, documentId) => {
+        return this.processRequest(collection, authenticationService, 'DELETE', data, documentId);
+    };
+
+    processRequest = (collection, authenticationService, method, data, documentId) => {
+        const uri = documentId ? this.azureConfig.getDocumentUri(collection, documentId) : this.azureConfig.getDocumentsUri(collection);
+        const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, method);
+
+        return new Promise((resolve, reject) => {
+            this.postData(token, UTCDate, uri, method, data, documentId)
+                .then((response) => {
+                    resolve(response);
+                })
+                .catch((error) => {
+                    reject(error)
+                });
+        });
+    };
+
+    getDBObject = (uri, authenticationService) => {
         const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, 'GET');
+
         return new Promise((resolve, reject) => {
             this.getData(token, UTCDate, uri)
                 .then((response) => {
@@ -17,15 +119,13 @@ export default class CosmosDBService {
         });
     };
 
-    createDBObject = (uri, collection) => {
-        const authenticationService = new AuthenticationService();
-        const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, 'POST');
-        console.log(token);
+    getDocuments = (collection, authenticationService) => {
+        const uri = this.azureConfig.getDocumentsUri(collection);
+        const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, 'GET');
+
         return new Promise((resolve, reject) => {
-            this.postData(token, UTCDate, uri, collection)
+            this.getData(token, UTCDate, uri)
                 .then((response) => {
-                    console.log('CREATE RESPONSE');
-                    console.log(response);
                     resolve(response);
                 })
                 .catch((error) => {
@@ -34,42 +134,78 @@ export default class CosmosDBService {
         });
     };
 
-    getData(token, UTCDate, uri) {
-        return new Promise((resolve, reject) => {
-            const config = this.getConfig(token, UTCDate);
+    getDocument = (collection, authenticationService, document) => {
+        const uri = this.azureConfig.getDocumentUri(collection, document);
+        const {token, UTCDate} = authenticationService.getCosmosDBToken(uri, 'GET');
 
-            fetch(uri, config)
-                .then((response, error) => {
-                    console.log(config);
-                    if (error) {
-                        console.log(error);
-                        reject(error);
-                    } else {
-                        resolve(response.json());
-                    }
+        return new Promise((resolve, reject) => {
+            this.getData(token, UTCDate, uri)
+                .then((response) => {
+                    resolve(response);
                 })
+                .catch((error) => {
+                    reject(error)
+                });
+        });
+    };
+
+    getDropdownData() {
+        const screenData = {};
+        const authenticationService = new AuthenticationService();
+
+        return new Promise(resolve => {
+            this.getDocuments('stores', authenticationService)
+                .then(stores => {
+                    screenData.stores = Utils.arrayToObject(stores.Documents, 'id');
+                    const authenticationService = new AuthenticationService();
+                    return this.getDocuments('seasons', authenticationService)
+                })
+                .then(seasons => {
+                    screenData.seasons = Utils.arrayToObject(seasons.Documents, 'id');
+                    const authenticationService = new AuthenticationService();
+                    return this.getDocuments('reasons', authenticationService)
+                })
+                .then(reasons => {
+                    screenData.reasons = Utils.arrayToObject(reasons.Documents, 'id');
+                    resolve(screenData);
+                });
         });
     }
 
-    postData(token, UTCDate, uri, collection) {
-        return new Promise((resolve, reject) => {
-            const config = this.getConfig(token, UTCDate);
+    getData(token, UTCDate, uri) {
+        const config = this.getConfig(token, UTCDate);
 
-            config.method = 'POST';
-            config.body = {
-                id: 'graphicrequestcollection'
-            };
-            // config.body = 'brands';
+        return new Promise((resolve, reject) => {
             fetch(uri, config)
                 .then((response, error) => {
-                    console.log(config);
                     if (error) {
-                        console.log(error);
                         reject(error);
                     } else {
                         resolve(response.json());
                     }
-                })
+                });
+        });
+    }
+
+    postData(token, UTCDate, uri, method, body, id) {
+        return new Promise((resolve, reject) => {
+            const config = this.getConfig(token, UTCDate);
+            config.method = method;
+
+            if (body) {
+                config.body = JSON.stringify(body);
+            }
+
+            fetch(uri, config)
+                .then((response, error) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        response.json()
+                            .then(json => resolve(json))
+                            .catch(() => resolve(null));
+                    }
+                });
         });
     }
 
@@ -80,7 +216,6 @@ export default class CosmosDBService {
                 'x-ms-version': '2016-07-11',
                 'x-ms-date': UTCDate,
                 accept: 'application/json'
-                // 'Content-Type': 'application/json'
             }
         }
     };

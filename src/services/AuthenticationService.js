@@ -1,13 +1,20 @@
 import {adalConfig, authenticationContext} from './AdalConfig';
+import Utils from './Utils';
 import CryptoJS from 'crypto-js';
 
 export default class AuthenticationService {
+    getMSGraphConfig = () => {
+        return {
+            graphApiUri: 'https://graph.microsoft.com',
+            graphApiVersion: '/v1.0',
+            me: '/me',
+        }
+    };
+
     getCosmosDBToken = (url, verb) => {
         const masterKey = 'pj7Oe0rDErGVf3dJU4OMd8PPOrkx5JyjdaM3PxiRcuhsDbONvTuUlafUtiGJkGiq5cluZDuaJD1LgBd7M9GrrA==';
-
         const today = new Date();
         const UTCString = today.toUTCString();
-        // const verb = 'get';
 
         const resource = this.getResource(url);
         const requestText = (verb || '') + '\n'
@@ -17,8 +24,6 @@ export default class AuthenticationService {
 
         const signature = CryptoJS.HmacSHA256(requestText.toLowerCase(), CryptoJS.enc.Base64.parse(masterKey));
         const base64Bits = CryptoJS.enc.Base64.stringify(signature);
-
-        console.log(base64Bits);
 
         const masterToken = 'master';
         const tokenVersion = '1.0';
@@ -52,24 +57,26 @@ export default class AuthenticationService {
     };
 
     getToken = () => {
-        const cachedToken = authenticationContext.getCachedToken(adalConfig.clientId, authenticationContext);
-        const storedToken = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId);
-        //
-        // if (cachedToken !== storedToken) {
-        //     authenticationContext.login();
-        // }
-        console.log(cachedToken === storedToken);
-        console.log('CACHED: ' + cachedToken);
-        console.log(localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId));
-        console.log(authenticationContext._getItem(authenticationContext.CONSTANTS.STORAGE.LOGIN_REQUEST));
+        return new Promise(resolve => {
+            const cachedToken = authenticationContext.getCachedToken(adalConfig.clientId, authenticationContext);
+            const storedToken = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId);
+            //
+            // if (cachedToken !== storedToken) {
+            //     authenticationContext.login();
+            // }
+            console.log(cachedToken === storedToken);
+            console.log('CACHED: ' + cachedToken);
+            console.log(localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId));
+            console.log(authenticationContext._getItem(authenticationContext.CONSTANTS.STORAGE.LOGIN_REQUEST));
 
-        const froggy = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.EXPIRATION_KEY + adalConfig.clientId);
-        console.log(froggy);
-        const blobby = authenticationContext._now();
-        console.log(blobby);
-        console.log(froggy - blobby);
-        // return cachedToken ? cachedToken : this.refreshToken();
-        return cachedToken ? cachedToken : this.acquireToken();
+            const expirationKey = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.EXPIRATION_KEY + adalConfig.clientId);
+            console.log(expirationKey);
+            const currentKey = authenticationContext._now();
+            console.log(currentKey);
+            console.log(expirationKey - currentKey);
+            // return cachedToken ? cachedToken : this.refreshToken();
+            resolve(cachedToken ? cachedToken : this.acquireToken());
+        });
     };
 
     // getMasterKey = () => {
@@ -77,14 +84,18 @@ export default class AuthenticationService {
     // };
 
     acquireToken = () => {
-        authenticationContext.acquireToken(adalConfig.clientId, (error, token) => {
-            if (error || !token) {
-                if (!token) {
-                    authenticationContext.login();
+        return new Promise((resolve) => {
+            authenticationContext.acquireToken(adalConfig.clientId, (error, token) => {
+                if (error || !token) {
+                    if (!token) {
+                        authenticationContext.login();
+                    } else {
+                        console.log(error);
+                    }
                 } else {
-                    console.log(error);
+                    resolve(token);
                 }
-            }
+            });
         });
     };
 
@@ -98,5 +109,51 @@ export default class AuthenticationService {
                 return token
             }
         });
+    };
+
+    getUserDetail = (token) => {
+        return new Promise((resolve) => {
+
+            const msGraphConfig = this.getMSGraphConfig();
+            const uri = msGraphConfig.graphApiUri + msGraphConfig.graphApiVersion + msGraphConfig.me;
+            const config = {
+                headers: {
+                    authorization: 'Bearer ' + token
+                }
+            };
+
+            fetch(uri, config)
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data);
+                // $('#userName').text(data.displayName);
+                // $('#userEmail').text(data.userPrincipalName);
+                // utils.getUserPhoto(token, data, baseConfig);
+                });
+        })
+    };
+
+    getUserPhoto = (token, data, baseConfig) => {
+        const msGraphConfig = this.getMSGraphConfig();
+        const uri = msGraphConfig.graphApiUri + msGraphConfig.graphApiVersion + msGraphConfig.me + '/photo/$value';
+        const config = {
+            headers: {
+                authorization: 'Bearer ' + token
+            }
+        };
+
+        fetch(uri, config)
+            .then((response) => {
+                if (response.ok) {
+                    response.arrayBuffer()
+                        .then(buffer => Utils.arrayBufferToBase64(buffer))
+                        .then(base64Encoded => 'data:image/jpeg;base64,' + base64Encoded)
+                        .then(image => {
+                            // $('.userPhotoIcon').html('<img src="' + image + '" title="' + data.displayName + '" alt="User Photo" />');
+                            // $('#userPhoto').html('<img src="' + image + '" alt="User Photo" />');
+                        });
+                }
+            });
     }
+
 }

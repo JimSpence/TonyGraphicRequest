@@ -10,9 +10,11 @@ import Utils from '../../../services/Utils'
 import GraphicsForm from "../Graphics/GraphicsForm";
 import GraphicsSummary from "../../Tables/GraphicsSummary/GraphicsSummary";
 import GraphicService from "../../../services/GraphicService";
+import AuthenticationService from "../../../services/AuthenticationService";
 import EmailService from "../../../services/EmailService";
-import FirebaseService from "../../../services/FirebaseService";
+// import FirebaseService from "../../../services/FirebaseService";
 import './GraphicsRequestForm.css';
+import CosmosDBService from "../../../services/CosmosDBService";
 
 export default class GraphicsRequestForm extends Component {
     constructor(props) {
@@ -41,6 +43,9 @@ export default class GraphicsRequestForm extends Component {
             stores: [],
             viewMode: props.viewMode
         };
+
+        this.authenticationService = new AuthenticationService();
+        this.cosmosDBService = new CosmosDBService();
     }
 
     static propTypes = {
@@ -54,7 +59,7 @@ export default class GraphicsRequestForm extends Component {
 
     componentDidMount() {
         if (!this.props.viewMode) {
-            FirebaseService.getDropdownData()
+            this.cosmosDBService.getDropdownData(this.authenticationService)
                 .then(data => {
                     this.setState({
                         stores: data.stores,
@@ -113,13 +118,21 @@ export default class GraphicsRequestForm extends Component {
         }
 
         if (this.props.editMode) {
-            FirebaseService.updateGraphicRequest(this.props.graphicId, newGraphicRequest);
+            // FirebaseService.updateGraphicRequest(this.props.graphicId, newGraphicRequest)
+            this.cosmosDBService.updateDocument('graphicrequests', this.authenticationService, newGraphicRequest, newGraphicRequest.id)
+                .then(() => {
+                    this.onClose();
+                });
         } else {
+            newGraphicRequest.id = Utils.getGuid();
             newGraphicRequest.requestDate = new Date().toString();
-            FirebaseService.writeGraphicRequest(newGraphicRequest);
+            // FirebaseService.writeGraphicRequest(newGraphicRequest);
+            this.cosmosDBService.createDocument('graphicrequests', this.authenticationService, newGraphicRequest)
+                .then(() => {
+                    this.onClose();
+                });
         }
 
-        this.onClose();
     };
 
     editDetails = () => {

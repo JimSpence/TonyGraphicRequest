@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import FirebaseService from '../../services/FirebaseService'
+// import FirebaseService from '../../services/FirebaseService';
+import CosmosDBService from "../../services/CosmosDBService";
+import AuthenticationService from "../../services/AuthenticationService";
 import SummaryTable from "../Tables/SummaryTable/SummaryTable";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
 import GraphicsRequestForm from "../Forms/GraphicsRequest/GraphicsRequestForm";
@@ -7,8 +9,8 @@ import Button from "../FormElements/Button/Button";
 import './Summary.css';
 
 export default class Summary extends Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             graphicRequestsRetrieved: false,
@@ -17,6 +19,9 @@ export default class Summary extends Component {
             confirmModal: false,
             editModal: false
         };
+
+        this.cosmosDBService = new CosmosDBService();
+        this.authenticationService = new AuthenticationService();
 
         this.deleteRequest = this.deleteRequest.bind(this);
         this.editRequest = this.editRequest.bind(this);
@@ -30,7 +35,8 @@ export default class Summary extends Component {
 
     refreshData = () => {
         this.setState({graphicRequestsRetrieved: false}, () => {
-            FirebaseService.getGraphicRequests()
+            this.cosmosDBService.getGraphicRequests(this.authenticationService)
+            // FirebaseService.getGraphicRequests()
                 .then(data =>
                     this.setState({graphicRequests: data, graphicRequestsRetrieved: true})
                 );
@@ -53,14 +59,17 @@ export default class Summary extends Component {
     };
 
     viewRequest = (event) => {
-            this.setState({editModal: true, graphicRequestId: event.currentTarget.dataset.key, editMode: false, viewMode: true});
+        this.setState({editModal: true, graphicRequestId: event.currentTarget.dataset.key, editMode: false, viewMode: true});
     };
 
     doDelete = () => {
-        FirebaseService.deleteGraphicRequest(this.state.graphicRequestId)
-            .then(this.setState({confirmModal: false, graphicRequestId: null}, () => {
-                this.refreshData();
-            }));
+        this.cosmosDBService.deleteGraphicRequest(this.authenticationService, this.state.graphicRequestId)
+        // FirebaseService.deleteGraphicRequest(this.state.graphicRequestId)
+            .then(() => {
+                this.setState({confirmModal: false, graphicRequestId: null}, () => {
+                    this.refreshData();
+                })
+            });
     };
 
     closeModal = (modalToClose) => {
