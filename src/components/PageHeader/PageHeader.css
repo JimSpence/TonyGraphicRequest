@@ -23,6 +23,40 @@ header img:last-of-type {
     height: 35px;
 }
 
+header div.content-right {
+    display: flex;
+}
+
+header div.user-details {
+    align-self: center;
+    color: whitesmoke;
+    display: none;
+    padding-left: 1rem;
+}
+
+header div.user-details.show {
+    display: flex;
+    flex-direction: column;
+}
+
+header div.user-details div a {
+    color: whitesmoke;
+    cursor: pointer;
+    display: flex;
+    font-size: .8rem;
+    justify-content: flex-end;
+    text-decoration: underline;
+}
+
+header div.user-details div a:hover {
+    color: aqua;
+}
+
+header div.user-photo {
+    color: whitesmoke;
+    font-size: 1.5rem;
+}
+
 @media screen and (max-width: 768px) {
     header h1 {
         font-size: 1rem;

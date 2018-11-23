@@ -58,8 +58,11 @@ export default class AuthenticationService {
 
     getToken = () => {
         return new Promise(resolve => {
-            const cachedToken = authenticationContext.getCachedToken(adalConfig.clientId, authenticationContext);
+            // authenticationContext.clearCache();
+            const msGraphConfig = this.getMSGraphConfig();
+            const cachedToken = authenticationContext.getCachedToken(msGraphConfig.graphApiUri, authenticationContext);
             const storedToken = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId);
+            console.log(authenticationContext.getCachedUser());
             //
             // if (cachedToken !== storedToken) {
             //     authenticationContext.login();
@@ -85,7 +88,8 @@ export default class AuthenticationService {
 
     acquireToken = () => {
         return new Promise((resolve) => {
-            authenticationContext.acquireToken(adalConfig.clientId, (error, token) => {
+            const msGraphConfig = this.getMSGraphConfig();
+            authenticationContext.acquireToken(msGraphConfig.graphApiUri, (error, token) => {
                 if (error || !token) {
                     if (!token) {
                         authenticationContext.login();
@@ -99,17 +103,20 @@ export default class AuthenticationService {
         });
     };
 
-    refreshToken = () => {
-        console.log(authenticationContext.getCachedUser());
-        console.log('REFRESHING TOKEN');
-        authenticationContext._renewToken(adalConfig.clientId, (error, token) => {
-            if (error) {
-                console.log(error);
-            } else {
-                return token
-            }
-        });
+    logOut = () => {
+        return authenticationContext.logOut();
     };
+    // refreshToken = () => {
+    //     console.log(authenticationContext.getCachedUser());
+    //     console.log('REFRESHING TOKEN');
+    //     authenticationContext._renewToken(adalConfig.clientId, (error, token) => {
+    //         if (error) {
+    //             console.log(error);
+    //         } else {
+    //             return token
+    //         }
+    //     });
+    // };
 
     getUserDetail = (token) => {
         return new Promise((resolve) => {
@@ -126,34 +133,35 @@ export default class AuthenticationService {
                 .then(response => response.json())
                 .then(data => {
                     resolve(data);
-                // $('#userName').text(data.displayName);
-                // $('#userEmail').text(data.userPrincipalName);
-                // utils.getUserPhoto(token, data, baseConfig);
                 });
         })
     };
 
-    getUserPhoto = (token, data, baseConfig) => {
-        const msGraphConfig = this.getMSGraphConfig();
-        const uri = msGraphConfig.graphApiUri + msGraphConfig.graphApiVersion + msGraphConfig.me + '/photo/$value';
-        const config = {
-            headers: {
-                authorization: 'Bearer ' + token
-            }
-        };
+    getUserPhoto = (token) => {
+        return new Promise((resolve, reject) => {
 
-        fetch(uri, config)
-            .then((response) => {
-                if (response.ok) {
-                    response.arrayBuffer()
-                        .then(buffer => Utils.arrayBufferToBase64(buffer))
-                        .then(base64Encoded => 'data:image/jpeg;base64,' + base64Encoded)
-                        .then(image => {
-                            // $('.userPhotoIcon').html('<img src="' + image + '" title="' + data.displayName + '" alt="User Photo" />');
-                            // $('#userPhoto').html('<img src="' + image + '" alt="User Photo" />');
-                        });
+            const msGraphConfig = this.getMSGraphConfig();
+            const uri = msGraphConfig.graphApiUri + msGraphConfig.graphApiVersion + msGraphConfig.me + '/photo/$value';
+            const config = {
+                headers: {
+                    authorization: 'Bearer ' + token
                 }
-            });
-    }
+            };
 
+            fetch(uri, config)
+                .then((response) => {
+                    if (response.ok) {
+                        console.log(response);
+                        response.arrayBuffer()
+                            .then(buffer => Utils.arrayBufferToBase64(buffer))
+                            .then(base64Encoded => 'data:image/jpeg;base64,' + base64Encoded)
+                            .then(image => {
+                                resolve(image);
+                            });
+                    } else {
+                        reject('No user photo found');
+                    }
+                });
+        });
+    }
 }
