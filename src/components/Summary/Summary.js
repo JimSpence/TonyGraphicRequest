@@ -37,9 +37,16 @@ export default class Summary extends Component {
         this.setState({graphicRequestsRetrieved: false}, () => {
             this.cosmosDBService.getGraphicRequests(this.authenticationService)
             // FirebaseService.getGraphicRequests()
-                .then(data =>
-                    this.setState({graphicRequests: data, graphicRequestsRetrieved: true})
-                );
+                .then(data => {
+                    this.setState({graphicRequests: data, graphicRequestsRetrieved: true}, () => {
+                        const newGraphicRequests = this.state.graphicRequests;
+                        for (const graphicRequest in newGraphicRequests) {
+                            newGraphicRequests[graphicRequest].graphicsCount = Object.keys(newGraphicRequests[graphicRequest].graphics).length;
+                            newGraphicRequests[graphicRequest].storeNumber = newGraphicRequests[graphicRequest].store.storeNumber;
+                        }
+                        this.setState({graphicRequests: newGraphicRequests});
+                    });
+                });
             });
     };
 

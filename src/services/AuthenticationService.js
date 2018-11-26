@@ -1,4 +1,4 @@
-import {adalConfig, authenticationContext} from './AdalConfig';
+import {authenticationContext} from './AdalConfig';
 import Utils from './Utils';
 import CryptoJS from 'crypto-js';
 
@@ -61,22 +61,22 @@ export default class AuthenticationService {
             // authenticationContext.clearCache();
             const msGraphConfig = this.getMSGraphConfig();
             const cachedToken = authenticationContext.getCachedToken(msGraphConfig.graphApiUri, authenticationContext);
-            const storedToken = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId);
-            console.log(authenticationContext.getCachedUser());
+            // const storedToken = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId);
+            // console.log(authenticationContext.getCachedUser());
             //
             // if (cachedToken !== storedToken) {
             //     authenticationContext.login();
             // }
-            console.log(cachedToken === storedToken);
-            console.log('CACHED: ' + cachedToken);
-            console.log(localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId));
-            console.log(authenticationContext._getItem(authenticationContext.CONSTANTS.STORAGE.LOGIN_REQUEST));
+            // console.log(cachedToken === storedToken);
+            // console.log('CACHED: ' + cachedToken);
+            // console.log(localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId));
+            // console.log(authenticationContext._getItem(authenticationContext.CONSTANTS.STORAGE.LOGIN_REQUEST));
 
-            const expirationKey = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.EXPIRATION_KEY + adalConfig.clientId);
-            console.log(expirationKey);
-            const currentKey = authenticationContext._now();
-            console.log(currentKey);
-            console.log(expirationKey - currentKey);
+            // const expirationKey = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.EXPIRATION_KEY + adalConfig.clientId);
+            // console.log(expirationKey);
+            // const currentKey = authenticationContext._now();
+            // console.log(currentKey);
+            // console.log(expirationKey - currentKey);
             // return cachedToken ? cachedToken : this.refreshToken();
             resolve(cachedToken ? cachedToken : this.acquireToken());
         });

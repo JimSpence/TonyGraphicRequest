@@ -15,6 +15,14 @@ table thead tr th {
     padding: .5rem;
 }
 
+table thead tr th a {
+    cursor: pointer;
+}
+
+table thead tr th a:hover {
+    color: var(--paper);
+}
+
 table tbody tr td {
     color: var(--lavendar);
     padding: .25rem .5rem;
