@@ -1,15 +1,9 @@
 import {authenticationContext} from './AdalConfig';
 import Utils from './Utils';
 import CryptoJS from 'crypto-js';
+import {msGraphConfig} from './MsGraphConfig'
 
 export default class AuthenticationService {
-    getMSGraphConfig = () => {
-        return {
-            graphApiUri: 'https://graph.microsoft.com',
-            graphApiVersion: '/v1.0',
-            me: '/me',
-        }
-    };
 
     getCosmosDBToken = (url, verb) => {
         const masterKey = 'pj7Oe0rDErGVf3dJU4OMd8PPOrkx5JyjdaM3PxiRcuhsDbONvTuUlafUtiGJkGiq5cluZDuaJD1LgBd7M9GrrA==';
@@ -59,7 +53,6 @@ export default class AuthenticationService {
     getToken = () => {
         return new Promise(resolve => {
             // authenticationContext.clearCache();
-            const msGraphConfig = this.getMSGraphConfig();
             const cachedToken = authenticationContext.getCachedToken(msGraphConfig.graphApiUri, authenticationContext);
             // const storedToken = localStorage.getItem(authenticationContext.CONSTANTS.STORAGE.ACCESS_TOKEN_KEY + adalConfig.clientId);
             // console.log(authenticationContext.getCachedUser());
@@ -82,13 +75,8 @@ export default class AuthenticationService {
         });
     };
 
-    // getMasterKey = () => {
-        // const masterKey = authenticationContext.getAuthorizationTokenUsingMasterKey('get','dbs','')
-    // };
-
     acquireToken = () => {
         return new Promise((resolve) => {
-            const msGraphConfig = this.getMSGraphConfig();
             authenticationContext.acquireToken(msGraphConfig.graphApiUri, (error, token) => {
                 if (error || !token) {
                     if (!token) {
@@ -106,22 +94,9 @@ export default class AuthenticationService {
     logOut = () => {
         return authenticationContext.logOut();
     };
-    // refreshToken = () => {
-    //     console.log(authenticationContext.getCachedUser());
-    //     console.log('REFRESHING TOKEN');
-    //     authenticationContext._renewToken(adalConfig.clientId, (error, token) => {
-    //         if (error) {
-    //             console.log(error);
-    //         } else {
-    //             return token
-    //         }
-    //     });
-    // };
 
     getUserDetail = (token) => {
         return new Promise((resolve) => {
-
-            const msGraphConfig = this.getMSGraphConfig();
             const uri = msGraphConfig.graphApiUri + msGraphConfig.graphApiVersion + msGraphConfig.me;
             const config = {
                 headers: {
@@ -139,8 +114,6 @@ export default class AuthenticationService {
 
     getUserPhoto = (token) => {
         return new Promise((resolve, reject) => {
-
-            const msGraphConfig = this.getMSGraphConfig();
             const uri = msGraphConfig.graphApiUri + msGraphConfig.graphApiVersion + msGraphConfig.me + '/photo/$value';
             const config = {
                 headers: {
