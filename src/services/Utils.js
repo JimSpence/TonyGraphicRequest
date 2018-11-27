@@ -27,12 +27,12 @@ export default class Utils {
             const from = descending ? b : a;
             const to = descending ? a : b;
 
-            let comparatorA = object ? object[from][sortKey] : from;
-            let comparatorB = object ? object[to][sortKey] : to;
+            let comparatorA = object ? typeof object[from][sortKey] !== 'undefined' ? object[from][sortKey] : null : from;
+            let comparatorB = object ? typeof object[to][sortKey] !== 'undefined' ? object[to][sortKey] : null : to;
 
             if (dateSort) {
-                comparatorA = new Date(comparatorA).getTime();
-                comparatorB = new Date(comparatorB).getTime();
+                comparatorA = comparatorA !== 'NaN' ? new Date(comparatorA).getTime() : null;
+                comparatorB = comparatorB !== 'NaN' ? new Date(comparatorB).getTime() : null;
             }
 
             if (comparatorA < comparatorB) {
