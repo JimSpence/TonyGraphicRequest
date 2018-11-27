@@ -15,6 +15,8 @@ import EmailService from "../../../services/EmailService";
 // import FirebaseService from "../../../services/FirebaseService";
 import './GraphicsRequestForm.css';
 import CosmosDBService from "../../../services/CosmosDBService";
+import {faFrown} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default class GraphicsRequestForm extends Component {
     constructor(props) {
@@ -103,10 +105,17 @@ export default class GraphicsRequestForm extends Component {
     doComplete = () => {
         const xmlMessage = EmailService.FormatGraphicRequestXML(this.state.graphicRequest);
         console.log(xmlMessage);
-
-        this.setState({complete: true}, () => {
-            this.doSave();
-        })
+        EmailService.sendEmail(xmlMessage)
+            .then((response) => {
+                if (response.ok) {
+                    this.setState({complete: true}, () => {
+                        this.doSave();
+                    });
+                } else {
+                    console.log(response);
+                    this.setState({complete: false});
+                }
+            });
     };
 
     doSave = () => {
@@ -114,7 +123,7 @@ export default class GraphicsRequestForm extends Component {
 
         if (this.state.complete) {
             newGraphicRequest.sentDate = new Date().toString();
-            this.setState({complete: false});
+            this.setState({complete: null});
         }
 
         if (this.props.editMode) {
@@ -238,6 +247,8 @@ export default class GraphicsRequestForm extends Component {
                 onClick={this.showAddGraphicsForm}
             /> : '';
 
+        const emailError = this.state.complete === false ? <div className="errorMessage"><FontAwesomeIcon icon={faFrown} /> Error sending email - see console log for details</div> : null;
+        const errorText = this.state.complete === false ? <span> - Error sending email <FontAwesomeIcon icon={faFrown} /></span>: null;
         const graphics = this.state.graphicRequest.store ?
             <div className="graphics-container">
                 <div className="graphics">
@@ -247,6 +258,7 @@ export default class GraphicsRequestForm extends Component {
                     </div>
                     {graphicsSummary}
                 </div>
+                {emailError}
                 {buttons}
             </div> : null;
 
@@ -281,6 +293,8 @@ export default class GraphicsRequestForm extends Component {
             blur5: this.state.showAddGraphicForm || this.state.showEditGraphicForm
         });
 
+        const errorClass = this.state.complete === false ? 'error' : '';
+
         const contactButtons = !this.state.graphicRequest.store ? buttons : '';
 
         const mode = this.props.editMode ? 'Edit' : this.state.viewMode ? 'View' : 'New';
@@ -288,7 +302,7 @@ export default class GraphicsRequestForm extends Component {
         return (
             <Modal
                 center={true}
-                classNames={{modal: 'custom-modal edit-modal ' + blur}}
+                classNames={{modal: 'custom-modal edit-modal ' + blur + errorClass}}
                 closeOnOverlayClick={false}
                 onClose={this.onClose}
                 onOpen={Utils.blurBackground()}
@@ -297,7 +311,7 @@ export default class GraphicsRequestForm extends Component {
             >
                 <div>
                     <header>
-                        <h1>{mode} Graphic Request</h1>
+                        <h1>{mode} Graphic Request {errorText}</h1>
                     </header>
                     <div className="modal-body">
                         <div className="contact-details">

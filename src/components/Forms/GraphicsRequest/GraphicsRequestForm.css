@@ -24,3 +24,9 @@ div.section-header {
     margin-bottom: .5rem;
 }
 
+div .errorMessage {
+    color: var(--invalid);
+    font-size: .9rem;
+    padding: .25rem;
+}
+

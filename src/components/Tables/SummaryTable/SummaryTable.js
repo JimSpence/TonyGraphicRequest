@@ -26,7 +26,6 @@ export default class SummaryTable extends Component {
     };
 
     sortData = (event) => {
-        console.log(this.props.graphicRequests);
         const sortCriteria = this.state.sortCriteria;
         const key = event.target.id;
         sortCriteria.key = key;
@@ -49,14 +48,6 @@ export default class SummaryTable extends Component {
         }
 
         this.setState({sortCriteria: sortCriteria});
-    };
-
-    getSortDirection = (sortedElement) => {
-        let elements = [];
-        elements.push(<span key="1">sortedElement.innerText</span>);
-        const sortDirection = this.state.sortCriteria.descending ? <FontAwesomeIcon icon={faCaretDown} key="2" /> : <FontAwesomeIcon icon={faCaretUp} key="2" />;
-        elements.push(sortDirection);
-        return elements;
     };
 
     render() {

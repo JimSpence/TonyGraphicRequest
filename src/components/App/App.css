@@ -105,6 +105,14 @@ span.icon.user::before {
     padding: 0;
 }
 
+.custom-modal.error {
+    border-color: var(--invalid);
+}
+
+.custom-modal.error header {
+    background-color: var(--invalid);
+}
+
 .custom-modal div.modal-body {
     color: var(--lavendar);
     padding: .5rem;
