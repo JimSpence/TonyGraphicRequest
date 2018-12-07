@@ -6,6 +6,8 @@ import {msGraphConfig} from './MsGraphConfig'
 export default class AuthenticationService {
 
     getCosmosDBToken = (url, verb) => {
+
+        // TODO: The Master Key needs to be stored somewhere - SharePoint list? to where users must authenticate in order to retrieve it.
         const masterKey = 'pj7Oe0rDErGVf3dJU4OMd8PPOrkx5JyjdaM3PxiRcuhsDbONvTuUlafUtiGJkGiq5cluZDuaJD1LgBd7M9GrrA==';
         const today = new Date();
         const UTCString = today.toUTCString();

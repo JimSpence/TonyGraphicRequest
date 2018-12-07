@@ -14,11 +14,18 @@ export default class AzureConfig {
         };
     };
 
-    getCollectionsUri = () => {
+    getDbHostUri = () => {
+        return this.azureConfig.dbHost;
+    };
+
+    getDatabaseUri = () => {
         return this.azureConfig.dbHost +
                this.azureConfig.dbs +
-               this.azureConfig.database +
-               this.azureConfig.colls;
+               this.azureConfig.database;
+    };
+
+    getCollectionsUri = () => {
+        return this.getDatabaseUri() + this.azureConfig.colls;
     };
 
     getCollectionUri = (collection) => {

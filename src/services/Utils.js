@@ -31,8 +31,8 @@ export default class Utils {
             let comparatorB = object ? typeof object[to][sortKey] !== 'undefined' ? object[to][sortKey] : null : to;
 
             if (dateSort) {
-                comparatorA = comparatorA !== 'NaN' ? new Date(comparatorA).getTime() : null;
-                comparatorB = comparatorB !== 'NaN' ? new Date(comparatorB).getTime() : null;
+                comparatorA = new Date(comparatorA).getTime();
+                comparatorB = new Date(comparatorB).getTime();
             }
 
             if (comparatorA < comparatorB) {
@@ -65,6 +65,7 @@ export default class Utils {
         let binary = null;
 
         bytes.forEach((b) => binary += String.fromCharCode(b));
-        return window.btoa(binary);
+        return Buffer.from(binary).toString('base64');
+        // return window.btoa(binary);
     };
 };

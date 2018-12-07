@@ -627,11 +627,25 @@ export default class TestUtils {
                     surname: 'Spence',
                     startDate: new Date(2008, 0, 4),
                     age: 47
+                },
+                user6: {
+                    forename: 'Mark',
+                    surname: 'Bennett',
+                    startDate: null,
+                    age: 42
+                },
+                user7: {
+                    forename: 'Paul',
+                    surname: 'Wilson',
+                    startDate: null,
+                    age: 43
                 }
             },
             keysSortedByForeNameAscending: [
                 'user5',
+                'user6',
                 'user2',
+                'user7',
                 'user3',
                 'user4',
                 'user1'
@@ -640,15 +654,19 @@ export default class TestUtils {
                 'user1',
                 'user4',
                 'user3',
+                'user7',
                 'user2',
+                'user6',
                 'user5'
             ],
             keysSortedByAgeAscending: [
+                'user6',
+                'user7',
                 'user5',
                 'user4',
                 'user1',
                 'user2',
-                'user3',
+                'user3'
             ],
             keysSortedByAgeDescending: [
                 'user3',
@@ -656,13 +674,17 @@ export default class TestUtils {
                 'user1',
                 'user4',
                 'user5',
+                'user7',
+                'user6'
             ],
             keysSortedByStartDateAscending: [
+                'user6',
+                'user7',
                 'user3',
                 'user1',
                 'user4',
                 'user5',
-                'user2',
+                'user2'
             ],
             keysSortedByStartDateDescending: [
                 'user2',
@@ -670,6 +692,8 @@ export default class TestUtils {
                 'user4',
                 'user1',
                 'user3',
+                'user6',
+                'user7'
             ],
         }
     }
@@ -722,5 +746,91 @@ export default class TestUtils {
                     "    <graphic quantity='2' reason='Random Reason 2'>GRAPHIC2</graphic>\n" +
                     "    <graphic quantity='3' reason='Random Reason 3'>GRAPHIC3</graphic>\n" +
                 "</graphic_request>";
+    }
+
+    static randomArrayOfObjects() {
+        return [{
+            id: 1,
+            forename: 'Tony',
+            surname: 'Ruddock',
+            age: 53
+        }, {
+            id: 2,
+            forename: 'Nick',
+            surname: 'Forder',
+            age: 56
+        }, {
+            id: 3,
+            forename: 'Peter',
+            surname: 'Yemchura',
+            age: 58
+        }, {
+            id: 4,
+            forename: 'Philip',
+            surname: 'Harvey',
+            age: 49
+        }, {
+            id: 5,
+            forename: 'Jim',
+            surname: 'Spence',
+            age: 47
+        }, {
+            id: 6,
+            forename: 'Mark',
+            surname: 'Bennett',
+            age: 42
+        }, {
+            id: 7,
+            forename: 'Paul',
+            surname: 'Wilson',
+            age: 43
+        }];
+    }
+
+    static objectConvertedFromArray() {
+        return {
+            1: {
+                age: 53,
+                forename: 'Tony',
+                id: 1,
+                surname: 'Ruddock'
+                },
+            2: {
+                age: 56,
+                forename: 'Nick',
+                id: 2,
+                surname: 'Forder'
+                },
+            3: {
+                age: 58,
+                forename: 'Peter',
+                id: 3,
+                surname: 'Yemchura'
+                },
+            4: {
+                age: 49,
+                forename: 'Philip',
+                id: 4,
+                surname: 'Harvey'
+                },
+            5: {
+                age: 47,
+                forename: 'Jim',
+                id: 5,
+                surname: 'Spence'
+                },
+            6: {
+                age: 42,
+                forename: 'Mark',
+                id: 6,
+                surname: 'Bennett'
+                },
+            7: {
+                age: 43,
+                forename: 'Paul',
+                id: 7,
+                surname: 'Wilson'
+            }
+        }
     }
 }

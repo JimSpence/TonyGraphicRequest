@@ -11,7 +11,7 @@ describe('"Utils" Service', () => {
     EnzymeAdapter.config();
     TestUtils.noConsoleErrors();
 
-    describe('"Blur" tests', () => {
+    describe('"blurBackground" tests', () => {
         it('Should blur background when "blurBackground" method called', () => {
             Utils.blurBackground();
             expect(document.getElementById('root').classList.contains('blur5')).toBe(true);
@@ -25,7 +25,7 @@ describe('"Utils" Service', () => {
         });
     });
 
-    describe('"Unblur" tests', () => {
+    describe('"unblurBackground" tests', () => {
         it('Should unblur background when "unblurBackground" method called', () => {
             document.getElementById('root').classList.add('blur5');
             expect(document.getElementById('root').classList.contains('blur5')).toBe(true);
@@ -45,7 +45,7 @@ describe('"Utils" Service', () => {
         });
     });
 
-    describe('"PadWithZeros" tests', () => {
+    describe('"padWithZeros" tests', () => {
         it('Should zero pad value to length specified', () => {
             expect(Utils.padWithZeros(1, 5)).toBe('00001');
             expect(Utils.padWithZeros(27, 10)).toBe('0000000027');
@@ -55,34 +55,34 @@ describe('"Utils" Service', () => {
         });
     });
 
-    describe('"SortByKey" tests', () => {
-        it('Should sort object key by field specified (in ascending order)', () => {
+    describe('"sortByKey" tests', () => {
+        it('Should sort object key by forename (in ascending order)', () => {
             const data = TestUtils.dataForSort().randomOrder;
             const sortedData = Object.keys(data).sort(Utils.sortByKey(data, 'forename'));
             expect(sortedData).toEqual(TestUtils.dataForSort().keysSortedByForeNameAscending);
         });
 
-        it('Should sort object key by field specified (in descending order)', () => {
+        it('Should sort object key by forename (in descending order)', () => {
             const data = TestUtils.dataForSort().randomOrder;
             const descending = true;
             const sortedData = Object.keys(data).sort(Utils.sortByKey(data, 'forename', descending));
             expect(sortedData).toEqual(TestUtils.dataForSort().keysSortedByForeNameDescending);
         });
 
-        it('Should sort object key by numeric field specified (in ascending order)', () => {
+        it('Should sort object key by numeric field - age (in ascending order)', () => {
             const data = TestUtils.dataForSort().randomOrder;
             const sortedData = Object.keys(data).sort(Utils.sortByKey(data, 'age'));
             expect(sortedData).toEqual(TestUtils.dataForSort().keysSortedByAgeAscending);
         });
 
-        it('Should sort object key by numeric field specified (in descending order)', () => {
+        it('Should sort object key by numeric field - age (in descending order)', () => {
             const data = TestUtils.dataForSort().randomOrder;
             const descending = true;
             const sortedData = Object.keys(data).sort(Utils.sortByKey(data, 'age', descending));
             expect(sortedData).toEqual(TestUtils.dataForSort().keysSortedByAgeDescending);
         });
 
-        it('Should sort object key by date field specified (in ascending order)', () => {
+        it('Should sort object key by date field - startDate (in ascending order)', () => {
             const data = TestUtils.dataForSort().randomOrder;
             const descending = true;
             const dateSort = true;
@@ -90,12 +90,33 @@ describe('"Utils" Service', () => {
             expect(sortedData).toEqual(TestUtils.dataForSort().keysSortedByStartDateAscending);
         });
 
-        it('Should sort object key by date field specified (in descending order)', () => {
+        it('Should sort object key by date field - startDate (in descending order)', () => {
             const data = TestUtils.dataForSort().randomOrder;
             const descending = true;
             const dateSort = true;
             const sortedData = Object.keys(data).sort(Utils.sortByKey(data, 'startDate', descending, dateSort));
             expect(sortedData).toEqual(TestUtils.dataForSort().keysSortedByStartDateDescending);
+        });
+    });
+
+    describe('"arrayToObject" tests', () => {
+        it('Should convert array to object, using key field as index', () => {
+            expect(Utils.arrayToObject(TestUtils.randomArrayOfObjects(), 'id')).toEqual(TestUtils.objectConvertedFromArray());
+        });
+    });
+
+    describe('"arrayBufferToBase64" tests', () => {
+        it('Should convert array buffer to Base64', () => {
+            const typedArray = new Int8Array(8);
+            typedArray[0] = 1;
+            typedArray[1] = 2;
+            typedArray[2] = 3;
+            typedArray[3] = 4;
+            typedArray[4] = 5;
+            typedArray[5] = 6;
+            typedArray[6] = 7;
+            typedArray[7] = 8;
+            expect(Utils.arrayBufferToBase64(typedArray)).toEqual('bnVsbAECAwQFBgcI');
         });
     });
 });
