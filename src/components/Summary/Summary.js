@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-// import FirebaseService from '../../services/FirebaseService';
-import CosmosDBService from "../../services/CosmosDBService";
+import FirebaseService from '../../services/FirebaseService';
+// import CosmosDBService from "../../services/CosmosDBService";
 import AuthenticationService from "../../services/AuthenticationService";
 import SummaryTable from "../Tables/SummaryTable/SummaryTable";
 import ConfirmDialog from "../ConfirmDialog/ConfirmDialog";
@@ -20,8 +20,8 @@ export default class Summary extends Component {
             editModal: false
         };
 
-        this.cosmosDBService = new CosmosDBService();
-        this.authenticationService = new AuthenticationService();
+        // this.cosmosDBService = new CosmosDBService();
+        // this.authenticationService = new AuthenticationService();
 
         this.deleteRequest = this.deleteRequest.bind(this);
         this.editRequest = this.editRequest.bind(this);
@@ -35,8 +35,8 @@ export default class Summary extends Component {
 
     refreshData = () => {
         this.setState({graphicRequestsRetrieved: false}, () => {
-            this.cosmosDBService.getGraphicRequests(this.authenticationService)
-            // FirebaseService.getGraphicRequests()
+            // this.cosmosDBService.getGraphicRequests(this.authenticationService)
+            FirebaseService.getGraphicRequests()
                 .then(data => {
                     this.setState({graphicRequests: data, graphicRequestsRetrieved: true}, () => {
                         const newGraphicRequests = this.state.graphicRequests;
@@ -70,8 +70,8 @@ export default class Summary extends Component {
     };
 
     doDelete = () => {
-        this.cosmosDBService.deleteGraphicRequest(this.authenticationService, this.state.graphicRequestId)
-        // FirebaseService.deleteGraphicRequest(this.state.graphicRequestId)
+        // this.cosmosDBService.deleteGraphicRequest(this.authenticationService, this.state.graphicRequestId)
+        FirebaseService.deleteGraphicRequest(this.state.graphicRequestId)
             .then(() => {
                 this.setState({confirmModal: false, graphicRequestId: null}, () => {
                     this.refreshData();

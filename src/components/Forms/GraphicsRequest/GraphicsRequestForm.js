@@ -12,11 +12,11 @@ import GraphicsSummary from "../../Tables/GraphicsSummary/GraphicsSummary";
 import GraphicService from "../../../services/GraphicService";
 import AuthenticationService from "../../../services/AuthenticationService";
 import EmailService from "../../../services/EmailService";
-// import FirebaseService from "../../../services/FirebaseService";
-import './GraphicsRequestForm.css';
-import CosmosDBService from "../../../services/CosmosDBService";
+// import CosmosDBService from "../../../services/CosmosDBService";
+import FirebaseService from "../../../services/FirebaseService";
 import {faFrown} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import './GraphicsRequestForm.css';
 
 export default class GraphicsRequestForm extends Component {
     constructor(props) {
@@ -47,7 +47,7 @@ export default class GraphicsRequestForm extends Component {
         };
 
         this.authenticationService = new AuthenticationService();
-        this.cosmosDBService = new CosmosDBService();
+        // this.cosmosDBService = new CosmosDBService();
     }
 
     static propTypes = {
@@ -61,7 +61,8 @@ export default class GraphicsRequestForm extends Component {
 
     componentDidMount() {
         if (!this.props.viewMode) {
-            this.cosmosDBService.getDropdownData(this.authenticationService)
+            FirebaseService.getDropdownData()
+            // this.cosmosDBService.getDropdownData(this.authenticationService)
                 .then(data => {
                     this.setState({
                         stores: data.stores,
@@ -127,16 +128,16 @@ export default class GraphicsRequestForm extends Component {
         }
 
         if (this.props.editMode) {
-            // FirebaseService.updateGraphicRequest(this.props.graphicId, newGraphicRequest)
-            this.cosmosDBService.updateDocument('graphicrequests', this.authenticationService, newGraphicRequest, newGraphicRequest.id)
+            FirebaseService.updateGraphicRequest(this.props.graphicId, newGraphicRequest)
+            // this.cosmosDBService.updateDocument('graphicrequests', this.authenticationService, newGraphicRequest, newGraphicRequest.id)
                 .then(() => {
                     this.onClose();
                 });
         } else {
             newGraphicRequest.id = Utils.getGuid();
             newGraphicRequest.requestDate = new Date().toString();
-            // FirebaseService.writeGraphicRequest(newGraphicRequest);
-            this.cosmosDBService.createDocument('graphicrequests', this.authenticationService, newGraphicRequest)
+            FirebaseService.writeGraphicRequest(newGraphicRequest)
+            // this.cosmosDBService.createDocument('graphicrequests', this.authenticationService, newGraphicRequest)
                 .then(() => {
                     this.onClose();
                 });

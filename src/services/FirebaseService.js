@@ -69,7 +69,8 @@ export default class FirebaseService {
         return graphicRequestsDB.push(graphicRequest);
     }
 
-    static deleteGraphicRequest(graphicRequestId) {
+    static
+    deleteGraphicRequest(graphicRequestId) {
         const graphicRequestsDB = firebase.database().ref(graphicRequestsUri);
         return graphicRequestsDB.child(graphicRequestId).remove();
     }
