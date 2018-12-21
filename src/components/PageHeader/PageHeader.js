@@ -55,7 +55,7 @@ export default class PageHeader extends Component {
 
         return (
             <header>
-                <img src={arcadiaLogo} className="arcadia-logo" alt="arcadia-logo.png" title="Arcadia logo" />
+                <div className="logo">Tyres Direct 2 U</div>
                 <h1 id="headerText">{this.props.headerText}</h1>
                 <div className="content-right">
                     <div className="user-photo" onClick={this.toggleUserDetails} title={displayName}>{userPhoto}</div>

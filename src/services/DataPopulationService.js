@@ -9,32 +9,44 @@ firebase.initializeApp(config);
 
 export default class DataPopulationService {
 
-    static writeBrands() {
+    static writeBrannds() {
         const brands = [
             {
-                id: 'BR',
-                name: 'Burton Menswear'
+                id: 'AD',
+                name: 'Audi'
             }, {
-                id: 'DP',
-                name: 'Dorothy Perkins'
+                id: 'BM',
+                name: 'BMW'
             }, {
-                id: 'EV',
-                name: 'Evans'
+                id: 'DC',
+                name: 'Dacia'
             }, {
-                id: 'MS',
-                name: 'Miss Selfridge'
+                id: 'CT',
+                name: 'Citroen'
             }, {
-                id: 'OU',
-                name: 'Outfit'
+                id: 'FD',
+                name: 'Ford'
             }, {
-                id: 'TM',
-                name: 'Topman'
+                id: 'MB',
+                name: 'Mercedes Benz'
             }, {
-                id: 'TS',
-                name: 'Topshop'
+                id: 'MT',
+                name: 'Mitsubishi'
             }, {
-                id: 'WL',
-                name: 'Wallis'
+                id: 'MZ',
+                name: 'Mazda'
+            }, {
+                id: 'NI',
+                name: 'Nissan'
+            }, {
+                id: 'RN',
+                name: 'Renault'
+            }, {
+                id: 'TY',
+                name: 'Toyota'
+            }, {
+                id: 'VW',
+                name: 'Volkswagen'
             }
         ];
 
@@ -48,10 +60,11 @@ export default class DataPopulationService {
 
     static writeReasons() {
         const reasons = [
-            'Shortage',
+            'Wear and tear',
+            'Quantity short',
             'Damaged on receipt',
             'Not received',
-            'Damaged in store',
+            'Fitting damage',
             'Flood',
             'Fire',
             'Other'
@@ -88,81 +101,81 @@ export default class DataPopulationService {
 
     static writeStores() {
         const stores = [{
-            storeNumber: 'BR0001',
+            dealerNumber: 'BM0001',
             number: '0001',
-            brandCode: 'BR',
-            brandName: 'Burton Menswear',
-            name: 'Leeds White Rose',
-            email: 'br0001@arcadiagroup.co.uk',
+            brandCode: 'BM',
+            brandName: 'BMW',
+            name: 'Leeds Geldard Road',
+            email: 'bm0001@tyresdirect2u.co.uk',
             phone: '0113 2265651'
         }, {
-            storeNumber: 'BR0002',
+            dealerNumber: 'BM0002',
             number: '0002',
-            brandCode: 'BR',
-            brandName: 'Burton Menswear',
-            name: 'Bristol Cabot Centre',
-            email: 'br0002@arcadiagroup.co.uk',
+            brandCode: 'BM',
+            brandName: 'BMW',
+            name: 'Bristol Fishponds',
+            email: 'bm0002@tyresdirect2u.co.uk',
             phone: '0117 7765421'
         }, {
-            storeNumber: 'BR0003',
+            dealerNumber: 'BM0003',
             number: '0003',
-            brandCode: 'BR',
-            brandName: 'Burton Menswear',
-            name: 'York Coney Street',
-            email: 'br0003@arcadiagroup.co.uk',
+            brandCode: 'BM',
+            brandName: 'BMW',
+            name: 'York Clifton Moor',
+            email: 'bm0003@tyresdirect2u.co.uk',
             phone: '01904 456776'
         }, {
-            storeNumber: 'BR0004',
+            dealerNumber: 'BM0004',
             number: '0004',
-            brandCode: 'BR',
-            brandName: 'Burton Menswear',
-            name: 'Manchester Trafford Centre',
-            email: 'br0004@arcadiagroup.co.uk',
+            brandCode: 'BM',
+            brandName: 'BMW',
+            name: 'Manchester Old Trafford',
+            email: 'bm0004@tyresdirect2u.co.uk',
             phone: '0161 9876423'
         }, {
-            storeNumber: 'TS0001',
+            dealerNumber: 'TY0001',
             number: '0001',
-            brandCode: 'TS',
-            brandName: 'Topshop',
-            name: 'Oxford Circus',
-            email: 'ts0001@arcadiagroup.co.uk',
-            phone: '020 6543312'
+            brandCode: 'TY',
+            brandName: 'Toyota',
+            name: 'Oxford Peartree',
+            email: 'ty0001@soparesdirect2u.co.uk',
+            phone: '01865 654312'
         }, {
-            storeNumber: 'TS0002',
+            dealerNumber: 'TY0002',
             number: '0002',
-            brandCode: 'TS',
-            brandName: 'Topshop',
-            name: 'Birmingham Bullring',
-            email: 'ts0002@arcadiagroup.co.uk',
+            brandCode: 'TY',
+            brandName: 'Toyota',
+            name: 'Birmingham Spaghetti Junction',
+            email: 'ty0002@tyresdirect2u.co.uk',
             phone: '0121 9872345'
         }, {
-            storeNumber: 'TS0003',
+            dealerNumber: 'TY0003',
             number: '0003',
-            brandCode: 'TS',
-            brandName: 'Topshop',
-            name: 'Leeds Trinity',
-            email: 'ts0003@arcadiagroup.co.uk',
+            brandCode: 'TY',
+            brandName: 'Toyota',
+            name: 'Leeds Ringways',
+            email: 'ty0003@tyresdirect2u.co.uk',
             phone: '0113 6677887'
         }, {
-            storeNumber: 'TS0004',
+            dealerNumber: 'TY0004',
             number: '0004',
-            brandCode: 'TS',
-            brandName: 'Topshop',
-            name: 'Edinburgh Princes Street',
-            email: 'ts00014@arcadiagroup.co.uk',
+            brandCode: 'TY',
+            brandName: 'Toyota',
+            name: 'Edinburgh Castle',
+            email: 'ty0004@tyresdirect2u.co.uk',
             phone: '0131 2275656'
         }];
 
-        const storesRef = firebase.database().ref('stores/');
-        stores.forEach((store) => {
-            storesRef.child(store.storeNumber).set({
-                storeNumber: store.storeNumber,
-                number: store.number,
-                brandCode: store.brandCode,
-                brandName: store.brandName,
-                name: store.name,
-                email: store.email,
-                phone: store.phone
+        const dealersRef = firebase.database().ref('dealers/');
+        dealers.forEach((dealer) => {
+            dealersRef.child(dealer.dealerNumber).set({
+                dealerNumber: dealer.dealerNumber,
+                number: dealer.number,
+                brandCode: dealer.brandCode,
+                brandName: dealer.brandName,
+                name: dealer.name,
+                email: dealer.email,
+                phone: dealer.phone
             }).then(data => {
                 return(data);
             });

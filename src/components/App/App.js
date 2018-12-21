@@ -7,7 +7,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <PageHeader headerText="Graphic Request Application" />
+                <PageHeader headerText="Dealer Orders" />
                 <Content/>
             </div>
         );

@@ -14,10 +14,10 @@ header h1 {
     padding: 0;
 }
 
-header img:first-of-type {
-    height: 30px;
-    width: 150px;
-}
+/*header img:first-of-type {*/
+    /*height: 30px;*/
+    /*width: 150px;*/
+/*}*/
 
 header img:last-of-type {
     height: 35px;
@@ -25,6 +25,11 @@ header img:last-of-type {
 
 header div.content-right {
     display: flex;
+}
+
+header div.logo {
+    color: aquamarine;
+    font-size: 1.5rem;
 }
 
 header div.user-details {
@@ -62,10 +67,10 @@ header div.user-photo {
         font-size: 1rem;
     }
 
-    header img:first-of-type {
-        height: 15px;
-        width: 75px;
-    }
+    /*header img:first-of-type {*/
+        /*height: 15px;*/
+        /*width: 75px;*/
+    /*}*/
 
     header img:last-of-type {
         height: 20px;
