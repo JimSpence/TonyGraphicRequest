@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Utils from '../../../services/Utils'
+import Utils from '../../../helpers/Utils'
 import Modal from 'react-responsive-modal';
 import Button from "../../FormElements/Button/Button";
 import Select from "../../FormElements/Select/Select";

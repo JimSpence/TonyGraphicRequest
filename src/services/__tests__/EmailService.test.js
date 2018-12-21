@@ -1,7 +1,7 @@
 import React from 'react';
 import sinon from 'sinon';
-import TestUtils from '../test_helpers/TestUtils';
-import EmailService from "./EmailService";
+import TestUtils from '../../test_helpers/TestUtils';
+import EmailService from "../EmailService";
 
 describe('"EmailService" Service', () => {
     TestUtils.noConsoleErrors();

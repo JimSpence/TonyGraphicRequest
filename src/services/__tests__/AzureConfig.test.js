@@ -1,6 +1,6 @@
 import React from 'react';
-import TestUtils from '../test_helpers/TestUtils';
-import AzureConfig from "./AzureConfig";
+import TestUtils from '../../test_helpers/TestUtils';
+import AzureConfig from "../AzureConfig";
 
 TestUtils.noConsoleErrors();
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EnzymeAdapter from '../../test_helpers/EnzymeAdapter';
-import TestUtils from "../../test_helpers/TestUtils";
-import PageHeader from '../PageHeader/PageHeader';
+import EnzymeAdapter from '../../../test_helpers/EnzymeAdapter';
+import TestUtils from "../../../test_helpers/TestUtils";
+import PageHeader from '../PageHeader';
 
 describe('"PageHeader" Component', () => {
     const props = {

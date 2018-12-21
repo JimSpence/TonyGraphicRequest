@@ -1,10 +1,10 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import EnzymeAdapter from '../../../test_helpers/EnzymeAdapter';
+import EnzymeAdapter from '../../../../test_helpers/EnzymeAdapter';
 import jsdom from 'jsdom';
-import TestUtils from '../../../test_helpers/TestUtils';
-import NumberField from "./NumberField";
-import BaseField from "./BaseField";
+import TestUtils from '../../../../test_helpers/TestUtils';
+import NumberField from "../NumberField";
+import BaseField from "../BaseField";
 
 describe('"NumberField" Component', () => {
 

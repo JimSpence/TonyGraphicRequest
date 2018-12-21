@@ -6,7 +6,7 @@ import Button from "../../FormElements/Button/Button";
 import Select from "../../FormElements/Select/Select";
 import TextField from "../../FormElements/InputField/TextField";
 import StoreDetails from "../../StoreDetails/StoreDetails";
-import Utils from '../../../services/Utils'
+import Utils from '../../../helpers/Utils'
 import GraphicsForm from "../Graphics/GraphicsForm";
 import GraphicsSummary from "../../Tables/GraphicsSummary/GraphicsSummary";
 import GraphicService from "../../../services/GraphicService";

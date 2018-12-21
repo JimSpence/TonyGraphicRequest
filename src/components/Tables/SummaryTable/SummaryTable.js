@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faCaretDown, faCaretUp, faTrashAlt} from '@fortawesome/free-solid-svg-icons'
-import Utils from "../../../services/Utils";
+import Utils from "../../../helpers/Utils";
 import './SummaryTable.css';
 
 export default class SummaryTable extends Component {

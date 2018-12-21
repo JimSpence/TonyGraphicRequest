@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import EnzymeAdapter from '../../../test_helpers/EnzymeAdapter';
-import TestUtils from '../../../test_helpers/TestUtils';
-import GraphicsSummary from "./GraphicsSummary";
+import EnzymeAdapter from '../../../../test_helpers/EnzymeAdapter';
+import TestUtils from '../../../../test_helpers/TestUtils';
+import GraphicsSummary from "../GraphicsSummary";
 
 describe('"GraphicsSummary" Component', () => {
 

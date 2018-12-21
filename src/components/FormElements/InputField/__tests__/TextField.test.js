@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
-import EnzymeAdapter from '../../../test_helpers/EnzymeAdapter';
+import EnzymeAdapter from '../../../../test_helpers/EnzymeAdapter';
 import jsdom from 'jsdom';
-import TestUtils from '../../../test_helpers/TestUtils';
-import TextField from "./TextField";
+import TestUtils from '../../../../test_helpers/TestUtils';
+import TextField from "../TextField";
 
 describe('"TextField" Component', () => {
 

@@ -1,6 +1,6 @@
 import AzureConfig from './AzureConfig';
 import AuthenticationService from "./AuthenticationService";
-import Utils from "./Utils";
+import Utils from "../helpers/Utils";
 
 export default class CosmosDBService {
     constructor() {

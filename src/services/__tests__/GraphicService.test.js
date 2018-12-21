@@ -1,6 +1,6 @@
 import React from 'react';
-import TestUtils from '../test_helpers/TestUtils';
-import GraphicService from "./GraphicService";
+import TestUtils from '../../test_helpers/TestUtils';
+import GraphicService from "../GraphicService";
 
 describe('"GraphicService" Service', () => {
     TestUtils.noConsoleErrors();

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import Button from "../FormElements/Button/Button";
-import Utils from '../../services/Utils'
+import Utils from '../../helpers/Utils'
 import GraphicsSummary from "../Tables/GraphicsSummary/GraphicsSummary";
 import './ConfirmDialog.css';
 

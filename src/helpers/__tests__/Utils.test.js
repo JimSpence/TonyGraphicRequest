@@ -1,8 +1,8 @@
 import React from 'react';
-import EnzymeAdapter from '../test_helpers/EnzymeAdapter';
+import EnzymeAdapter from '../../test_helpers/EnzymeAdapter';
 import jsdom from 'jsdom';
-import TestUtils from '../test_helpers/TestUtils';
-import Utils from "./Utils";
+import TestUtils from '../../test_helpers/TestUtils';
+import Utils from "../Utils";
 
 describe('"Utils" Service', () => {
     const doc = jsdom.jsdom('<!doctype html><html><body><div id="root"></div><div id="fred"></div></body></html>');

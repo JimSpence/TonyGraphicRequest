@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BaseField from './BaseField';
-import Utils from '../../../services/Utils'
+import Utils from '../../../helpers/Utils'
 
 export default class NumberField extends BaseField {
     constructor(props) {

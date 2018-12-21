@@ -1,5 +1,5 @@
 import {authenticationContext} from './AdalConfig';
-import Utils from './Utils';
+import Utils from '../helpers/Utils';
 import CryptoJS from 'crypto-js';
 import {msGraphConfig} from './MsGraphConfig'
 

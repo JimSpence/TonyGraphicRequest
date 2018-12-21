@@ -1,6 +1,6 @@
 import React from 'react';
-import TestUtils from '../test_helpers/TestUtils';
-import {msGraphConfig} from "./MsGraphConfig";
+import TestUtils from '../../test_helpers/TestUtils';
+import {msGraphConfig} from "../MsGraphConfig";
 
 TestUtils.noConsoleErrors();
 describe('"MsGraphConfig" tests', () => {
