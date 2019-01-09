@@ -8,6 +8,7 @@ export default class Button extends Component {
     static propTypes = {
         type: PropTypes.string.isRequired,
         className: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
         onClick: PropTypes.func.isRequired,
     };
 
@@ -41,7 +42,7 @@ export default class Button extends Component {
         }
 
         return (
-            <button className={this.props.className} disabled={this.props.disabled} onClick={this.props.onClick} type={this.props.type}>{icon}{this.props.text}</button>
+            <button className={this.props.className} disabled={this.props.disabled} title={this.props.title} onClick={this.props.onClick} type={this.props.type}>{icon}{this.props.text}</button>
         )
     }
 }

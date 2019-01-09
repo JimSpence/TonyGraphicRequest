@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import arcadiaLogo from '../../images/arcadia-logo.png';
 import AuthenticationService from "../../services/AuthenticationService";
 import { useAuthentication } from '../../services/AdalConfig'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

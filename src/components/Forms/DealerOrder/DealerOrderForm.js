@@ -5,44 +5,44 @@ import Modal from 'react-responsive-modal';
 import Button from "../../FormElements/Button/Button";
 import Select from "../../FormElements/Select/Select";
 import TextField from "../../FormElements/InputField/TextField";
-import StoreDetails from "../../StoreDetails/StoreDetails";
+import DealerDetails from "../../DealerDetails/DealerDetails";
 import Utils from '../../../helpers/Utils'
-import GraphicsForm from "../Graphics/GraphicsForm";
-import GraphicsSummary from "../../Tables/GraphicsSummary/GraphicsSummary";
-import GraphicService from "../../../services/GraphicService";
+import TyreOrdersForm from "../TyreOrders/TyreOrdersForm";
+import TyreOrdersSummary from "../../Tables/TyreOrdersSummary/TyreOrdersSummary";
+import TyreOrderService from "../../../services/TyreOrderService";
 import AuthenticationService from "../../../services/AuthenticationService";
 import EmailService from "../../../services/EmailService";
 // import CosmosDBService from "../../../services/CosmosDBService";
 import FirebaseService from "../../../services/FirebaseService";
 import {faFrown} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import './GraphicsRequestForm.css';
+import './DealerOrderForm.css';
 
-export default class GraphicsRequestForm extends Component {
+export default class DealerOrderForm extends Component {
     constructor(props) {
         super(props);
 
-        this.addGraphic = this.addGraphic.bind(this);
-        this.closeGraphicFormModal = this.closeGraphicFormModal.bind(this);
-        this.deleteGraphic = this.deleteGraphic.bind(this);
+        this.addTyreOrder = this.addTyreOrder.bind(this);
+        this.closeTyreOrderFormModal = this.closeTyreOrderFormModal.bind(this);
+        this.deleteTyreOrder = this.deleteTyreOrder.bind(this);
         this.doComplete = this.doComplete.bind(this);
         this.doSave = this.doSave.bind(this);
         this.editDetails = this.editDetails.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onClose = this.onClose.bind(this);
-        this.showAddGraphicsForm = this.showAddGraphicsForm.bind(this);
-        this.showEditGraphicsForm = this.showEditGraphicsForm.bind(this);
+        this.showAddTyreOrdersForm = this.showAddTyreOrdersForm.bind(this);
+        this.showEditTyreOrdersForm = this.showEditTyreOrdersForm.bind(this);
         this.showScreenElements = this.showScreenElements.bind(this);
 
         this.state = {
-            graphicRequest: props.graphicRequest,
+            dealerOrder: props.dealerOrder,
             readOnly: props.editMode,
             reasons: [],
             seasons: [],
-            showAddGraphicForm: false,
-            showEditGraphicForm: false,
-            showStoreSelect: false,
-            stores: [],
+            showAddTyreOrderForm: false,
+            showEditTyreOrderForm: false,
+            showDealerSelect: false,
+            dealers: [],
             viewMode: props.viewMode
         };
 
@@ -52,11 +52,11 @@ export default class GraphicsRequestForm extends Component {
 
     static propTypes = {
         editMode: PropTypes.bool.isRequired,
-        graphicRequest: PropTypes.object.isRequired,
+        dealerOrder: PropTypes.object.isRequired,
         onClose: PropTypes.func.isRequired,
         open: PropTypes.bool.isRequired,
         viewMode: PropTypes.bool.isRequired,
-        graphicId: PropTypes.string
+        tyreOrderId: PropTypes.string
     };
 
     componentDidMount() {
@@ -65,7 +65,8 @@ export default class GraphicsRequestForm extends Component {
             // this.cosmosDBService.getDropdownData(this.authenticationService)
                 .then(data => {
                     this.setState({
-                        stores: data.stores,
+                        dealers: data.dealers,
+                        vehicleMakes: data.vehicleMakes,
                         reasons: data.reasons,
                         seasons: data.seasons
                     });
@@ -73,38 +74,38 @@ export default class GraphicsRequestForm extends Component {
         }
     }
 
-    addGraphic = (graphic) => {
-        const graphicRequest = this.state.graphicRequest;
-        const graphicId = GraphicService.generateGraphicId(graphicRequest, graphic);
+    addTyreOrder = (tyreOrder) => {
+        const dealerOrder = this.state.dealerOrder;
+        const tyreOrderId = TyreOrderService.generateTyreOrderId(tyreOrder);
 
-        if (typeof graphicRequest.graphics === 'undefined') {
-            graphicRequest.graphics = {};
+        if (typeof dealerOrder.tyreOrders === 'undefined') {
+            dealerOrder.tyreOrders = {};
         }
 
-        graphicRequest.graphics[graphicId] = graphic;
+        dealerOrder.tyreOrders[tyreOrderId] = tyreOrder;
 
-        this.setState({graphicRequest: graphicRequest}, () => {
-            this.closeGraphicFormModal();
+        this.setState({dealerOrder: dealerOrder}, () => {
+            this.closeTyreOrderFormModal();
         });
     };
 
-    deleteGraphic = (graphicId) => {
-        const graphicRequest = this.state.graphicRequest;
+    deleteTyreOrder = (tyreOrderId) => {
+        const dealerOrder = this.state.dealerOrder;
 
-        delete graphicRequest.graphics[graphicId];
+        delete dealerOrder.tyreOrders[tyreOrderId];
 
-        this.setState({graphicRequest: graphicRequest}, () => {
-            this.closeGraphicFormModal();
+        this.setState({dealerOrder: dealerOrder}, () => {
+            this.closeTyreOrderFormModal();
         });
     };
 
-    closeGraphicFormModal = () => {
+    closeTyreOrderFormModal = () => {
         Utils.unblurBackground();
-        this.setState({graphicIdToEdit: null, showAddGraphicForm: false, showEditGraphicForm: false});
+        this.setState({tyreOrderIdToEdit: null, showAddTyreOrderForm: false, showEditTyreOrderForm: false});
     };
 
     doComplete = () => {
-        const xmlMessage = EmailService.FormatGraphicRequestXML(this.state.graphicRequest);
+        const xmlMessage = EmailService.FormatDealerOrderXML(this.state.dealerOrder);
         console.log(xmlMessage);
         EmailService.sendEmail(xmlMessage)
             .then((response) => {
@@ -120,24 +121,24 @@ export default class GraphicsRequestForm extends Component {
     };
 
     doSave = () => {
-        const newGraphicRequest = this.state.graphicRequest;
+        const newDealerOrder = this.state.dealerOrder;
 
         if (this.state.complete) {
-            newGraphicRequest.sentDate = new Date().toString();
+            newDealerOrder.sentDate = new Date().toString();
             this.setState({complete: null});
         }
 
         if (this.props.editMode) {
-            FirebaseService.updateGraphicRequest(this.props.graphicId, newGraphicRequest)
-            // this.cosmosDBService.updateDocument('graphicrequests', this.authenticationService, newGraphicRequest, newGraphicRequest.id)
+            FirebaseService.updateDealerOrder(this.props.dealerOrderId, newDealerOrder)
+            // this.cosmosDBService.updateDocument('dealerorders', this.authenticationService, newDealerOrder, newDealerOrder.id)
                 .then(() => {
                     this.onClose();
                 });
         } else {
-            newGraphicRequest.id = Utils.getGuid();
-            newGraphicRequest.requestDate = new Date().toString();
-            FirebaseService.writeGraphicRequest(newGraphicRequest)
-            // this.cosmosDBService.createDocument('graphicrequests', this.authenticationService, newGraphicRequest)
+            newDealerOrder.id = Utils.getGuid();
+            newDealerOrder.requestDate = new Date().toString();
+            FirebaseService.writeDealerOrder(newDealerOrder)
+            // this.cosmosDBService.createDocument('dealerorders', this.authenticationService, newDealerOrder)
                 .then(() => {
                     this.onClose();
                 });
@@ -146,22 +147,22 @@ export default class GraphicsRequestForm extends Component {
     };
 
     editDetails = () => {
-        this.setState({readOnly: false, showStoreSelect: true});
+        this.setState({readOnly: false, showDealerSelect: true});
     };
 
     onChange = (field) => {
         if (!this.state.readOnly) {
-            const newGraphicRequest = this.state.graphicRequest;
+            const newDealerOrder = this.state.dealerOrder;
 
             if (field.isValid) {
-                if (field.id === 'storeNumber') {
-                    newGraphicRequest.store = this.state.stores[field.value];
+                if (field.id === 'dealerNumber') {
+                    newDealerOrder.dealer = this.state.dealers[field.value];
                 } else {
-                    newGraphicRequest[field.id] = field.value;
+                    newDealerOrder[field.id] = field.value;
                 }
             }
 
-            this.setState({graphicRequest: newGraphicRequest, [field.id + 'IsValid']: field.isValid}, () => {
+            this.setState({dealerOrder: newDealerOrder, [field.id + 'IsValid']: field.isValid}, () => {
                 this.showScreenElements();
             });
         }
@@ -172,61 +173,64 @@ export default class GraphicsRequestForm extends Component {
         this.props.onClose('editModal');
     };
 
-    showAddGraphicsForm = () => {
-        this.setState({showAddGraphicForm: true});
+    showAddTyreOrdersForm = () => {
+        this.setState({showAddTyreOrderForm: true});
     };
 
-    showEditGraphicsForm = (event) => {
-        this.setState({showEditGraphicForm: true, graphicIdToEdit: event.currentTarget.id});
+    showEditTyreOrdersForm = (event) => {
+        this.setState({showEditTyreOrderForm: true, tyreOrderIdToEdit: event.currentTarget.id});
     };
 
     showScreenElements = () => {
         this.setState({
-            showStoreSelect: this.state.contactNameIsValid
+            showDealerSelect: this.state.contactNameIsValid
         })
     };
 
     render() {
-        const storeSelect = this.state.showStoreSelect ?
+        const dealerSelect = this.state.showDealerSelect ?
             <div className="input-group">
                 <Select
-                    data={this.state.stores}
+                    data={this.state.dealers}
                     descriptor="name"
-                    id="storeNumber"
+                    id="dealerNumber"
                     onChange={this.onChange}
-                    placeholder="Store"
+                    placeholder="Dealer"
                     readOnly={this.state.readOnly}
-                    title="Store"
-                    value={this.state.graphicRequest.store ? this.state.graphicRequest.store.storeNumber : null}
+                    title="Dealer"
+                    value={this.state.dealerOrder.dealer ? this.state.dealerOrder.dealer.dealerNumber : null}
                 />
             </div> : null;
 
-        const storeInfo = this.state.graphicRequest.store ?
-            <StoreDetails store={this.state.graphicRequest.store} /> : '';
+        const dealerInfo = this.state.dealerOrder.dealer ?
+            <DealerDetails dealer={this.state.dealerOrder.dealer} /> : '';
 
-        const graphicsPopulated = this.state.graphicRequest.graphics && Object.keys(this.state.graphicRequest.graphics).length > 0;
-        const graphicsSummary = graphicsPopulated ?
-            <GraphicsSummary graphics={this.state.graphicRequest.graphics} onEdit={this.showEditGraphicsForm}/> : null;
+        const tyreOrdersPopulated = this.state.dealerOrder.tyreOrders && Object.keys(this.state.dealerOrder.tyreOrders).length > 0;
+        const tyreOrdersSummary = tyreOrdersPopulated ?
+            <TyreOrdersSummary tyreOrders={this.state.dealerOrder.tyreOrders} onEdit={this.showEditTyreOrdersForm}/> : null;
 
         const cancelButtonText = this.state.viewMode ? 'Close' : 'Cancel';
 
-        const buttons = !this.state.viewMode && graphicsPopulated ?
+        const buttons = !this.state.viewMode && tyreOrdersPopulated ?
             <footer className="modal-buttons">
                 <Button
                     text="Cancel"
                     type="cancel"
+                    title="Cancel Order"
                     className="btn secondary-outline"
                     onClick={this.onClose}
                 />
                 <Button
                     text="Save"
                     type="save"
+                    title="Save Order"
                     className="btn secondary-outline"
                     onClick={this.doSave}
                 />
                 <Button
                     text="Complete"
                     type="confirm"
+                    title="Complete Order"
                     className="btn primary"
                     onClick={this.doComplete}
                 />
@@ -235,6 +239,7 @@ export default class GraphicsRequestForm extends Component {
                 <Button
                     text={cancelButtonText}
                     type="cancel"
+                    title="Cancel Dealer Order"
                     className="btn secondary-outline"
                     onClick={this.onClose}
                 />
@@ -244,27 +249,28 @@ export default class GraphicsRequestForm extends Component {
             <Button
                 text="Add"
                 type="add"
+                title="New Tyre Order"
                 className="btn secondary"
-                onClick={this.showAddGraphicsForm}
+                onClick={this.showAddTyreOrdersForm}
             /> : '';
 
         const emailError = this.state.complete === false ? <div className="errorMessage"><FontAwesomeIcon icon={faFrown} /> Error sending email - see console log for details</div> : null;
         const errorText = this.state.complete === false ? <span> - Error sending email <FontAwesomeIcon icon={faFrown} /></span>: null;
-        const graphics = this.state.graphicRequest.store ?
-            <div className="graphics-container">
-                <div className="graphics">
+        const tyreOrders = this.state.dealerOrder.dealer ?
+            <div className="tyre-orders-container">
+                <div className="tyre-orders">
                     <div className="section-header">
-                        <span>Graphics</span>
+                        <span>Tyre Orders</span>
                         {addButton}
                     </div>
-                    {graphicsSummary}
+                    {tyreOrdersSummary}
                 </div>
                 {emailError}
                 {buttons}
             </div> : null;
 
         const contactName = this.state.readOnly || this.state.viewMode ?
-            <div className="pseudo-field">{this.state.graphicRequest.contactName}</div> :
+            <div className="pseudo-field">{this.state.dealerOrder.contactName}</div> :
             <TextField
                 autoFocus={true}
                 capitalise={true}
@@ -273,30 +279,31 @@ export default class GraphicsRequestForm extends Component {
                 title="Contact Name"
                 onChange={this.onChange}
                 readOnly={false}
-                value={this.state.graphicRequest.contactName}
+                value={this.state.dealerOrder.contactName}
             />;
 
         const editButton = this.state.readOnly && !this.state.viewMode ?
             <Button
                 text="Edit"
                 type="edit"
+                title="Edit"
                 className="btn secondary-outline"
                 onClick={this.editDetails}
             /> : '';
 
-        const graphicsForm = this.state.showAddGraphicForm ?
-                <GraphicsForm seasons={this.state.seasons} reasons={this.state.reasons} open={true} onClose={this.closeGraphicFormModal} onChange={this.onChange} onSave={this.addGraphic}/>
-            : this.state.showEditGraphicForm ?
-                <GraphicsForm seasons={this.state.seasons} reasons={this.state.reasons} graphicId={this.state.graphicIdToEdit} graphic={this.state.graphicRequest.graphics[this.state.graphicIdToEdit]} open={true} onDelete={this.deleteGraphic} onClose={this.closeGraphicFormModal} onChange={this.onChange} onSave={this.addGraphic}/>
+        const tyreOrdersForm = this.state.showAddTyreOrderForm ?
+                <TyreOrdersForm seasons={this.state.seasons} reasons={this.state.reasons} vehicleMakes={this.state.vehicleMakes} open={true} onClose={this.closeTyreOrderFormModal} onChange={this.onChange} onSave={this.addTyreOrder}/>
+            : this.state.showEditTyreOrderForm ?
+                <TyreOrdersForm seasons={this.state.seasons} reasons={this.state.reasons} vehicleMakes={this.state.vehicleMakes} tyreOrderId={this.state.tyreOrderIdToEdit} tyreOrder={this.state.dealerOrder.tyreOrders[this.state.tyreOrderIdToEdit]} open={true} onDelete={this.deleteTyreOrder} onClose={this.closeTyreOrderFormModal} onChange={this.onChange} onSave={this.addTyreOrder}/>
             : null;
 
         const blur = classnames({
-            blur5: this.state.showAddGraphicForm || this.state.showEditGraphicForm
+            blur5: this.state.showAddTyreOrderForm || this.state.showEditTyreOrderForm
         });
 
         const errorClass = this.state.complete === false ? 'error' : '';
 
-        const contactButtons = !this.state.graphicRequest.store ? buttons : '';
+        const contactButtons = !this.state.dealerOrder.dealer ? buttons : '';
 
         const mode = this.props.editMode ? 'Edit' : this.state.viewMode ? 'View' : 'New';
 
@@ -312,7 +319,7 @@ export default class GraphicsRequestForm extends Component {
             >
                 <div>
                     <header>
-                        <h1>{mode} Graphic Request {errorText}</h1>
+                        <h1>{mode} Dealer Order {errorText}</h1>
                     </header>
                     <div className="modal-body">
                         <div className="contact-details">
@@ -323,13 +330,13 @@ export default class GraphicsRequestForm extends Component {
                             <div className="input-group">
                                 {contactName}
                             </div>
-                            {storeSelect}
-                            {storeInfo}
+                            {dealerSelect}
+                            {dealerInfo}
                         </div>
-                        {graphics}
+                        {tyreOrders}
                     </div>
                 </div>
-                {graphicsForm}
+                {tyreOrdersForm}
                 {contactButtons}
             </Modal>
         );

@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 const config = {
-    databaseURL: 'https://graphic-requests.firebaseio.com'
+    databaseURL: 'https://tyreOrder-requests.firebaseio.com'
 };
 
 firebase.initializeApp(config);

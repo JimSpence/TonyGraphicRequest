@@ -5,13 +5,13 @@ import Utils from "../helpers/Utils";
 export default class CosmosDBService {
     constructor() {
         this.azureConfig = new AzureConfig();
-        this.collection = 'graphicrequests';
+        this.collection = 'dealerorders';
     }
 
-    getGraphicRequests = (authenticationService, graphicRequestId) => {
+    getDealerOrders = (authenticationService, dealerOrderId) => {
         return new Promise((resolve) => {
-            if (graphicRequestId) {
-                this.getDocument(this.collection, authenticationService, graphicRequestId)
+            if (dealerOrderId) {
+                this.getDocument(this.collection, authenticationService, dealerOrderId)
                     .then((data) => {
                         // resolve(Utils.arrayToObject(data.Documents, 'id'));
                     })
@@ -21,16 +21,16 @@ export default class CosmosDBService {
                         resolve(Utils.arrayToObject(data.Documents, 'id'));
                     });
             }
-            // const graphicRequestsDB = firebase.database().ref(uri);
+            // const dealerOrdersDB = firebase.database().ref(uri);
             //
-            // return graphicRequestsDB.on('value', (data) => {
+            // return dealerOrdersDB.on('value', (data) => {
             //     resolve(data.val());
             // });
         });
     };
 
-    deleteGraphicRequest = (authenticationService, graphicRequestId) => {
-        return this.deleteDocument(this.collection, authenticationService, null, graphicRequestId)
+    deleteDealerOrder = (authenticationService, dealerOrderId) => {
+        return this.deleteDocument(this.collection, authenticationService, null, dealerOrderId)
     };
 
     createCollectionIfNotExists = (collection, authenticationService) => {

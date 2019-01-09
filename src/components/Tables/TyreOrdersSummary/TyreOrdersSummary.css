@@ -1,4 +1,4 @@
-table.graphics-summary {
+table.tyre-orders-summary {
     border: 3px solid var(--dusty);
     border-collapse: separate;
     border-radius: .3rem;
@@ -7,16 +7,16 @@ table.graphics-summary {
     margin-top: .25rem;
 }
 
-table.graphics-summary thead tr th {
+table.tyre-orders-summary thead tr th {
     background-color: var(--dusty);
     padding: .25rem;
 }
 
-table.graphics-summary tbody tr td.delete {
+table.tyre-orders-summary tbody tr td.delete {
     font-size: .9rem;
     padding: 0;
 }
 
-table.graphics-summary tbody tr td.delete span.icon {
+table.tyre-orders-summary tbody tr td.delete span.icon {
     margin: 0;
 }

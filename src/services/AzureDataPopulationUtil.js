@@ -24,7 +24,7 @@ export default class AzureDataPopulationUtil {
         //     .then(() => {
         //         this.createDocuments('stores', authenticationService, AzureDataPopulationUtil.getStores(), cosmosDBService);
         //     });
-        cosmosDBService.createCollectionIfNotExists('graphicrequests', authenticationService)
+        cosmosDBService.createCollectionIfNotExists('dealerorders', authenticationService)
             .then(() => {
                 console.log('RIGHT ALL DONE');
             })
@@ -78,7 +78,7 @@ export default class AzureDataPopulationUtil {
             }, {
                 id: 'Not received'
             }, {
-                id: 'Damaged in store'
+                id: 'Damaged in dealer'
             }, {
                 id: 'Flood'
             }, {

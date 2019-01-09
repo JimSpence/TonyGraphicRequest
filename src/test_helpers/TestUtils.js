@@ -15,219 +15,234 @@ export default class TestUtils {
         });
     }
 
-    static populateGraphicRequests() {
+    static populateDealerOrders() {
         return {
-            graphicRequests: {
+            dealerOrders: {
                 Request0001: {
                     contactName: 'Jimmy',
-                    graphics: {
-                        Graphic0001: {
-                            artworkNumber: '0004',
-                            jobCategory: 'WW',
-                            jobNumber: '00099',
-                            reason: 'Reason 1',
-                            season: 'AW'
+                    tyreOrders: {
+                        TyreOrder0001: {
+                            tyreWidth: '175',
+                            tyreProfile: '75',
+                            tyreRimSize: '14',
+                            tyreSpeedRating: 'W',
+                            season: 'SS',
+                            vehicleMake: 'AD'
                         },
-                        Graphic0002: {
-                            artworkNumber: '0077',
-                            jobCategory: 'GG',
-                            jobNumber: '00232',
-                            reason: 'Reason 2',
-                            season: 'SS'
+                        TyreOrder0002: {
+                            tyreWidth: '185',
+                            tyreProfile: '65',
+                            tyreRimSize: '15',
+                            tyreSpeedRating: 'V',
+                            season: 'SS',
+                            vehicleMake: 'FD'
                         },
-                        Graphic0003: {
-                            artworkNumber: '2121',
-                            jobCategory: 'AA',
-                            jobNumber: '00776',
-                            reason: 'Reason 3',
-                            season: 'AW'
+                        TyreOrder0003: {
+                            tyreWidth: '165',
+                            tyreProfile: '65',
+                            tyreRimSize: '15',
+                            tyreSpeedRating: 'W',
+                            season: 'AW',
+                            vehicleMake: 'VW'
                         }
                     },
                     requestDate: 'Fri Sep 14 2018 16:20:39 GMT+0100 (British Summer Time)',
-                    store: {
-                        brandCode: 'ZZ',
+                    dealer: {
+                        brandCode: 'SM',
                         brandName: 'SOME BRAND',
-                        email: 'this.branch@somehere.com',
-                        name: 'This Branch',
+                        dealerNumber: 'SM1111',
+                        email: 'this.dealer@somehere.com',
+                        name: 'This Dealer',
                         number: '1111',
-                        phone: '020 333 9999',
-                        storeNumber: 'ZZ1111'
+                        phone: '020 333 9999'
                     }
                 },
                 Request0002: {
                     contactName: 'Mary',
-                    graphics: {
-                        Graphic0004: {
-                            artworkNumber: '0001',
-                            jobCategory: 'SS',
-                            jobNumber: '00023',
-                            reason: 'Reason 1',
-                            season: 'SS'
+                    tyreOrders: {
+                        TyreOrder0004: {
+                            tyreWidth: '205',
+                            tyreProfile: '45',
+                            tyreRimSize: '18',
+                            tyreSpeedRating: 'V',
+                            season: 'SS',
+                            vehicleMake: 'MZ'
                         }
                     },
                     requestDate: 'Tue Sep 11 2018 11:11:12 GMT+0100 (British Summer Time)',
-                    store: {
+                    dealer: {
                         brandCode: 'XX',
                         brandName: 'THIS BRAND',
-                        email: 'some.branch@somehere.com',
-                        name: 'Some Branch',
+                        dealerNumber: 'XX2222',
+                        email: 'some.dealer@somehere.com',
+                        name: 'Some Dealer',
                         number: '2222',
-                        phone: '020 444 8888',
-                        storeNumber: 'XX2222'
+                        phone: '020 444 8888'
                     }
                 },
                 Request0003: {
                     contactName: 'Nigel',
-                    graphics: {
-                        Graphic0005: {
-                            artworkNumber: '0014',
-                            jobCategory: 'DD',
-                            jobNumber: '00009',
-                            reason: 'Reason 3',
-                            season: 'SS'
+                    tyreOrders: {
+                        TyreOrder0005: {
+                            tyreWidth: '215',
+                            tyreProfile: '35',
+                            tyreRimSize: '20',
+                            tyreSpeedRating: 'W',
+                            season: 'SS',
+                            vehicleMake: 'MZ'
                         },
-                        Graphic0006: {
-                            artworkNumber: '0077',
-                            jobCategory: 'HH',
-                            jobNumber: '00111',
-                            reason: 'Reason 4',
-                            season: 'AW'
+                        TyreOrder0006: {
+                            tyreWidth: '195',
+                            tyreProfile: '65',
+                            tyreRimSize: '17',
+                            tyreSpeedRating: 'H',
+                            season: 'AW',
+                            vehicleMake: 'NI'
                         }
                     },
                     requestDate: 'Thu Sep 27 2018 15:11:59 GMT+0100 (British Summer Time)',
-                    store: {
+                    dealer: {
                         brandCode: 'YY',
                         brandName: 'MY BRAND',
-                        email: 'my.branch@somehere.com',
-                        name: 'My Branch',
+                        dealerNumber: 'YY4444',
+                        email: 'my.dealer@somehere.com',
+                        name: 'My Dealer',
                         number: '4444',
-                        phone: '020 777 3333',
-                        storeNumber: 'YY4444'
+                        phone: '020 777 3333'
                     }
                 },
                 Request0004: {
                     contactName: 'Susan',
-                    graphics: {
-                        Graphic0007: {
-                            artworkNumber: '0008',
-                            jobCategory: 'LL',
-                            jobNumber: '00078',
-                            reason: 'Reason 2',
-                            season: 'SS'
+                    tyreOrders: {
+                        TyreOrder0007: {
+                            tyreWidth: '175',
+                            tyreProfile: '75',
+                            tyreRimSize: '16',
+                            tyreSpeedRating: 'U',
+                            season: 'AW',
+                            vehicleMake: 'CT'
                         },
-                        Graphic0008: {
-                            artworkNumber: '0091',
-                            jobCategory: 'OO',
-                            jobNumber: '00854',
-                            reason: 'Reason 4',
-                            season: 'SS'
+                        TyreOrder0008: {
+                            tyreWidth: '195',
+                            tyreProfile: '55',
+                            tyreRimSize: '17',
+                            tyreSpeedRating: 'H',
+                            season: 'SS',
+                            vehicleMake: 'MT'
                         },
-                        Graphic0009: {
-                            artworkNumber: '0033',
-                            jobCategory: 'KK',
-                            jobNumber: '00121',
-                            reason: 'Reason 1',
-                            season: 'AW'
+                        TyreOrder0009: {
+                            tyreWidth: '145',
+                            tyreProfile: '65',
+                            tyreRimSize: '14',
+                            tyreSpeedRating: 'U',
+                            season: 'SS',
+                            vehicleMake: 'RN'
                         }
                     },
                     requestDate: 'Tue Sep 18 2018 14:19:57 GMT+0100 (British Summer Time)',
                     sentDate: 'Tue Sep 18 2018 14:20:02 GMT+0100 (British Summer Time)',
-                    store: {
+                    dealer: {
                         brandCode: 'WW',
                         brandName: 'YOUR BRAND',
-                        email: 'your.branch@somehere.com',
-                        name: 'Your Branch',
+                        dealerNumber: 'WW6666',
+                        email: 'your.dealer@somehere.com',
+                        name: 'Your Dealer',
                         number: '6666',
-                        phone: '020 111 4444',
-                        storeNumber: 'WW6666'
+                        phone: '020 111 4444'
                     }
                 },
                 Request0005: {
                     contactName: 'Beckie',
-                    graphics: {
-                        Graphic0010: {
-                            artworkNumber: '0424',
-                            jobCategory: 'ZZ',
-                            jobNumber: '10101',
-                            reason: 'Reason 3',
-                            season: 'AW'
+                    tyreOrders: {
+                        TyreOrder0010: {
+                            tyreWidth: '185',
+                            tyreProfile: '55',
+                            tyreRimSize: '16',
+                            tyreSpeedRating: 'V',
+                            season: 'SS',
+                            vehicleMake: 'TY'
                         },
-                        Graphic0011: {
-                            artworkNumber: '7070',
-                            jobCategory: 'UU',
-                            jobNumber: '202020',
-                            reason: 'Reason 3',
-                            season: 'SS'
+                        TyreOrder0011: {
+                            tyreWidth: '205',
+                            tyreProfile: '65',
+                            tyreRimSize: '17',
+                            tyreSpeedRating: 'V',
+                            season: 'SS',
+                            vehicleMake: 'BM'
                         },
-                        Graphic0012: {
-                            artworkNumber: '8282',
-                            jobCategory: 'RF',
-                            jobNumber: '76765',
-                            reason: 'Reason 2',
-                            season: 'AW'
+                        TyreOrder0012: {
+                            tyreWidth: '215',
+                            tyreProfile: '35',
+                            tyreRimSize: '17',
+                            tyreSpeedRating: 'W',
+                            season: 'SS',
+                            vehicleMake: 'AD'
                         },
-                        Graphic0013: {
-                            artworkNumber: '2323',
-                            jobCategory: 'JJ',
-                            jobNumber: '15151',
-                            reason: 'Reason 4',
-                            season: 'SS'
+                        TyreOrder0013: {
+                            tyreWidth: '155',
+                            tyreProfile: '55',
+                            tyreRimSize: '15',
+                            tyreSpeedRating: 'U',
+                            season: 'SS',
+                            vehicleMake: 'DC'
                         }
                     },
                     requestDate: 'Fri Sep 14 2018 16:27:24 GMT+0100 (British Summer Time)',
                     sentDate: 'Tue Sep 18 2018 14:20:02 GMT+0100 (British Summer Time)',
-                    store: {
+                    dealer: {
                         brandCode: 'ZZ',
                         brandName: 'SOME BRAND',
-                        email: 'this.branch@somehere.com',
-                        name: 'This Branch',
+                        dealerNumber: 'ZZ1111',
+                        email: 'this.dealer@somehere.com',
+                        name: 'This Dealer',
                         number: '1111',
-                        phone: '020 333 9999',
-                        storeNumber: 'ZZ1111'
+                        phone: '020 333 9999'
                     }
                 },
                 Request0006: {
                     contactName: 'Olivia',
-                    graphics: {
-                        Graphic0014: {
-                            artworkNumber: '0031',
-                            jobCategory: 'SX',
-                            jobNumber: '00009',
-                            reason: 'Reason 1',
-                            season: 'AW'
+                    tyreOrders: {
+                        TyreOrder0014: {
+                            tyreWidth: '165',
+                            tyreProfile: '65',
+                            tyreRimSize: '16',
+                            tyreSpeedRating: 'U',
+                            season: 'AW',
+                            vehicleMake: 'FD'
                         }
                     },
                     requestDate: 'Thu Sep 27 2018 15:11:59 GMT+0100 (British Summer Time)',
-                    store: {
+                    dealer: {
                         brandCode: 'XX',
                         brandName: 'THIS BRAND',
-                        email: 'some.branch@somehere.com',
-                        name: 'Some Branch',
+                        dealerNumber: 'XX2222',
+                        email: 'some.dealer@somehere.com',
+                        name: 'Some Dealer',
                         number: '2222',
-                        phone: '020 444 8888',
-                        storeNumber: 'XX2222'
+                        phone: '020 444 8888'
                     }
                 },
                 Request0007: {
                     contactName: 'Pedro',
-                    graphics: {
-                        Graphic0015: {
-                            artworkNumber: '0010',
-                            jobCategory: 'EE',
-                            jobNumber: '00079',
-                            reason: 'Reason 1',
-                            season: 'SS'
+                    tyreOrders: {
+                        TyreOrder0015: {
+                            tyreWidth: '175',
+                            tyreProfile: '75',
+                            tyreRimSize: '14',
+                            tyreSpeedRating: 'H',
+                            season: 'SS',
+                            vehicleMake: 'MB'
                         }
                     },
                     requestDate: 'Thu Sep 27 2018 12:02:23 GMT+0100 (British Summer Time)',
-                    store: {
+                    dealer: {
                         brandCode: 'YY',
                         brandName: 'MY BRAND',
-                        email: 'my.branch@somehere.com',
-                        name: 'My Branch',
+                        dealerNumber: 'YY4444',
+                        email: 'my.dealer@somehere.com',
+                        name: 'My Dealer',
                         number: '4444',
-                        phone: '020 777 3333',
-                        storeNumber: 'YY4444'
+                        phone: '020 777 3333'
                     }
                 }
             }
@@ -405,7 +420,7 @@ export default class TestUtils {
         return {
             select: {
                 data: {
-                    store: {
+                    dealer: {
                         number: 123
                     }
                 },
@@ -414,7 +429,7 @@ export default class TestUtils {
             },
             selectReadOnly: {
                 data: {
-                    store: {
+                    dealer: {
                         number: 888
                     }
                 },
@@ -438,7 +453,7 @@ export default class TestUtils {
             },
             selectReadOnlyValue: {
                 data: {
-                    store: {
+                    dealer: {
                         number: 333
                     }
                 },
@@ -473,7 +488,7 @@ export default class TestUtils {
             selectAutoFocus: {
                 autoFocus: true,
                 data: {
-                    store: {
+                    dealer: {
                         number: 777
                     }
                 },
@@ -698,91 +713,100 @@ export default class TestUtils {
         }
     }
 
-    static graphicRequestForEmail() {
+    static dealerOrderForEmail() {
         return {
             contactName: 'Mickey Mouse',
-            graphics: {
-                GRAPHIC1: {
-                    artworkNumber: '9999',
-                    jobCategory: 'ZZ',
-                    jobNumber: '88888',
+            tyreOrders: {
+                TYREORDER1: {
+                    tyreWidth: '155',
+                    tyreProfile: '55',
+                    tyreRimSize: '15',
+                    tyreSpeedRating: 'U',
+                    season: 'SS',
+                    vehicleMake: 'DC',
                     quantity: '1',
                     reason: 'Random Reason 1',
                 },
-                GRAPHIC2: {
-                    artworkNumber: '8888',
-                    jobCategory: 'XX',
-                    jobNumber: '77777',
+                TYREORDER2: {
+                    tyreWidth: '195',
+                    tyreProfile: '55',
+                    tyreRimSize: '16',
+                    tyreSpeedRating: 'U',
+                    season: 'SS',
+                    vehicleMake: 'AD',
                     quantity: '2',
                     reason: 'Random Reason 2',
                 },
-                GRAPHIC3: {
-                    artworkNumber: '7777',
-                    jobCategory: 'YY',
-                    jobNumber: '66666',
+                TYREORDER3: {
+                    tyreWidth: '155',
+                    tyreProfile: '55',
+                    tyreRimSize: '15',
+                    tyreSpeedRating: 'U',
+                    season: 'SS',
+                    vehicleMake: 'DC',
                     quantity: '3',
                     reason: 'Random Reason 3',
                 }
             },
             requestDate: 'Thu Sep 27 2018 15:11:59 GMT+0100 (British Summer Time)',
             sentDate: 'Thu Oct 11 2018 11:19:32 GMT+0100 (British Summer Time)',
-            store: {
+            dealer: {
                 brandCode: 'MM',
                 brandName: 'Random Brand',
-                email: 'random.store@randombrand.com',
-                name: 'Random Store',
+                dealerNumber: 'MM2299',
+                email: 'random.dealer@randombrand.com',
+                name: 'Random Dealer',
                 number: '2299',
                 phone: '0099 999 9991',
-                storeNumber: 'MM2299'
             }
         }
     }
 
-    static graphicRequestEmailXml() {
+    static dealerOrderEmailXml() {
         return "<?xml version='1.0'?>\n" +
-                "<graphic_request>\n" +
-                    "    <store id='MM' number='2299' contact_name='Mickey Mouse' contact_tel_number='0099 999 9991'>Random Store</store>\n" +
-                    "    <graphic quantity='1' reason='Random Reason 1'>GRAPHIC1</graphic>\n" +
-                    "    <graphic quantity='2' reason='Random Reason 2'>GRAPHIC2</graphic>\n" +
-                    "    <graphic quantity='3' reason='Random Reason 3'>GRAPHIC3</graphic>\n" +
-                "</graphic_request>";
+                "<dealer_order>\n" +
+                    "    <dealer id='MM' number='2299' contact_name='Mickey Mouse' contact_tel_number='0099 999 9991'>Random Dealer</dealer>\n" +
+                    "    <tyreOrder quantity='1' reason='Random Reason 1'>TYREORDER1</tyreOrder>\n" +
+                    "    <tyreOrder quantity='2' reason='Random Reason 2'>TYREORDER2</tyreOrder>\n" +
+                    "    <tyreOrder quantity='3' reason='Random Reason 3'>TYREORDER3</tyreOrder>\n" +
+                "</dealer_order>";
     }
 
     static randomArrayOfObjects() {
         return [{
             id: 1,
-            forename: 'Tony',
-            surname: 'Ruddock',
+            forename: 'Tucker',
+            surname: 'Jenkins',
             age: 53
         }, {
             id: 2,
-            forename: 'Nick',
-            surname: 'Forder',
+            forename: 'Trisha',
+            surname: 'Yates',
             age: 56
         }, {
             id: 3,
-            forename: 'Peter',
-            surname: 'Yemchura',
+            forename: 'Samuel',
+            surname: 'Maguire',
             age: 58
         }, {
             id: 4,
-            forename: 'Philip',
-            surname: 'Harvey',
+            forename: 'Fay',
+            surname: 'Lucas',
             age: 49
         }, {
             id: 5,
-            forename: 'Jim',
-            surname: 'Spence',
+            forename: 'Annette',
+            surname: 'Firman',
             age: 47
         }, {
             id: 6,
-            forename: 'Mark',
-            surname: 'Bennett',
+            forename: 'Benny',
+            surname: 'Green',
             age: 42
         }, {
             id: 7,
-            forename: 'Paul',
-            surname: 'Wilson',
+            forename: 'Michael',
+            surname: 'Doyle',
             age: 43
         }];
     }
@@ -791,45 +815,45 @@ export default class TestUtils {
         return {
             1: {
                 age: 53,
-                forename: 'Tony',
+                forename: 'Tucker',
                 id: 1,
-                surname: 'Ruddock'
+                surname: 'Jenkins'
                 },
             2: {
                 age: 56,
-                forename: 'Nick',
+                forename: 'Trisha',
                 id: 2,
-                surname: 'Forder'
+                surname: 'Yates'
                 },
             3: {
                 age: 58,
-                forename: 'Peter',
+                forename: 'Samuel',
                 id: 3,
-                surname: 'Yemchura'
+                surname: 'Maguire'
                 },
             4: {
                 age: 49,
-                forename: 'Philip',
+                forename: 'Fay',
                 id: 4,
-                surname: 'Harvey'
+                surname: 'Lucas'
                 },
             5: {
                 age: 47,
-                forename: 'Jim',
+                forename: 'Annette',
                 id: 5,
-                surname: 'Spence'
+                surname: 'Firman'
                 },
             6: {
                 age: 42,
-                forename: 'Mark',
+                forename: 'Benny',
                 id: 6,
-                surname: 'Bennett'
+                surname: 'Green'
                 },
             7: {
                 age: 43,
-                forename: 'Paul',
+                forename: 'Michael',
                 id: 7,
-                surname: 'Wilson'
+                surname: 'Doyle'
             }
         }
     }

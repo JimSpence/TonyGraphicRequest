@@ -6,7 +6,7 @@ import SummaryTable from "../SummaryTable";
 
 describe('"SummaryTable" Component', () => {
 
-    const props = TestUtils.populateGraphicRequests();
+    const props = TestUtils.populateDealerOrders();
     props.onEdit = jest.fn();
     props.onView = jest.fn();
     props.onDelete = jest.fn();

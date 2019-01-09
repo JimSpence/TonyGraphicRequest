@@ -15,37 +15,31 @@ describe('"AzureConfig" tests', () => {
 
     describe('"getDbHostUri" tests', () => {
         it('Should return valid DB Host uri', () => {
-            expect(azureConfig.getDbHostUri()).toBe('https://graphic-requests.documents.azure.com');
-        });
-    });
-
-    describe('"getDatabaseUri" tests', () => {
-        it('Should return valid database uri', () => {
-            expect(azureConfig.getCollectionsUri()).toBe('https://graphic-requests.documents.azure.com/dbs/graphicrequest');
+            expect(azureConfig.getDbHostUri()).toBe('https://tyresdirect2u.documents.azure.com');
         });
     });
 
     describe('"getCollectionsUri" tests', () => {
         it('Should return valid collections uri', () => {
-            expect(azureConfig.getCollectionsUri()).toBe('https://graphic-requests.documents.azure.com/dbs/graphicrequest/colls');
+            expect(azureConfig.getCollectionsUri()).toBe('https://tyresdirect2u.documents.azure.com/dbs/dealerorders/colls');
         });
     });
 
     describe('"getCollection Uri" tests', () => {
         it('Should return valid collection uri', () => {
-            expect(azureConfig.getCollectionUri('testCollection')).toBe('https://graphic-requests.documents.azure.com/dbs/graphicrequest/colls/testCollection');
+            expect(azureConfig.getCollectionUri('testCollection')).toBe('https://tyresdirect2u.documents.azure.com/dbs/dealerorders/colls/testCollection');
         });
     });
 
     describe('"getDocuments Uri" tests', () => {
         it('Should return valid documents uri', () => {
-            expect(azureConfig.getDocumentsUri('testCollection')).toBe('https://graphic-requests.documents.azure.com/dbs/graphicrequest/colls/testCollection/docs');
+            expect(azureConfig.getDocumentsUri('testCollection')).toBe('https://tyresdirect2u.documents.azure.com/dbs/dealerorders/colls/testCollection/docs');
         });
     });
 
     describe('"getDocument Uri" tests', () => {
         it('Should return valid document uri', () => {
-            expect(azureConfig.getDocumentUri('testCollection', 'randomDocument')).toBe('https://graphic-requests.documents.azure.com/dbs/graphicrequest/colls/testCollection/docs/randomDocument');
+            expect(azureConfig.getDocumentUri('testCollection', 'randomDocument')).toBe('https://tyresdirect2u.documents.azure.com/dbs/dealerorders/colls/testCollection/docs/randomDocument');
         });
     });
 });

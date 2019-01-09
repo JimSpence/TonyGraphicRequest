@@ -8,9 +8,9 @@ import Select from "../../FormElements/Select/Select";
 import TextField from "../../FormElements/InputField/TextField";
 import NumberField from "../../FormElements/InputField/NumberField";
 import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
-import './GraphicsForm.css';
+import './TyreOrdersForm.css';
 
-export default class GraphicsForm extends Component {
+export default class TyreOrdersForm extends Component {
     constructor(props) {
         super(props);
 
@@ -24,9 +24,9 @@ export default class GraphicsForm extends Component {
 
         this.state = {
             disableSaveButton: true,
-            graphic: props.graphic || {},
-            graphicId: props.graphicId,
-            editMode: props.graphicId && props.graphicId.length > 0,
+            tyreOrder: props.tyreOrder || {},
+            tyreOrderId: props.tyreOrderId,
+            editMode: props.tyreOrderId && props.tyreOrderId.length > 0,
             show: props.open,
             showConfirmDialog: false,
             savedProps: props
@@ -40,27 +40,28 @@ export default class GraphicsForm extends Component {
         open: PropTypes.bool.isRequired,
         reasons: PropTypes.object.isRequired,
         seasons: PropTypes.object.isRequired,
-        graphicId: PropTypes.string,
-        graphic: PropTypes.object,
+        vehicleMakes: PropTypes.object.isRequired,
+        tyreOrderId: PropTypes.string,
+        tyreOrder: PropTypes.object,
         onDelete: PropTypes.func
     };
 
     doSave = () => {
-        this.props.onSave(this.state.graphic);
+        this.props.onSave(this.state.tyreOrder);
     };
 
     doDelete = () => {
-        this.props.onDelete(this.state.graphicId);
+        this.props.onDelete(this.state.tyreOrderId);
     };
 
     onChange = (field) => {
         const disableSaveButton = this.state.editMode ? document.getElementsByClassName('invalid').length > 0 : document.getElementsByClassName('valid').length < 6;
 
         if (field.isValid) {
-            const newGraphic = JSON.parse(JSON.stringify(this.state.graphic));
-            newGraphic[field.id] = field.value;
+            const newTyreOrder = JSON.parse(JSON.stringify(this.state.tyreOrder));
+            newTyreOrder[field.id] = field.value;
 
-            this.setState({graphic: newGraphic, disableSaveButton: disableSaveButton});
+            this.setState({tyreOrder: newTyreOrder, disableSaveButton: disableSaveButton});
         } else {
             this.setState({disableSaveButton: true});
         }
@@ -80,7 +81,7 @@ export default class GraphicsForm extends Component {
 
     render() {
         const headerText = this.state.editMode ?
-            'Edit Graphic - ' + this.state.graphicId : 'New Graphic';
+            'Edit Tyre Order - ' + this.state.tyreOrderId : 'New Tyre Order';
 
         const deleteButton = this.state.editMode ?
             <Button
@@ -108,29 +109,50 @@ export default class GraphicsForm extends Component {
                     <header>
                         <h1>{headerText}</h1>
                     </header>
-                    <div id="graphicsForm" className="modal-body">
+                    <div id="tyreOrdersForm" className="modal-body">
                         <div className="row">
-                            <TextField
-                                alphaOnly={true}
-                                autoFocus={true}
-                                id="jobCategory"
+                            <NumberField
+                                id="tyreWidth"
+                                maxLength={3}
+                                minLength={3}
+                                minValue={100}
+                                onChange={this.onChange}
+                                readOnly={this.state.editMode}
+                                title="Tyre Width (mm)"
+                                value={this.state.tyreOrder.tyreWidth}
+                            />
+                            <NumberField
+                                id="tyreProfile"
                                 maxLength={2}
                                 minLength={2}
                                 onChange={this.onChange}
                                 readOnly={this.state.editMode}
-                                title="Job Category"
-                                uppercase={true}
-                                value={this.state.graphic.jobCategory}
+                                title="Tyre Profile (mm)"
+                                value={this.state.tyreOrder.tyreProfile}
                             />
+                        </div>
+                        <div className="row">
                             <NumberField
-                                id="jobNumber"
-                                maxLength={5}
+                                id="tyreRimSize"
+                                maxLength={2}
+                                minLength={2}
+                                minValue={10}
+                                onChange={this.onChange}
+                                readOnly={this.state.editMode}
+                                title="Rim Size (in)"
+                                value={this.state.tyreOrder.rimSize}
+                            />
+                            <TextField
+                                alphaOnly={true}
+                                autoFocus={true}
+                                id="tyreSpeedRating"
+                                maxLength={1}
                                 minLength={1}
                                 onChange={this.onChange}
                                 readOnly={this.state.editMode}
-                                title="Job Number"
-                                value={this.state.graphic.jobNumber}
-                                zeroPad={true}
+                                title="Speed Rating"
+                                uppercase={true}
+                                value={this.state.tyreOrder.tyreSpeedRating}
                             />
                         </div>
                         <div className="row">
@@ -141,18 +163,16 @@ export default class GraphicsForm extends Component {
                                 placeholder="Season"
                                 readOnly={this.state.editMode}
                                 title="Season"
-                                value={this.state.graphic.season}
+                                value={this.state.tyreOrder.season}
                             />
-                            <NumberField
-                                id="artworkNumber"
-                                maxLength={4}
-                                minLength={1}
+                            <Select
+                                data={this.props.vehicleMakes}
+                                id="vehicleMake"
                                 onChange={this.onChange}
-                                placeholder="Artwork Number"
+                                placeholder="Vehicle Make"
                                 readOnly={this.state.editMode}
-                                title="Artwork Number"
-                                value={this.state.graphic.artworkNumber}
-                                zeroPad={true}
+                                title="Vehicle Make"
+                                value={this.state.tyreOrder.vehicleMake}
                             />
                         </div>
                         <div className="row">
@@ -162,7 +182,7 @@ export default class GraphicsForm extends Component {
                                 onChange={this.onChange}
                                 placeholder="Reason"
                                 title="Reason"
-                                value={this.state.graphic.reason}
+                                value={this.state.tyreOrder.reason}
                             />
                             <NumberField
                                 id="quantity"
@@ -173,13 +193,14 @@ export default class GraphicsForm extends Component {
                                 onChange={this.onChange}
                                 placeholder="Quantity"
                                 title="Quantity"
-                                value={this.state.graphic.quantity}
+                                value={this.state.tyreOrder.quantity}
                             />
                         </div>
                     </div>
                     <footer className="modal-buttons">
                         <Button
                             text="Cancel"
+                            title="Cancel Tyre Order"
                             type="cancel"
                             className="btn secondary-outline"
                             onClick={this.onClose}
@@ -190,6 +211,7 @@ export default class GraphicsForm extends Component {
                             disabled={this.state.disableSaveButton}
                             onClick={this.doSave}
                             text="Save"
+                            title="Save Tyre Order"
                             type="save"
                         />
                     </footer>

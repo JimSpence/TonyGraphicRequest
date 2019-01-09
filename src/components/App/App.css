@@ -1,21 +1,31 @@
 :root {
-    --dusty: #96858f;
-    --dusty-dark: #85747e;
-    --dusty-light: #b8a7af;
-    --lavendar: #6d7993;
-    --lavendar-dark: #5c6882;
-    --lavendar-light: #8f9bb5;
+    /*--dusty: #96858f;*/
+    /*--dusty-dark: #85747e;*/
+    /*--dusty-light: #b8a7af;*/
+    /*--lavendar: #6d7993;*/
+    /*--lavendar-dark: #5c6882;*/
+    /*--lavendar-light: #8f9bb5;*/
     --overcast: #9099a2;
     --paper: #d5d5d5;
     --screen: #eee;
 
-    --primary: var(--lavendar);
-    --primary-dark: var(--lavendar-dark);
-    --primary-light: var(--lavendar-light);
+    --dusty: #9a1750;
+    --dusty-dark: #6f2232;
+    --dusty-light: #c3073f;
+    --lavendar: #ee4c7c;
+    --lavendar-dark: #9a1750;
+    --lavendar-light: #e3afbc;
 
-    --secondary: var(--dusty);
-    --secondary-dark: var(--dusty-dark);
-    --secondary-light: var(--dusty-light);
+    --header-color: #1a1a1d;
+
+    /*--primary: var(--lavendar);*/
+    --secondary: #950740;
+    --secondary-dark: #6f2232;
+    --secondary-light: #c3073f;
+
+    --primary: #ee4c7c;
+    --primary-dark: #9a1750;
+    --primary-light: #e3afbc;
 
     --invalid: crimson;
     --valid: limegreen;

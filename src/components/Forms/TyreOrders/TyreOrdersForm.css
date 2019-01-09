@@ -1,7 +1,7 @@
-#graphicsForm {
+#tyreOrdersForm {
     flex-direction: column;
 }
 
-#graphicsForm select {
+#tyreOrdersForm select {
     box-sizing: border-box;
 }

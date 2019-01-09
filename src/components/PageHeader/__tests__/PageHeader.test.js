@@ -6,7 +6,7 @@ import PageHeader from '../PageHeader';
 
 describe('"PageHeader" Component', () => {
     const props = {
-        headerText: "Graphic Request"
+        headerText: "Dealer Orders"
     };
 
     EnzymeAdapter.config();

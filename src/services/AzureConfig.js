@@ -5,8 +5,8 @@ export default class AzureConfig {
 
     static getAzureConfig = () => {
         return {
-            dbHost: 'https://graphic-requests.documents.azure.com',
-            database: '/graphicrequest',
+            dbHost: 'https://tyresdirect2u.documents.azure.com',
+            database: '/dealerorders',
             dbs: '/dbs',
             colls: '/colls',
             docs: '/docs',

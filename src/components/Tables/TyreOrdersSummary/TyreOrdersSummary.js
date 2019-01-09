@@ -1,27 +1,27 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import './GraphicsSummary.css';
+import './TyreOrdersSummary.css';
 
-export default class GraphicsSummary extends Component {
+export default class TyreOrdersSummary extends Component {
     static propTypes = {
-        graphics: PropTypes.object.isRequired,
+        tyreOrders: PropTypes.object.isRequired,
         onEdit: PropTypes.func
     };
 
     render() {
-        const {graphics, onEdit} = this.props;
-        const rows = Object.keys(graphics).map((graphic, index) => {
+        const {tyreOrders, onEdit} = this.props;
+        const rows = Object.keys(tyreOrders).map((tyreOrder, index) => {
             return (
-                <tr key={index} id={graphic} onClick={onEdit}>
-                    <td>{graphic}</td>
-                    <td>{graphics[graphic].reason}</td>
-                    <td className="text-right">{graphics[graphic].quantity}</td>
+                <tr key={index} id={tyreOrder} onClick={onEdit}>
+                    <td>{tyreOrder}</td>
+                    <td>{tyreOrders[tyreOrder].reason}</td>
+                    <td className="text-right">{tyreOrders[tyreOrder].quantity}</td>
                 </tr>
             )
         });
 
         return (
-            <table className="graphics-summary">
+            <table className="tyre-orders-summary">
                 <thead>
                     <tr>
                         <th>Request</th>

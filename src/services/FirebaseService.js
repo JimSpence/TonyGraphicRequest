@@ -3,15 +3,15 @@ import 'firebase/database';
 // import 'firebase/auth';
 
 const config = {
-    databaseURL: 'https://graphic-requests.firebaseio.com'
+    databaseURL: 'https://tyres-direct-2-u.firebaseio.com'
 };
 
 firebase.initializeApp(config);
 
-const graphicRequestsUri = 'graphicRequests/';
+const dealerOrdersUri = 'dealerOrders/';
 
 export default class FirebaseService {
-    static getGraphicRequests(graphicRequestId) {
+    static getDealerOrders(dealerOrderId) {
         // firebase.auth().signInWithEmailAndPassword('tony.ruddock@arcadiagroup.co.uk', 'Arcadia01')
         // firebase.auth().createUserWithEmailAndPassword('tony.ruddock@arcadiagroup.co.uk', 'Arcadia01')
         //     .then((response) => {
@@ -21,10 +21,10 @@ export default class FirebaseService {
         //         console.log(error);
         //     });
         return new Promise((resolve) => {
-            const uri = graphicRequestId ? graphicRequestsUri + graphicRequestId : graphicRequestsUri;
-            const graphicRequestsDB = firebase.database().ref(uri);
+            const uri = dealerOrderId ? dealerOrdersUri + dealerOrderId : dealerOrdersUri;
+            const dealerOrdersDB = firebase.database().ref(uri);
 
-            return graphicRequestsDB.on('value', (data) => {
+            return dealerOrdersDB.on('value', (data) => {
                 resolve(data.val());
             });
         });
@@ -33,45 +33,48 @@ export default class FirebaseService {
     static getDropdownData() {
         return new Promise(resolve => {
             const screenData = {};
-            this.getData('stores/')
-                .then(stores => {
-                    screenData.stores = stores;
-                    this.getData('seasons/')
-                        .then(seasons => {
-                        screenData.seasons = seasons;
-                    this.getData('reasons/')
-                        .then(reasons => {
-                        screenData.reasons = reasons;
-                        resolve(screenData);
+            this.getData('dealers/')
+                .then(dealers => {
+                    screenData.dealers = dealers;
+                    this.getData('brands/')
+                        .then(brands => {
+                            screenData.vehicleMakes = brands;
+                            this.getData('seasons/')
+                                .then(seasons => {
+                                    screenData.seasons = seasons;
+                                    this.getData('reasons/')
+                                        .then(reasons => {
+                                            screenData.reasons = reasons;
+                                            resolve(screenData);
+                                    });
+                            });
                     });
-                });
             });
         });
     }
 
     static getData(entity) {
         return new Promise((resolve) => {
-            const graphicRequestsDB = firebase.database().ref(entity);
+            const dealerOrdersDB = firebase.database().ref(entity);
 
-            return graphicRequestsDB.on('value', (data) => {
+            return dealerOrdersDB.on('value', (data) => {
                 resolve(data.val());
             })
         });
     }
 
-    static updateGraphicRequest(graphicRequestId, graphicRequest) {
-        const graphicRequestsDB = firebase.database().ref(graphicRequestsUri);
-        return graphicRequestsDB.child(graphicRequestId).update(graphicRequest);
+    static updateDealerOrder(dealerOrderId, dealerOrder) {
+        const dealerOrdersDB = firebase.database().ref(dealerOrdersUri);
+        return dealerOrdersDB.child(dealerOrderId).update(dealerOrder);
     }
 
-    static writeGraphicRequest(graphicRequest) {
-        const graphicRequestsDB = firebase.database().ref(graphicRequestsUri);
-        return graphicRequestsDB.push(graphicRequest);
+    static writeDealerOrder(dealerOrder) {
+        const dealerOrdersDB = firebase.database().ref(dealerOrdersUri);
+        return dealerOrdersDB.push(dealerOrder);
     }
 
-    static
-    deleteGraphicRequest(graphicRequestId) {
-        const graphicRequestsDB = firebase.database().ref(graphicRequestsUri);
-        return graphicRequestsDB.child(graphicRequestId).remove();
+    static deleteDealerOrder(dealerOrderId) {
+        const dealerOrdersDB = firebase.database().ref(dealerOrdersUri);
+        return dealerOrdersDB.child(dealerOrderId).remove();
     }
 };

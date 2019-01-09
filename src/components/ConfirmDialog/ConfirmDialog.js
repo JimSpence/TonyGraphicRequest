@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 import Button from "../FormElements/Button/Button";
 import Utils from '../../helpers/Utils'
-import GraphicsSummary from "../Tables/GraphicsSummary/GraphicsSummary";
+import TyreOrdersSummary from "../Tables/TyreOrdersSummary/TyreOrdersSummary";
 import './ConfirmDialog.css';
 
 export default class ConfirmDialog extends Component {
@@ -15,7 +15,7 @@ export default class ConfirmDialog extends Component {
     }
 
     static propTypes = {
-        graphicRequest: PropTypes.object,
+        dealerOrder: PropTypes.object,
         onClose: PropTypes.func.isRequired,
         onDelete: PropTypes.func.isRequired,
         open: PropTypes.bool.isRequired,
@@ -32,13 +32,13 @@ export default class ConfirmDialog extends Component {
     };
 
     render() {
-        const confirmDetails = this.props.graphicRequest && this.props.graphicRequest.graphics ?
+        const confirmDetails = this.props.dealerOrder && this.props.dealerOrder.tyreOrders ?
             <div>
-                <div>Do you really want to delete this Graphic Request?</div>
-                <label>Graphics</label>
-                <GraphicsSummary graphics={this.props.graphicRequest.graphics} />
+                <div>Do you really want to delete this Dealer Order?</div>
+                <label>Tyre Orders</label>
+                <TyreOrdersSummary tyreOrders={this.props.dealerOrder.tyreOrders} />
             </div>
-            : <div>Do you really want to delete this Graphic?</div>;
+            : <div>Do you really want to delete this Tyre Order?</div>;
 
         return (
             <Modal
@@ -60,6 +60,7 @@ export default class ConfirmDialog extends Component {
                     <footer className="modal-buttons">
                         <Button
                             text="No"
+                            title="Cancel Delete"
                             type="cancel"
                             className="btn secondary-outline"
                             onClick={this.onClose}
@@ -67,6 +68,7 @@ export default class ConfirmDialog extends Component {
                         <Button
                             text="Yes"
                             type="confirm"
+                            title="Confirm Delete"
                             className="btn primary"
                             onClick={this.onConfirm}
                         />

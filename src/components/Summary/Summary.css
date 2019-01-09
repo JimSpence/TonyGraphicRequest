@@ -8,6 +8,7 @@ div.summary-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: .5rem;
+    min-width: 800px;
 }
 
 div.summary-header h2 {
@@ -16,4 +17,9 @@ div.summary-header h2 {
     font-weight: normal;
     margin: 0;
     padding: 0;
+}
+
+th.no-records {
+    background-color: var(--invalid);
+    font-size: 1.25rem;
 }
