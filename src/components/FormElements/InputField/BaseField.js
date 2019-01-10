@@ -4,16 +4,10 @@ import classnames from 'classnames';
 import './InputField.css';
 
 export default class BaseField extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            touched: false,
-            value: props.value ? props.value : ''
-        };
-
-        this.validate = this.validate.bind(this);
-    }
+    state = {
+        touched: false,
+        value: this.props.value ? this.props.value : ''
+    };
 
     static propTypes = {
         id: PropTypes.string.isRequired,

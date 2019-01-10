@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import BaseField from './BaseField';
 
 export default class TextField extends BaseField {
-    constructor(props) {
-        super(props);
-
-        this.state = props;
-        this.validate = this.validate.bind(this);
-    }
+    state = this.props;
 
     static propTypes = {
         capitalise: PropTypes.bool,

@@ -4,16 +4,11 @@ import classnames from 'classnames';
 import './Select.css';
 
 export default class Select extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            id: props.id,
-            touched: false,
-            value: props.value? props.value : ''
-        };
-        this.validate = this.validate.bind(this);
-    }
+    state = {
+        id: this.props.id,
+        touched: false,
+        value: this.props.value ? this.props.value : ''
+    };
 
     static propTypes = {
         data: PropTypes.object.isRequired,

@@ -6,16 +6,12 @@ import Utils from "../../../helpers/Utils";
 import './SummaryTable.css';
 
 export default class SummaryTable extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            sortCriteria: {
-                key: 'requestDate',
-                descending: true,
-                dateField: true
-            }
-        };
+    state = {
+        sortCriteria: {
+            key: 'requestDate',
+            descending: true,
+            dateField: true
+        }
     };
 
     static propTypes = {

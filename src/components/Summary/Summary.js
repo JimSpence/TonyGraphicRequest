@@ -9,25 +9,16 @@ import Button from "../FormElements/Button/Button";
 import './Summary.css';
 
 export default class Summary extends Component {
-    constructor() {
-        super();
+    state = {
+        dealerOrdersRetrieved: false,
+        dealerOrders: null,
+        dealerOrderId: null,
+        confirmModal: false,
+        editModal: false
+    };
 
-        this.state = {
-            dealerOrdersRetrieved: false,
-            dealerOrders: null,
-            dealerOrderId: null,
-            confirmModal: false,
-            editModal: false
-        };
-
-        // this.cosmosDBService = new CosmosDBService();
-        // this.authenticationService = new AuthenticationService();
-
-        this.deleteDealerOrder = this.deleteDealerOrder.bind(this);
-        this.editDealerOrder = this.editDealerOrder.bind(this);
-        this.viewDealerOder = this.viewDealerOder.bind(this);
-        this.doDelete = this.doDelete.bind(this);
-    }
+    // cosmosDBService = new CosmosDBService();
+    // authenticationService = new AuthenticationService();
 
     componentDidMount() {
         this.refreshData();

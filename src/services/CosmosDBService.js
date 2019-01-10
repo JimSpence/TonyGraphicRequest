@@ -3,10 +3,8 @@ import AuthenticationService from "./AuthenticationService";
 import Utils from "../helpers/Utils";
 
 export default class CosmosDBService {
-    constructor() {
-        this.azureConfig = new AzureConfig();
-        this.collection = 'dealerorders';
-    }
+    azureConfig = new AzureConfig();
+    collection = 'dealerorders';
 
     getDealerOrders = (authenticationService, dealerOrderId) => {
         return new Promise((resolve) => {

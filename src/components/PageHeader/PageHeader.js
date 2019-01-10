@@ -7,14 +7,10 @@ import {faUser, faUserAlt} from "@fortawesome/free-solid-svg-icons";
 import './PageHeader.css';
 
 export default class PageHeader extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            userDetails: null,
-            showUserDetails: false
-        }
-    }
+    state = {
+        userDetails: null,
+        showUserDetails: false
+    };
 
     static propTypes = {
         headerText: PropTypes.string.isRequired

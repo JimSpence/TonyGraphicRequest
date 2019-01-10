@@ -1,7 +1,5 @@
 export default class AzureConfig {
-    constructor() {
-        this.azureConfig = AzureConfig.getAzureConfig();
-    }
+    azureConfig = AzureConfig.getAzureConfig();
 
     static getAzureConfig = () => {
         return {

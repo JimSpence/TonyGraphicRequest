@@ -11,27 +11,15 @@ import ConfirmDialog from "../../ConfirmDialog/ConfirmDialog";
 import './TyreOrdersForm.css';
 
 export default class TyreOrdersForm extends Component {
-    constructor(props) {
-        super(props);
-
-        this.onChange = this.onChange.bind(this);
-        this.onClose = this.onClose.bind(this);
-        this.doDelete = this.doDelete.bind(this);
-        this.doSave = this.doSave.bind(this);
-
-        this.showConfirmDialog = this.showConfirmDialog.bind(this);
-        this.closeConfirmDialog = this.closeConfirmDialog.bind(this);
-
-        this.state = {
-            disableSaveButton: true,
-            tyreOrder: props.tyreOrder || {},
-            tyreOrderId: props.tyreOrderId,
-            editMode: props.tyreOrderId && props.tyreOrderId.length > 0,
-            show: props.open,
-            showConfirmDialog: false,
-            savedProps: props
-        };
-    }
+    state = {
+        disableSaveButton: true,
+        tyreOrder: this.props.tyreOrder || {},
+        tyreOrderId: this.props.tyreOrderId,
+        editMode: this.props.tyreOrderId && this.props.tyreOrderId.length > 0,
+        show: this.props.open,
+        showConfirmDialog: false,
+        savedProps: this.props
+    };
 
     static propTypes = {
         onChange: PropTypes.func.isRequired,

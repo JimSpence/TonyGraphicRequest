@@ -10,7 +10,7 @@ import Utils from '../../../helpers/Utils'
 import TyreOrdersForm from "../TyreOrders/TyreOrdersForm";
 import TyreOrdersSummary from "../../Tables/TyreOrdersSummary/TyreOrdersSummary";
 import TyreOrderService from "../../../services/TyreOrderService";
-import AuthenticationService from "../../../services/AuthenticationService";
+// import AuthenticationService from "../../../services/AuthenticationService";
 import EmailService from "../../../services/EmailService";
 // import CosmosDBService from "../../../services/CosmosDBService";
 import FirebaseService from "../../../services/FirebaseService";
@@ -19,36 +19,20 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import './DealerOrderForm.css';
 
 export default class DealerOrderForm extends Component {
-    constructor(props) {
-        super(props);
+    state = {
+        dealerOrder: this.props.dealerOrder,
+        readOnly: this.props.editMode,
+        reasons: [],
+        seasons: [],
+        showAddTyreOrderForm: false,
+        showEditTyreOrderForm: false,
+        showDealerSelect: false,
+        dealers: [],
+        viewMode: this.props.viewMode
+    };
 
-        this.addTyreOrder = this.addTyreOrder.bind(this);
-        this.closeTyreOrderFormModal = this.closeTyreOrderFormModal.bind(this);
-        this.deleteTyreOrder = this.deleteTyreOrder.bind(this);
-        this.doComplete = this.doComplete.bind(this);
-        this.doSave = this.doSave.bind(this);
-        this.editDetails = this.editDetails.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.onClose = this.onClose.bind(this);
-        this.showAddTyreOrdersForm = this.showAddTyreOrdersForm.bind(this);
-        this.showEditTyreOrdersForm = this.showEditTyreOrdersForm.bind(this);
-        this.showScreenElements = this.showScreenElements.bind(this);
-
-        this.state = {
-            dealerOrder: props.dealerOrder,
-            readOnly: props.editMode,
-            reasons: [],
-            seasons: [],
-            showAddTyreOrderForm: false,
-            showEditTyreOrderForm: false,
-            showDealerSelect: false,
-            dealers: [],
-            viewMode: props.viewMode
-        };
-
-        this.authenticationService = new AuthenticationService();
-        // this.cosmosDBService = new CosmosDBService();
-    }
+    // authenticationService = new AuthenticationService();
+    // cosmosDBService = new CosmosDBService();
 
     static propTypes = {
         editMode: PropTypes.bool.isRequired,

@@ -4,12 +4,7 @@ import BaseField from './BaseField';
 import Utils from '../../../helpers/Utils'
 
 export default class NumberField extends BaseField {
-    constructor(props) {
-        super(props);
-
-        this.state = props;
-        this.validate = this.validate.bind(this);
-    }
+    state = this.props;
 
     static propTypes = {
         minValue: PropTypes.number,

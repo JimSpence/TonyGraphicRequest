@@ -7,13 +7,6 @@ import TyreOrdersSummary from "../Tables/TyreOrdersSummary/TyreOrdersSummary";
 import './ConfirmDialog.css';
 
 export default class ConfirmDialog extends Component {
-    constructor(props) {
-        super(props);
-
-        this.onClose = this.onClose.bind(this);
-        this.onConfirm = this.onConfirm.bind(this);
-    }
-
     static propTypes = {
         dealerOrder: PropTypes.object,
         onClose: PropTypes.func.isRequired,
